@@ -42,15 +42,47 @@ try {
         ':details' => $details
     ]);
 
+    // تجهيز رسالة الواتساب المنسقة بالتفاصيل
+    $whatsapp_num = get_setting('whatsapp_number', '966554091835');
+    $site_name    = get_setting('site_name', 'شركة الأوائل لنقل العفش');
+
+    $wa_text = "👋 مرحباً *{$site_name}*،\n";
+    $wa_text .= "أود تأكيد طلب حجز جديد عبر الموقع:\n\n";
+    $wa_text .= "👤 *الاسم:* " . $client_name . "\n";
+    $wa_text .= "📱 *الجوال:* " . $phone . "\n";
+    if (!empty($service_type)) {
+        $wa_text .= "🛠️ *الخدمة المطلوبة:* " . $service_type . "\n";
+    }
+    if (!empty($from_area)) {
+        $wa_text .= "📍 *مكان النقل (من):* " . $from_area . "\n";
+    }
+    if (!empty($to_area)) {
+        $wa_text .= "🎯 *الوجهة (إلى):* " . $to_area . "\n";
+    }
+    if (!empty($moving_date)) {
+        $wa_text .= "📅 *تاريخ النقل:* " . $moving_date . "\n";
+    }
+    if (!empty($details)) {
+        $wa_text .= "📝 *ملاحظات:* " . $details . "\n";
+    }
+    $wa_text .= "\nيرجى التواصل معي للتأكيد وتقديم أفضل عرض سعر. وشكراً!";
+
+    $wa_url = format_whatsapp_link($whatsapp_num, $wa_text);
+
     echo json_encode([
-        'status'  => 'success',
-        'message' => 'تم استلام طلبك بنجاح! سيتواصل معك فريقنا خلال دقائق معدودة.'
+        'status'       => 'success',
+        'message'      => 'تم تسجيل طلبك بنجاح! جاري تحويلك الآن للواتساب لتأكيد الحجز فوراً...',
+        'whatsapp_url' => $wa_url
     ]);
 } catch (Exception $e) {
-    // في حال حدوث خطأ في قاعدة البيانات، لا نحبط الزائر ونرد بنجاح لطيف مع تسجيل الخطأ
     error_log("Booking submission error: " . $e->getMessage());
+    $whatsapp_num = get_setting('whatsapp_number', '966554091835');
+    $wa_text = "مرحباً، أود الاستفسار وحجز خدمة نقل عفش - الاسم: {$client_name} - الجوال: {$phone}";
+    $wa_url = format_whatsapp_link($whatsapp_num, $wa_text);
+
     echo json_encode([
-        'status'  => 'success',
-        'message' => 'تم استلام طلبك بنجاح! سيتواصل معك فريقنا قريباً.'
+        'status'       => 'success',
+        'message'      => 'تم تسجيل طلبك! جاري تحويلك إلى واتساب...',
+        'whatsapp_url' => $wa_url
     ]);
 }

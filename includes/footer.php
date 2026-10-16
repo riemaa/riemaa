@@ -117,15 +117,35 @@ $footer_scripts    = get_setting('footer_scripts', '');
 </div>
 
 <!-- ============================================================
-     FLOATING BUTTONS
+     FLOATING BUTTONS & PWA INSTALL
 ============================================================ -->
 <div class="floating-buttons">
+  <button type="button" id="pwaInstallBtn" class="float-btn float-btn-pwa" title="تثبيت التطبيق على جهازك" style="display:none;">
+    <i class="fas fa-download"></i>
+  </button>
   <a href="<?= htmlspecialchars(format_whatsapp_link($whatsapp_number)) ?>" class="float-btn float-btn-whatsapp" target="_blank" title="محادثة واتساب">
     <i class="fab fa-whatsapp"></i>
   </a>
   <a href="tel:<?= htmlspecialchars(format_phone_tel($phone_primary)) ?>" class="float-btn float-btn-call" title="اتصال مباشر">
     <i class="fas fa-phone-alt"></i>
   </a>
+</div>
+
+<!-- PWA Install Prompt Banner -->
+<div id="pwaBanner" class="pwa-install-banner" style="display:none;">
+  <div class="pwa-banner-content">
+    <div class="pwa-banner-icon">
+      <i class="fas fa-mobile-screen-button"></i>
+    </div>
+    <div class="pwa-banner-text">
+      <strong>تطبيق <?= htmlspecialchars($site_short_name) ?></strong>
+      <p>ثبّت التطبيق على هاتفك لتصفح أسرع وحجز فوري في أي وقت!</p>
+    </div>
+  </div>
+  <div class="pwa-banner-actions">
+    <button type="button" id="pwaBannerInstall" class="btn btn-pwa-install">تثبيت الآن</button>
+    <button type="button" id="pwaBannerDismiss" class="btn btn-pwa-close" title="إغلاق"><i class="fas fa-times"></i></button>
+  </div>
 </div>
 
 <!-- Scroll To Top -->

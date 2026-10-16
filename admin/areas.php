@@ -38,13 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$all_areas = $pdo->query("SELECT * FROM service_areas ORDER BY category ASC, sort_order ASC")->fetchAll();
+$all_areas = $pdo->query("SELECT * FROM service_areas ORDER BY category ASC, sort_order ASC, id ASC")->fetchAll();
+$existing_categories = $pdo->query("SELECT DISTINCT category FROM service_areas WHERE category != '' ORDER BY category ASC")->fetchAll(PDO::FETCH_COLUMN);
 ?>
 
 <div class="d-flex align-items-center justify-content-between mb-4">
   <div>
     <h3 class="fw-bold mb-1" style="color:var(--text-dark);">إدارة مناطق وأحياء التغطية</h3>
-    <p class="text-muted small mb-0">تحديد أحياء الرياض ومدن المملكة المشمولة بخدمة نقل العفش</p>
+    <p class="text-muted small mb-0">يمكنك كتابة وتحديد أي أقسام أو مدن أو أحياء بحرية تامة دون أي قيود</p>
   </div>
 </div>
 
@@ -59,17 +60,19 @@ $all_areas = $pdo->query("SELECT * FROM service_areas ORDER BY category ASC, sor
           <?= csrf_field() ?>
 
           <div class="mb-3">
-            <label class="form-label">القسم الجغرافي</label>
-            <select name="category" class="form-select" required>
-              <option value="north_central">📍 شمال ووسط الرياض</option>
-              <option value="east_west_south">📍 شرق وغرب وجنوب الرياض</option>
-              <option value="interstate">🚛 النقل بين مدن المملكة</option>
-            </select>
+            <label class="form-label fw-bold">القسم الجغرافي أو التصنيف (اكتب بحرية)</label>
+            <input type="text" name="category" list="categoriesList" class="form-control" required placeholder="مثال: أحياء شمال الرياض، مدن الغربية..." />
+            <datalist id="categoriesList">
+              <?php foreach ($existing_categories as $ec): ?>
+                <option value="<?= htmlspecialchars($ec) ?>"></option>
+              <?php endforeach; ?>
+            </datalist>
+            <small class="text-muted">يمكنك كتابة مسمى قسم جديد، أو اختيار قسم مكتوب مسبقاً</small>
           </div>
 
           <div class="mb-3">
-            <label class="form-label">اسم الحي أو المدينة</label>
-            <input type="text" name="area_name" class="form-control" required placeholder="مثال: حطين أو جدة" />
+            <label class="form-label fw-bold">اسم الحي أو المدينة</label>
+            <input type="text" name="area_name" class="form-control" required placeholder="مثال: حطين، النرجس، جدة، الدمام..." />
           </div>
 
           <div class="mb-4">
@@ -96,28 +99,26 @@ $all_areas = $pdo->query("SELECT * FROM service_areas ORDER BY category ASC, sor
             <thead>
               <tr>
                 <th>الحي / المنطقة</th>
-                <th>القسم</th>
+                <th>القسم الجغرافي</th>
                 <th width="80">حذف</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($all_areas as $ar): 
-                $cat_labels = [
-                  'north_central'    => 'شمال ووسط الرياض',
-                  'east_west_south'  => 'شرق وغرب وجنوب',
-                  'interstate'       => 'بين المدن'
-                ];
-              ?>
-              <tr>
-                <td><strong class="text-dark"><i class="fas fa-map-pin text-danger me-1"></i> <?= htmlspecialchars($ar['area_name']) ?></strong></td>
-                <td><span class="badge bg-light text-secondary border"><?= $cat_labels[$ar['category']] ?? $ar['category'] ?></span></td>
-                <td>
-                  <a href="areas.php?delete_id=<?= $ar['id'] ?>" class="btn btn-sm btn-light border confirm-delete" title="حذف">
-                    <i class="fas fa-trash-alt text-danger"></i>
-                  </a>
-                </td>
-              </tr>
-              <?php endforeach; ?>
+              <?php if (empty($all_areas)): ?>
+                <tr><td colspan="3" class="text-center py-4 text-muted">لا توجد مناطق مضافة حالياً.</td></tr>
+              <?php else: ?>
+                <?php foreach ($all_areas as $ar): ?>
+                <tr>
+                  <td><strong class="text-dark"><i class="fas fa-map-pin text-danger me-1"></i> <?= htmlspecialchars($ar['area_name']) ?></strong></td>
+                  <td><span class="badge bg-light text-dark border px-2 py-1"><i class="fas fa-folder text-warning me-1"></i> <?= htmlspecialchars($ar['category']) ?></span></td>
+                  <td>
+                    <a href="areas.php?delete_id=<?= $ar['id'] ?>" class="btn btn-sm btn-light border confirm-delete" title="حذف">
+                      <i class="fas fa-trash-alt text-danger"></i>
+                    </a>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              <?php endif; ?>
             </tbody>
           </table>
         </div>

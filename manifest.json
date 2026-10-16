@@ -1,0 +1,27 @@
+﻿{
+  "name": "شركة الأوائل لنقل وتغليف الأثاث بالرياض",
+  "short_name": "الأوائل",
+  "description": "تطبيق حجز ونقل وتغليف وتخزين العفش والأثاث بالرياض بأمان تام وضمان شامل",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAF6F0",
+  "theme_color": "#8B5A2B",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/assets/images/1.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/1.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

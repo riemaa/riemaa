@@ -23,6 +23,24 @@ $meta_robots       = get_setting('meta_robots', 'index, follow');
 $canonical_url     = get_setting('canonical_url', SITE_URL);
 $header_scripts    = get_setting('header_scripts', '');
 
+// ألوان الهوية والمشروع
+$theme_primary_color   = get_setting('theme_primary_color', '#8B5A2B');
+$theme_secondary_color = get_setting('theme_secondary_color', '#341D13');
+$theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
+
+// مسميات نصوص القائمة العلوية
+$nav_services   = get_setting('nav_services', 'خدماتنا');
+$nav_fleet      = get_setting('nav_fleet', 'الأسطول والمعدات');
+$nav_whyus      = get_setting('nav_whyus', 'لماذا نحن');
+$nav_works      = get_setting('nav_works', 'معرض الأعمال');
+$nav_packages   = get_setting('nav_packages', 'باقات الأسعار');
+$nav_areas      = get_setting('nav_areas', 'مناطق الخدمة');
+$nav_process    = get_setting('nav_process', 'خطوات العمل');
+$nav_guarantees = get_setting('nav_guarantees', 'الضمانات');
+$nav_faq        = get_setting('nav_faq', 'الأسئلة الشائعة');
+$nav_contact    = get_setting('nav_contact', 'تواصل معنا');
+$nav_call_btn   = get_setting('nav_call_btn', $phone_primary);
+
 $og_image          = asset_url('assets/images/1.jpg');
 ?>
 <!DOCTYPE html>
@@ -88,6 +106,34 @@ $og_image          = asset_url('assets/images/1.jpg');
   <!-- Main Luxury Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
+  <!-- PWA Manifest & App Icons -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="<?= htmlspecialchars($theme_primary_color) ?>" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="<?= htmlspecialchars($site_short_name) ?>" />
+  <link rel="apple-touch-icon" href="/assets/images/1.jpg" />
+
+  <!-- Dynamic Theme Colors -->
+  <style id="custom-theme-variables">
+    :root {
+      --wood-caramel: <?= htmlspecialchars($theme_primary_color) ?> !important;
+      --primary: <?= htmlspecialchars($theme_primary_color) ?> !important;
+      --wood-walnut: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --wood-roasted: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --wood-dark: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --accent: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      --accent-bright: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+    .btn-hero-primary, .btn-calc, .nav-call-btn, .btn-login, .float-btn-pwa {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?>, <?= htmlspecialchars($theme_accent_color) ?>) !important;
+    }
+    .highlight, .section-subtitle-tag i, .brand-text span:first-child {
+      color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+  </style>
+
   <?php if (!empty($header_scripts)): ?>
     <?= $header_scripts ?>
   <?php endif; ?>
@@ -120,19 +166,19 @@ $og_image          = asset_url('assets/images/1.jpg');
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto gap-1">
-        <li class="nav-item"><a class="nav-link" href="#services">خدماتنا</a></li>
-        <li class="nav-item"><a class="nav-link" href="#fleet">الأسطول والمعدات</a></li>
-        <li class="nav-item"><a class="nav-link" href="#whyus">لماذا نحن</a></li>
-        <li class="nav-item"><a class="nav-link" href="#works">معرض الأعمال</a></li>
-        <li class="nav-item"><a class="nav-link" href="#packages">باقات الأسعار</a></li>
-        <li class="nav-item"><a class="nav-link" href="#areas">مناطق الخدمة</a></li>
-        <li class="nav-item"><a class="nav-link" href="#process">خطوات العمل</a></li>
-        <li class="nav-item"><a class="nav-link" href="#guarantees">الضمانات</a></li>
-        <li class="nav-item"><a class="nav-link" href="#faq">الأسئلة الشائعة</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services"><?= htmlspecialchars($nav_services) ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="#fleet"><?= htmlspecialchars($nav_fleet) ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="#whyus"><?= htmlspecialchars($nav_whyus) ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="#works"><?= htmlspecialchars($nav_works) ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="#packages"><?= htmlspecialchars($nav_packages) ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="#areas"><?= htmlspecialchars($nav_areas) ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="#process"><?= htmlspecialchars($nav_process) ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="#guarantees"><?= htmlspecialchars($nav_guarantees) ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq"><?= htmlspecialchars($nav_faq) ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact"><?= htmlspecialchars($nav_contact) ?></a></li>
       </ul>
       <a href="tel:<?= htmlspecialchars(format_phone_tel($phone_primary)) ?>" class="btn nav-call-btn ms-3">
-        <i class="fas fa-phone-alt"></i> <?= htmlspecialchars($phone_primary) ?>
+        <i class="fas fa-phone-alt"></i> <?= htmlspecialchars($nav_call_btn) ?>
       </a>
     </div>
   </div>
@@ -148,16 +194,16 @@ $og_image          = asset_url('assets/images/1.jpg');
   </div>
   <div class="offcanvas-body">
     <ul class="navbar-nav gap-2">
-      <li class="nav-item"><a class="nav-link fw-bold" href="#services"   data-bs-dismiss="offcanvas"><i class="fas fa-concierge-bell me-2 text-warning"></i>خدماتنا المتميزة</a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#fleet"      data-bs-dismiss="offcanvas"><i class="fas fa-truck me-2 text-warning"></i>أسطولنا والمعدات</a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#whyus"      data-bs-dismiss="offcanvas"><i class="fas fa-crown me-2 text-warning"></i>لماذا تختارنا</a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#works"      data-bs-dismiss="offcanvas"><i class="fas fa-camera-retro me-2 text-warning"></i>معرض الأعمال </a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#packages"   data-bs-dismiss="offcanvas"><i class="fas fa-tags me-2 text-warning"></i>باقات الأسعار والعروض</a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#areas"      data-bs-dismiss="offcanvas"><i class="fas fa-map-marked-alt me-2 text-warning"></i>مناطق الخدمة بالرياض</a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#process"    data-bs-dismiss="offcanvas"><i class="fas fa-tasks me-2 text-warning"></i>مراحل وخطوات النقل</a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#guarantees" data-bs-dismiss="offcanvas"><i class="fas fa-shield-alt me-2 text-warning"></i>ميثاق الضمانات 100%</a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#faq"        data-bs-dismiss="offcanvas"><i class="fas fa-question-circle me-2 text-warning"></i>الأسئلة الشائعة</a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#contact"    data-bs-dismiss="offcanvas"><i class="fas fa-headset me-2 text-warning"></i>تواصل معنا وحجز موعد</a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#services"   data-bs-dismiss="offcanvas"><i class="fas fa-concierge-bell me-2 text-warning"></i><?= htmlspecialchars($nav_services) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#fleet"      data-bs-dismiss="offcanvas"><i class="fas fa-truck me-2 text-warning"></i><?= htmlspecialchars($nav_fleet) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#whyus"      data-bs-dismiss="offcanvas"><i class="fas fa-crown me-2 text-warning"></i><?= htmlspecialchars($nav_whyus) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#works"      data-bs-dismiss="offcanvas"><i class="fas fa-camera-retro me-2 text-warning"></i><?= htmlspecialchars($nav_works) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#packages"   data-bs-dismiss="offcanvas"><i class="fas fa-tags me-2 text-warning"></i><?= htmlspecialchars($nav_packages) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#areas"      data-bs-dismiss="offcanvas"><i class="fas fa-map-marked-alt me-2 text-warning"></i><?= htmlspecialchars($nav_areas) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#process"    data-bs-dismiss="offcanvas"><i class="fas fa-tasks me-2 text-warning"></i><?= htmlspecialchars($nav_process) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#guarantees" data-bs-dismiss="offcanvas"><i class="fas fa-shield-alt me-2 text-warning"></i><?= htmlspecialchars($nav_guarantees) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#faq"        data-bs-dismiss="offcanvas"><i class="fas fa-question-circle me-2 text-warning"></i><?= htmlspecialchars($nav_faq) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#contact"    data-bs-dismiss="offcanvas"><i class="fas fa-headset me-2 text-warning"></i><?= htmlspecialchars($nav_contact) ?></a></li>
     </ul>
     <div class="mt-4 d-flex flex-column gap-2">
       <a href="tel:<?= htmlspecialchars(format_phone_tel($phone_primary)) ?>" class="btn btn-hero-primary justify-content-center">

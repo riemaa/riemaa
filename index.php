@@ -87,15 +87,16 @@ try {
     $seo_articles = $pdo->query("SELECT * FROM seo_articles ORDER BY sort_order ASC")->fetchAll();
 } catch (Exception $e) { $seo_articles = []; }
 
-// جلب مناطق الخدمة
+// جلب مناطق الخدمة مجمعة حسب القسم الجغرافي الحر
 try {
-    $areas_raw = $pdo->query("SELECT * FROM service_areas ORDER BY sort_order ASC")->fetchAll();
-    $areas = ['north_central' => [], 'east_west_south' => [], 'interstate' => []];
+    $areas_raw = $pdo->query("SELECT * FROM service_areas ORDER BY category ASC, sort_order ASC, id ASC")->fetchAll();
+    $areas_grouped = [];
     foreach ($areas_raw as $ar) {
-        $areas[$ar['category']][] = $ar['area_name'];
+        $cat = !empty(trim($ar['category'])) ? trim($ar['category']) : 'مناطق الخدمة الرئيسية';
+        $areas_grouped[$cat][] = $ar['area_name'];
     }
 } catch (Exception $e) {
-    $areas = ['north_central' => [], 'east_west_south' => [], 'interstate' => []];
+    $areas_grouped = [];
 }
 ?>
 
@@ -442,31 +443,21 @@ try {
     </div>
 
     <div class="animate-on-scroll animate-delay-1 mt-4">
-      <?php if (!empty($areas['north_central'])): ?>
-      <h5 class="text-white fw-bold mb-3" style="font-size:1.3rem;">📍 شمال الرياض ووسطها</h5>
-      <div class="mb-4">
-        <?php foreach ($areas['north_central'] as $area): ?>
-          <span class="area-badge"><i class="fas fa-map-pin"></i> <?= htmlspecialchars($area) ?></span>
+      <?php if (!empty($areas_grouped)): ?>
+        <?php foreach ($areas_grouped as $cat_title => $cat_areas): ?>
+          <div class="mb-4">
+            <h5 class="text-white fw-bold mb-3" style="font-size:1.3rem;">
+              <i class="fas fa-layer-group text-warning me-2"></i> <?= htmlspecialchars($cat_title) ?>
+            </h5>
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
+              <?php foreach ($cat_areas as $area): ?>
+                <span class="area-badge"><i class="fas fa-map-pin"></i> <?= htmlspecialchars($area) ?></span>
+              <?php endforeach; ?>
+            </div>
+          </div>
         <?php endforeach; ?>
-      </div>
-      <?php endif; ?>
-
-      <?php if (!empty($areas['east_west_south'])): ?>
-      <h5 class="text-white fw-bold mb-3" style="font-size:1.3rem;">📍 شرق وغرب وجنوب الرياض</h5>
-      <div class="mb-4">
-        <?php foreach ($areas['east_west_south'] as $area): ?>
-          <span class="area-badge"><i class="fas fa-map-pin"></i> <?= htmlspecialchars($area) ?></span>
-        <?php endforeach; ?>
-      </div>
-      <?php endif; ?>
-
-      <?php if (!empty($areas['interstate'])): ?>
-      <h5 class="text-white fw-bold mb-3" style="font-size:1.3rem;">🚛 النقل السريع بين مدن المملكة</h5>
-      <div>
-        <?php foreach ($areas['interstate'] as $area): ?>
-          <span class="area-badge"><i class="fas fa-road"></i> <?= htmlspecialchars($area) ?></span>
-        <?php endforeach; ?>
-      </div>
+      <?php else: ?>
+        <p class="text-white-50">نغطي كافة أحياء الرياض ومدن المملكة، تواصل معنا للاستفسار والحجز الفوري.</p>
       <?php endif; ?>
     </div>
   </div>

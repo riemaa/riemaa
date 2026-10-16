@@ -17,7 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'phone_primary', 'phone_secondary', 'whatsapp_number', 'email',
         'address', 'working_hours', 'discount_percentage',
         'meta_title', 'meta_description', 'meta_keywords', 'meta_author',
-        'meta_robots', 'canonical_url', 'header_scripts', 'footer_scripts'
+        'meta_robots', 'canonical_url', 'header_scripts', 'footer_scripts',
+        'theme_primary_color', 'theme_secondary_color', 'theme_accent_color',
+        'nav_services', 'nav_fleet', 'nav_whyus', 'nav_works', 'nav_packages',
+        'nav_areas', 'nav_process', 'nav_guarantees', 'nav_faq', 'nav_contact', 'nav_call_btn'
     ];
 
     foreach ($keys as $k) {
@@ -63,6 +66,22 @@ $meta_robots         = get_setting('meta_robots', 'index, follow');
 $canonical_url       = get_setting('canonical_url');
 $header_scripts      = get_setting('header_scripts');
 $footer_scripts      = get_setting('footer_scripts');
+
+$theme_primary_color   = get_setting('theme_primary_color', '#8B5A2B');
+$theme_secondary_color = get_setting('theme_secondary_color', '#341D13');
+$theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
+
+$nav_services   = get_setting('nav_services', 'خدماتنا');
+$nav_fleet      = get_setting('nav_fleet', 'الأسطول والمعدات');
+$nav_whyus      = get_setting('nav_whyus', 'لماذا نحن');
+$nav_works      = get_setting('nav_works', 'معرض الأعمال');
+$nav_packages   = get_setting('nav_packages', 'باقات الأسعار');
+$nav_areas      = get_setting('nav_areas', 'مناطق الخدمة');
+$nav_process    = get_setting('nav_process', 'خطوات العمل');
+$nav_guarantees = get_setting('nav_guarantees', 'الضمانات');
+$nav_faq        = get_setting('nav_faq', 'الأسئلة الشائعة');
+$nav_contact    = get_setting('nav_contact', 'تواصل معنا');
+$nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
 ?>
 
 <div class="d-flex align-items-center justify-content-between mb-4">
@@ -113,6 +132,127 @@ $footer_scripts      = get_setting('footer_scripts');
           <img id="logoPreview" src="<?= htmlspecialchars(asset_url($site_logo)) ?>" alt="Logo Preview" style="max-height:60px;border-radius:10px;border:1px solid #ccc;padding:4px;background:#fff;" />
         </div>
         <?php endif; ?>
+      </div>
+    </div>
+  </div>
+
+  <!-- ألوان وهوية المشروع بالكامل -->
+  <div class="content-card">
+    <div class="content-card-header">
+      <h5><i class="fas fa-palette text-primary"></i> ألوان وتصميم المشروع بالكامل (Theme Colors)</h5>
+    </div>
+    <div class="content-card-body">
+      <p class="text-muted small mb-4">
+        يمكنك تغيير لون الموقع بالكامل بنقرة واحدة ليتم تطبيقه فوراً على الأزرار، التدرجات، الأيقونات، البطاقات، وهوية الموقع:
+      </p>
+
+      <div class="row g-4 align-items-center">
+        <div class="col-md-4">
+          <label class="form-label fw-bold"><i class="fas fa-paint-brush me-1 text-primary"></i> اللون الأساسي (Primary Color)</label>
+          <div class="d-flex align-items-center gap-2">
+            <input type="color" id="primaryColorInput" name="theme_primary_color" class="form-control form-control-color" value="<?= htmlspecialchars($theme_primary_color) ?>" title="اختر اللون الأساسي" style="width:60px;height:45px;cursor:pointer;" oninput="document.getElementById('primaryColorText').value=this.value;">
+            <input type="text" id="primaryColorText" class="form-control font-monospace" value="<?= htmlspecialchars($theme_primary_color) ?>" oninput="document.getElementById('primaryColorInput').value=this.value;">
+          </div>
+          <small class="text-muted">يُستخدم في الأزرار الرئيسية، التمييز، والأيقونات البارزة</small>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label fw-bold"><i class="fas fa-fill-drip me-1 text-secondary"></i> اللون الثانوي / الداكن (Secondary Color)</label>
+          <div class="d-flex align-items-center gap-2">
+            <input type="color" id="secondaryColorInput" name="theme_secondary_color" class="form-control form-control-color" value="<?= htmlspecialchars($theme_secondary_color) ?>" title="اختر اللون الثانوي" style="width:60px;height:45px;cursor:pointer;" oninput="document.getElementById('secondaryColorText').value=this.value;">
+            <input type="text" id="secondaryColorText" class="form-control font-monospace" value="<?= htmlspecialchars($theme_secondary_color) ?>" oninput="document.getElementById('secondaryColorInput').value=this.value;">
+          </div>
+          <small class="text-muted">يُستخدم في خلفيات الهيدر، الفوتر، والبطاقات الداكنة</small>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label fw-bold"><i class="fas fa-magic me-1 text-warning"></i> لون التمييز واللمعان (Accent Color)</label>
+          <div class="d-flex align-items-center gap-2">
+            <input type="color" id="accentColorInput" name="theme_accent_color" class="form-control form-control-color" value="<?= htmlspecialchars($theme_accent_color) ?>" title="اختر لون التمييز" style="width:60px;height:45px;cursor:pointer;" oninput="document.getElementById('accentColorText').value=this.value;">
+            <input type="text" id="accentColorText" class="form-control font-monospace" value="<?= htmlspecialchars($theme_accent_color) ?>" oninput="document.getElementById('accentColorInput').value=this.value;">
+          </div>
+          <small class="text-muted">يُستخدم في الشارات، النجوم، والحدود اللامعة</small>
+        </div>
+      </div>
+
+      <hr class="my-4" style="opacity:0.1;">
+
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <span class="small fw-bold text-dark me-2"><i class="fas fa-swatchbook me-1"></i> باقات ألوان جاهزة ومقترحة:</span>
+        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#8B5A2B', '#341D13', '#D4A373')">
+          <span style="display:inline-block;width:12px;height:12px;background:#8B5A2B;border-radius:50%;margin-left:4px;"></span> خشب كلاسيكي (الأصل)
+        </button>
+        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#1E40AF', '#0F172A', '#60A5FA')">
+          <span style="display:inline-block;width:12px;height:12px;background:#1E40AF;border-radius:50%;margin-left:4px;"></span> أزرق كحلي ملكي
+        </button>
+        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#047857', '#064E3B', '#34D399')">
+          <span style="display:inline-block;width:12px;height:12px;background:#047857;border-radius:50%;margin-left:4px;"></span> أخضر زمردي فخم
+        </button>
+        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#B45309', '#451A03', '#FBBF24')">
+          <span style="display:inline-block;width:12px;height:12px;background:#B45309;border-radius:50%;margin-left:4px;"></span> برونزي ذهبي أنيق
+        </button>
+        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#374151', '#111827', '#9CA3AF')">
+          <span style="display:inline-block;width:12px;height:12px;background:#374151;border-radius:50%;margin-left:4px;"></span> رمادي داكن فاحم
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- تخصيص مسميات نصوص القائمة العلوية (الهيدر) -->
+  <div class="content-card">
+    <div class="content-card-header">
+      <h5><i class="fas fa-bars-staggered text-primary"></i> تخصيص مسميات نصوص القائمة العلوية (الهيدر)</h5>
+    </div>
+    <div class="content-card-body">
+      <p class="text-muted small mb-4">
+        تحكم في النصوص المعروضة في شريط التنقل العلوي للموقع وقائمة الموبايل الجانبية:
+      </p>
+
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">رابط الخدمات</label>
+          <input type="text" name="nav_services" class="form-control" value="<?= htmlspecialchars($nav_services) ?>" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">رابط الأسطول والمعدات</label>
+          <input type="text" name="nav_fleet" class="form-control" value="<?= htmlspecialchars($nav_fleet) ?>" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">رابط لماذا نحن</label>
+          <input type="text" name="nav_whyus" class="form-control" value="<?= htmlspecialchars($nav_whyus) ?>" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">رابط معرض الأعمال</label>
+          <input type="text" name="nav_works" class="form-control" value="<?= htmlspecialchars($nav_works) ?>" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">رابط باقات الأسعار</label>
+          <input type="text" name="nav_packages" class="form-control" value="<?= htmlspecialchars($nav_packages) ?>" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">رابط مناطق الخدمة</label>
+          <input type="text" name="nav_areas" class="form-control" value="<?= htmlspecialchars($nav_areas) ?>" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">رابط خطوات العمل</label>
+          <input type="text" name="nav_process" class="form-control" value="<?= htmlspecialchars($nav_process) ?>" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">رابط الضمانات</label>
+          <input type="text" name="nav_guarantees" class="form-control" value="<?= htmlspecialchars($nav_guarantees) ?>" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">رابط الأسئلة الشائعة</label>
+          <input type="text" name="nav_faq" class="form-control" value="<?= htmlspecialchars($nav_faq) ?>" required />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">رابط تواصل معنا</label>
+          <input type="text" name="nav_contact" class="form-control" value="<?= htmlspecialchars($nav_contact) ?>" required />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">نص زر الاتصال في الهيدر</label>
+          <input type="text" name="nav_call_btn" class="form-control" value="<?= htmlspecialchars($nav_call_btn) ?>" placeholder="اتصل الآن أو رقم الهاتف" />
+        </div>
       </div>
     </div>
   </div>

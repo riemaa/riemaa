@@ -127,7 +127,23 @@ function init_sqlite_database($db) {
         'canonical_url'       => '',
         'discount_percentage' => '20%',
         'header_scripts'      => '',
-        'footer_scripts'      => ''
+        'footer_scripts'      => '',
+        // ألوان الهوية والمشروع
+        'theme_primary_color'   => '#8B5A2B',
+        'theme_secondary_color' => '#341D13',
+        'theme_accent_color'    => '#D4A373',
+        // مسميات نصوص القائمة العلوية
+        'nav_services'          => 'خدماتنا',
+        'nav_fleet'             => 'الأسطول والمعدات',
+        'nav_whyus'             => 'لماذا نحن',
+        'nav_works'             => 'معرض الأعمال',
+        'nav_packages'          => 'باقات الأسعار',
+        'nav_areas'             => 'مناطق الخدمة',
+        'nav_process'           => 'خطوات العمل',
+        'nav_guarantees'        => 'الضمانات',
+        'nav_faq'               => 'الأسئلة الشائعة',
+        'nav_contact'           => 'تواصل معنا',
+        'nav_call_btn'          => 'اتصل الآن'
     ];
 
     $stmt = $db->prepare("INSERT OR REPLACE INTO settings (setting_key, setting_value) VALUES (:k, :v)");

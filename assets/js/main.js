@@ -234,6 +234,25 @@ document.addEventListener('DOMContentLoaded', function () {
             formSuccess.style.borderRadius = '18px';
             formSuccess.style.padding = '2rem';
             formSuccess.style.border = '2px solid #22c55e';
+
+            if (data.whatsapp_url) {
+              const waBox = document.createElement('div');
+              waBox.className = 'mt-3 text-center';
+              waBox.innerHTML = `
+                <a href="${data.whatsapp_url}" target="_blank" class="btn px-4 py-2 fw-bold text-white shadow-sm" style="background:#25D366;border-radius:50px;">
+                  <i class="fab fa-whatsapp me-2"></i> اضغط هنا لفتح واتساب مباشرة
+                </a>
+              `;
+              formSuccess.appendChild(waBox);
+
+              // Auto open WhatsApp
+              setTimeout(() => {
+                const w = window.open(data.whatsapp_url, '_blank');
+                if (!w) {
+                  window.location.href = data.whatsapp_url;
+                }
+              }, 600);
+            }
           }
         } else {
           alert(data.message || 'حدث خطأ أثناء إرسال الطلب، يرجى المحاولة لاحقاً أو الاتصال المباشر.');
@@ -242,7 +261,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       })
       .catch(err => {
-        // في حال عدم توفر الخادم، نعرض نجاح افتراضي لتجربة المستخدم
         contactForm.style.display = 'none';
         if (formSuccess) {
           formSuccess.style.display = 'block';
@@ -254,5 +272,79 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+
+  // ============================================================
+  // PWA (PROGRESSIVE WEB APP) SERVICE WORKER & INSTALL PROMPT
+  // ============================================================
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => {
+          console.log('PWA Service Worker registered:', reg.scope);
+        })
+        .catch(err => {
+          console.warn('PWA Service Worker registration failed:', err);
+        });
+    });
+  }
+
+  let deferredPrompt = null;
+  const pwaInstallBtn = document.getElementById('pwaInstallBtn');
+  const pwaBanner = document.getElementById('pwaBanner');
+  const pwaBannerInstall = document.getElementById('pwaBannerInstall');
+  const pwaBannerDismiss = document.getElementById('pwaBannerDismiss');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // Show floating install button
+    if (pwaInstallBtn) {
+      pwaInstallBtn.style.display = 'flex';
+    }
+
+    // Show banner if not dismissed in this session
+    if (pwaBanner && !sessionStorage.getItem('pwa_dismissed')) {
+      setTimeout(() => {
+        pwaBanner.style.display = 'flex';
+      }, 1500);
+    }
+  });
+
+  function triggerPwaInstall() {
+    if (!deferredPrompt) {
+      alert('لتثبيت التطبيق على جهازك: افتح خيارات المتصفح (زر المشاركة في آيفون أو الثلاث نقاط في أندرويد) واضغط على "إضافة إلى الشاشة الرئيسية".');
+      return;
+    }
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        if (pwaBanner) pwaBanner.style.display = 'none';
+        if (pwaInstallBtn) pwaInstallBtn.style.display = 'none';
+      }
+      deferredPrompt = null;
+    });
+  }
+
+  if (pwaInstallBtn) {
+    pwaInstallBtn.addEventListener('click', triggerPwaInstall);
+  }
+
+  if (pwaBannerInstall) {
+    pwaBannerInstall.addEventListener('click', triggerPwaInstall);
+  }
+
+  if (pwaBannerDismiss) {
+    pwaBannerDismiss.addEventListener('click', () => {
+      if (pwaBanner) pwaBanner.style.display = 'none';
+      sessionStorage.setItem('pwa_dismissed', '1');
+    });
+  }
+
+  window.addEventListener('appinstalled', () => {
+    if (pwaBanner) pwaBanner.style.display = 'none';
+    if (pwaInstallBtn) pwaInstallBtn.style.display = 'none';
+    deferredPrompt = null;
+  });
 
 });
