@@ -9,6 +9,48 @@ chdir(dirname(__DIR__));
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $uri = rawurldecode($uri);
 
+// Route helper function for static files
+function serve_static_if_exists($filePath) {
+    if (is_file($filePath)) {
+        $ext = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+        $mimes = [
+            'css'   => 'text/css; charset=UTF-8',
+            'js'    => 'application/javascript; charset=UTF-8',
+            'png'   => 'image/png',
+            'jpg'   => 'image/jpeg',
+            'jpeg'  => 'image/jpeg',
+            'gif'   => 'image/gif',
+            'svg'   => 'image/svg+xml',
+            'ico'   => 'image/x-icon',
+            'webp'  => 'image/webp',
+            'woff2' => 'font/woff2',
+            'woff'  => 'font/woff',
+            'ttf'   => 'font/ttf',
+            'json'  => 'application/json',
+        ];
+        if (isset($mimes[$ext])) {
+            header('Content-Type: ' . $mimes[$ext]);
+            header('Cache-Control: public, max-age=31536000');
+            readfile($filePath);
+            exit;
+        }
+    }
+}
+
+// Check direct static assets in assets/ or admin/assets/
+if (strpos($uri, '/assets/') === 0) {
+    serve_static_if_exists(__DIR__ . '/..' . $uri);
+}
+if (strpos($uri, '/admin/assets/') === 0) {
+    serve_static_if_exists(__DIR__ . '/..' . $uri);
+}
+
+// Convenient redirects for /login or /login.php
+if ($uri === '/login' || $uri === '/login.php') {
+    header('Location: /admin/login.php');
+    exit;
+}
+
 // Route sitemap
 if ($uri === '/sitemap.xml' || $uri === '/sitemap.php') {
     require __DIR__ . '/../sitemap.php';
@@ -24,6 +66,8 @@ if (strpos($uri, '/admin') === 0) {
         exit;
     }
     $target = __DIR__ . '/../admin/' . $sub;
+    serve_static_if_exists($target);
+
     if (is_file($target)) {
         require $target;
         exit;

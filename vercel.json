@@ -7,6 +7,7 @@
   },
   "routes": [
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/admin/assets/(.*)", "dest": "/admin/assets/$1" },
     { "src": "/robots.txt", "dest": "/robots.txt" },
     { "src": "/sitemap.xml", "dest": "/api/index.php" },
     { "src": "/(.*)", "dest": "/api/index.php" }

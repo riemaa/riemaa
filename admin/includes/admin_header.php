@@ -35,7 +35,7 @@ $site_short_name = get_setting('site_short_name', 'الأوائل');
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Admin Styles -->
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="/admin/assets/css/admin.css">
 </head>
 <body>
 
