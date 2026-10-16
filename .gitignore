@@ -1,0 +1,21 @@
+﻿# Operating System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Editor / IDE
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Server logs
+*.log
+error_log
+
+# Ensure SQLite database and SQL dumps are tracked
+!data/database.sqlite
+!data/schema_sqlite.sql
+!database.sql
