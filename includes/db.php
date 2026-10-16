@@ -9,12 +9,28 @@ require_once __DIR__ . '/../config.php';
 
 try {
     if (DB_TYPE === 'sqlite') {
-        // التأكد من وجود مجلد data
-        if (!is_dir(DATA_DIR)) {
-            @mkdir(DATA_DIR, 0755, true);
-        }
-
         $sqlite_path = SQLITE_FILE;
+        $data_dir = dirname($sqlite_path);
+
+        // في بيئة Vercel Serverless تكون ملفات المشروع للقراءة فقط (Read-Only)
+        // لتفادي خطأ: attempt to write a readonly database نقوم بنسخ واستخدام النسخة في /tmp القابلة للكتابة
+        $is_readonly_env = !empty(getenv('VERCEL'))
+            || !empty(getenv('AWS_LAMBDA_FUNCTION_NAME'))
+            || !is_writable($data_dir)
+            || (file_exists($sqlite_path) && !is_writable($sqlite_path));
+
+        if ($is_readonly_env) {
+            $tmp_sqlite = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'database.sqlite';
+            if (!file_exists($tmp_sqlite) || (file_exists($sqlite_path) && filemtime($sqlite_path) > filemtime($tmp_sqlite))) {
+                @copy($sqlite_path, $tmp_sqlite);
+            }
+            $sqlite_path = $tmp_sqlite;
+        } else {
+            // التأكد من وجود مجلد data محلياً إن أمكن
+            if (!is_dir($data_dir)) {
+                @mkdir($data_dir, 0755, true);
+            }
+        }
 
         // الاتصال بقاعدة بيانات SQLite الداخلية
         $pdo = new PDO("sqlite:" . $sqlite_path);
