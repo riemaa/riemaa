@@ -169,9 +169,9 @@ try {
 </section>
 
 <!-- Wave Divider to Light -->
-<div style="background:var(--white); margin-top:-2px;">
+<div class="wave-fill-dark" style="background:var(--white); margin-top:-2px;">
   <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
-    <path d="M0,0 C360,50 1080,0 1440,30 L1440,0 L0,0 Z" fill="#24130A"/>
+    <path d="M0,0 C360,50 1080,0 1440,30 L1440,0 L0,0 Z" fill="<?= htmlspecialchars($theme_secondary_color) ?>"/>
   </svg>
 </div>
 
@@ -267,7 +267,7 @@ try {
 </section>
 
 <!-- Wave Divider to Dark -->
-<div style="background:#24130A; line-height:0;">
+<div class="wave-bg-dark" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
     <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#F6F0E8"/>
   </svg>
@@ -301,9 +301,9 @@ try {
 </section>
 
 <!-- Wave Divider to Light -->
-<div style="background:var(--white); line-height:0;">
+<div class="wave-fill-dark" style="background:var(--white); line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
-    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#24130A"/>
+    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="<?= htmlspecialchars($theme_secondary_color) ?>"/>
   </svg>
 </div>
 
@@ -373,7 +373,7 @@ try {
 </section>
 
 <!-- Wave Divider to Dark -->
-<div style="background:#24130A; line-height:0;">
+<div class="wave-bg-dark" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
     <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#F6F0E8"/>
   </svg>
@@ -425,9 +425,9 @@ try {
 </section>
 
 <!-- Wave Divider to Terracotta -->
-<div style="background:linear-gradient(135deg, #7D491F 0%, #B87333 100%); line-height:0;">
+<div class="wave-bg-terracotta wave-fill-dark" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
-    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#24130A"/>
+    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="<?= htmlspecialchars($theme_secondary_color) ?>"/>
   </svg>
 </div>
 
@@ -464,9 +464,9 @@ try {
 </section>
 
 <!-- Wave Divider to Light -->
-<div style="background:var(--white); line-height:0;">
+<div class="wave-fill-primary" style="background:var(--white); line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
-    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#9C5827"/>
+    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="<?= htmlspecialchars($theme_primary_color) ?>"/>
   </svg>
 </div>
 
@@ -541,7 +541,7 @@ try {
 </section>
 
 <!-- Wave Divider to Dark -->
-<div style="background:#24130A; line-height:0;">
+<div class="wave-bg-dark" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
     <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#F6F0E8"/>
   </svg>
@@ -567,7 +567,7 @@ try {
           <div class="stars"><?= str_repeat('★', (int)$t['rating']) ?></div>
           <p class="testimonial-text">"<?= htmlspecialchars($t['comment']) ?>"</p>
           <div class="testimonial-author">
-            <div class="author-avatar" style="background:linear-gradient(135deg, #8B5A2B, #CD853F);">
+            <div class="author-avatar" style="background:linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?>, <?= htmlspecialchars($theme_accent_color) ?>);">
               <?= htmlspecialchars($t['avatar_letter']) ?>
             </div>
             <div class="author-info">
@@ -583,9 +583,9 @@ try {
 </section>
 
 <!-- Wave Divider to Light -->
-<div style="background:var(--white); line-height:0;">
+<div class="wave-fill-dark" style="background:var(--white); line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
-    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#24130A"/>
+    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="<?= htmlspecialchars($theme_secondary_color) ?>"/>
   </svg>
 </div>
 
@@ -627,7 +627,7 @@ try {
 </section>
 
 <!-- Wave Divider to Dark -->
-<div style="background:#24130A; line-height:0;">
+<div class="wave-bg-dark" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
     <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#FFFFFF"/>
   </svg>
@@ -660,9 +660,9 @@ try {
 </section>
 
 <!-- Wave Divider to Beige -->
-<div style="background:var(--beige-warm); line-height:0;">
+<div class="wave-fill-dark" style="background:var(--beige-warm); line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
-    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#24130A"/>
+    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="<?= htmlspecialchars($theme_secondary_color) ?>"/>
   </svg>
 </div>
 

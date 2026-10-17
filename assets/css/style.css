@@ -177,7 +177,7 @@ section {
 }
 
 .bg-dark-wood {
-  background: linear-gradient(135deg, #24130A 0%, #381E13 50%, #46271A 100%);
+  background: linear-gradient(135deg, var(--wood-dark) 0%, var(--wood-walnut) 50%, var(--wood-mocha) 100%);
   color: #FFFFFF;
   position: relative;
 }
@@ -191,9 +191,15 @@ section {
 }
 
 .bg-terracotta {
-  background: linear-gradient(135deg, #7D491F 0%, #9C5827 50%, #B87333 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--wood-chestnut) 50%, var(--primary-dark) 100%);
   color: #FFFFFF;
 }
+
+/* Reusable Dynamic Wave Classes */
+.wave-fill-dark svg path { fill: var(--wood-dark) !important; }
+.wave-fill-primary svg path { fill: var(--primary) !important; }
+.wave-bg-dark { background: var(--wood-dark) !important; }
+.wave-bg-terracotta { background: linear-gradient(135deg, var(--primary) 0%, var(--wood-chestnut) 100%) !important; }
 
 /* ===== NAVBAR ===== */
 #mainNav {
@@ -331,7 +337,7 @@ section {
 /* ===== HERO ===== */
 #hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1F0F07 0%, #341D12 40%, #482819 75%, #24130A 100%);
+  background: linear-gradient(135deg, var(--wood-dark) 0%, var(--wood-walnut) 40%, var(--wood-chestnut) 75%, var(--wood-dark) 100%);
   position: relative;
   display: flex;
   align-items: center;
@@ -1199,7 +1205,7 @@ section {
 
 /* ===== FOOTER ===== */
 footer {
-  background: linear-gradient(135deg, #1A0D06 0%, #28140B 100%);
+  background: linear-gradient(135deg, var(--wood-dark) 0%, var(--wood-walnut) 100%);
   padding: 60px 0 25px;
   color: white;
   border-top: 3px solid var(--primary);

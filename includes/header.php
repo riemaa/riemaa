@@ -116,21 +116,150 @@ $og_image          = asset_url('assets/images/1.jpg');
   <link rel="apple-touch-icon" href="/assets/images/1.jpg" />
 
   <!-- Dynamic Theme Colors -->
+  <?php
+    $rgb_primary   = hex2rgb_css($theme_primary_color);
+    $rgb_secondary = hex2rgb_css($theme_secondary_color);
+    $rgb_accent    = hex2rgb_css($theme_accent_color);
+  ?>
   <style id="custom-theme-variables">
     :root {
-      --wood-caramel: <?= htmlspecialchars($theme_primary_color) ?> !important;
       --primary: <?= htmlspecialchars($theme_primary_color) ?> !important;
-      --wood-walnut: <?= htmlspecialchars($theme_secondary_color) ?> !important;
-      --wood-roasted: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --primary-dark: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --primary-light: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      --secondary: <?= htmlspecialchars($theme_secondary_color) ?> !important;
       --wood-dark: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --wood-walnut: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --wood-mocha: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --wood-chestnut: <?= htmlspecialchars($theme_primary_color) ?> !important;
+      --wood-roasted: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --wood-caramel: <?= htmlspecialchars($theme_primary_color) ?> !important;
       --accent: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      --accent-gold: <?= htmlspecialchars($theme_accent_color) ?> !important;
       --accent-bright: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      --gold-glow: rgba(<?= $rgb_accent ?>, 0.45) !important;
     }
-    .btn-hero-primary, .btn-calc, .nav-call-btn, .btn-login, .float-btn-pwa {
+
+    /* 1. Hero Background */
+    #hero {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?> 0%, rgba(<?= $rgb_secondary ?>, 0.95) 40%, rgba(<?= $rgb_primary ?>, 0.85) 75%, <?= htmlspecialchars($theme_secondary_color) ?> 100%) !important;
+    }
+
+    /* 2. Dark Sections Background (#whyus, #packages, #testimonials, #seo1) */
+    .bg-dark-wood {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?> 0%, rgba(<?= $rgb_secondary ?>, 0.92) 50%, rgba(0,0,0,0.85) 100%) !important;
+    }
+
+    /* 3. Terracotta Gradient Section Background (#areas) */
+    .bg-terracotta {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?> 0%, <?= htmlspecialchars($theme_secondary_color) ?> 100%) !important;
+    }
+
+    /* 4. Footer Background */
+    footer {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?> 0%, #080A0E 100%) !important;
+      border-top: 3px solid <?= htmlspecialchars($theme_primary_color) ?> !important;
+    }
+
+    /* 5. Wave Dividers */
+    .wave-fill-dark svg path {
+      fill: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+    }
+    .wave-fill-primary svg path {
+      fill: <?= htmlspecialchars($theme_primary_color) ?> !important;
+    }
+    .wave-bg-dark {
+      background: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+    }
+    .wave-bg-terracotta {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?> 0%, <?= htmlspecialchars($theme_secondary_color) ?> 100%) !important;
+    }
+
+    /* 6. Buttons & Interactive Elements */
+    .btn-hero-primary, .btn-calc, .nav-call-btn, .btn-login, .float-btn-pwa, .btn-submit, .btn-pwa-install {
       background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?>, <?= htmlspecialchars($theme_accent_color) ?>) !important;
     }
-    .highlight, .section-subtitle-tag i, .brand-text span:first-child {
+    .btn-hero-primary:hover, .btn-calc:hover, .btn-submit:hover, .btn-pwa-install:hover {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_accent_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>) !important;
+      box-shadow: 0 10px 25px rgba(<?= $rgb_primary ?>, 0.4) !important;
+    }
+    .btn-hero-secondary {
+      border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
       color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+    .btn-hero-secondary:hover {
+      background: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      color: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+    }
+
+    /* 7. Highlights, Icons & Badges */
+    .highlight, .section-subtitle-tag i, .brand-text span:first-child, .stars {
+      color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+    .section-subtitle-tag {
+      background: rgba(<?= $rgb_accent ?>, 0.15) !important;
+      border-color: rgba(<?= $rgb_accent ?>, 0.4) !important;
+      color: <?= htmlspecialchars($theme_primary_color) ?> !important;
+    }
+    .section-subtitle-tag.tag-light {
+      color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      background: rgba(255,255,255,0.1) !important;
+      border-color: rgba(255,255,255,0.25) !important;
+    }
+    .hero-badge {
+      background: rgba(<?= $rgb_accent ?>, 0.18) !important;
+      border-color: rgba(<?= $rgb_accent ?>, 0.5) !important;
+      color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+    .brand-icon {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>) !important;
+      border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      box-shadow: 0 6px 20px rgba(<?= $rgb_primary ?>, 0.35) !important;
+    }
+    #mainNav {
+      border-image: linear-gradient(90deg, <?= htmlspecialchars($theme_secondary_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>, <?= htmlspecialchars($theme_accent_color) ?>) 1 !important;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: <?= htmlspecialchars($theme_primary_color) ?> !important;
+    }
+    .offcanvas-header {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>) !important;
+    }
+
+    /* 8. Cards & Details */
+    .feature-icon-badge, .service-icon {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>) !important;
+      border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      color: #FFF !important;
+    }
+    .package-card.popular {
+      background: linear-gradient(180deg, rgba(<?= $rgb_accent ?>, 0.2) 0%, rgba(<?= $rgb_primary ?>, 0.22) 100%) !important;
+      border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+    .popular-ribbon {
+      background: linear-gradient(90deg, <?= htmlspecialchars($theme_accent_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>) !important;
+      color: #FFF !important;
+    }
+    .package-price-box .price {
+      color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+    .contact-info-card {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?>, rgba(<?= $rgb_secondary ?>, 0.95)) !important;
+      border-color: rgba(<?= $rgb_accent ?>, 0.35) !important;
+    }
+    .floating-buttons .float-btn-call {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?>, <?= htmlspecialchars($theme_secondary_color) ?>) !important;
+    }
+    .area-badge {
+      background: rgba(255,255,255,0.12) !important;
+      border-color: rgba(255,255,255,0.25) !important;
+    }
+    .area-badge:hover {
+      background: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      color: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+    .guarantee-card:hover, .service-card:hover, .feature-card:hover {
+      border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
     }
   </style>
 

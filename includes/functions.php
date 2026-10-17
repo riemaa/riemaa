@@ -210,3 +210,22 @@ function asset_url($path) {
     }
     return SITE_URL . '/' . ltrim($path, '/');
 }
+
+/**
+ * تحويل كود اللون السداسي Hex إلى RGB لاستخدامه في ألوان التعتيم والشفافية rgba()
+ */
+function hex2rgb_css($hex) {
+    $hex = ltrim((string)$hex, '#');
+    if (strlen($hex) === 3) {
+        $r = hexdec(str_repeat(substr($hex, 0, 1), 2));
+        $g = hexdec(str_repeat(substr($hex, 1, 1), 2));
+        $b = hexdec(str_repeat(substr($hex, 2, 1), 2));
+    } elseif (strlen($hex) === 6) {
+        $r = hexdec(substr($hex, 0, 2));
+        $g = hexdec(substr($hex, 2, 2));
+        $b = hexdec(substr($hex, 4, 2));
+    } else {
+        return '139, 90, 43';
+    }
+    return "$r, $g, $b";
+}

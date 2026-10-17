@@ -3,7 +3,8 @@
  * صفحة الإعدادات العامة وإعدادات السيو والشعار
  */
 
-require_once __DIR__ . '/includes/admin_header.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
@@ -45,6 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: settings.php');
     exit;
 }
+
+require_once __DIR__ . '/includes/admin_header.php';
 
 $site_name           = get_setting('site_name');
 $site_short_name     = get_setting('site_short_name');
@@ -351,5 +354,22 @@ $nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
     </button>
   </div>
 </form>
+
+<script>
+function applyPreset(primary, secondary, accent) {
+  const pIn = document.getElementById('primaryColorInput');
+  const pTx = document.getElementById('primaryColorText');
+  const sIn = document.getElementById('secondaryColorInput');
+  const sTx = document.getElementById('secondaryColorText');
+  const aIn = document.getElementById('accentColorInput');
+  const aTx = document.getElementById('accentColorText');
+  if (pIn) pIn.value = primary;
+  if (pTx) pTx.value = primary;
+  if (sIn) sIn.value = secondary;
+  if (sTx) sTx.value = secondary;
+  if (aIn) aIn.value = accent;
+  if (aTx) aTx.value = accent;
+}
+</script>
 
 <?php require_once __DIR__ . '/includes/admin_footer.php'; ?>

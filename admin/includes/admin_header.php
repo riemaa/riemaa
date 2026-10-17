@@ -3,6 +3,10 @@
  * هيدر لوحة التحكم والقائمة الجانبية والشريط العلوي
  */
 
+if (!ob_get_level()) {
+    ob_start();
+}
+
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/../../includes/functions.php';
 
@@ -17,6 +21,9 @@ try {
 
 $site_name = get_setting('site_name', 'شركة الأوائل لنقل العفش');
 $site_short_name = get_setting('site_short_name', 'الأوائل');
+$theme_primary_color   = get_setting('theme_primary_color', '#8B5A2B');
+$theme_secondary_color = get_setting('theme_secondary_color', '#341D13');
+$theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -36,6 +43,25 @@ $site_short_name = get_setting('site_short_name', 'الأوائل');
   
   <!-- Admin Styles -->
   <link rel="stylesheet" href="/admin/assets/css/admin.css">
+
+  <style id="admin-theme-vars">
+    :root {
+      --sidebar-bg: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --sidebar-active: <?= htmlspecialchars($theme_primary_color) ?> !important;
+      --primary: <?= htmlspecialchars($theme_primary_color) ?> !important;
+      --primary-hover: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --accent: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+    .btn-admin-primary, .sidebar-badge {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?>, <?= htmlspecialchars($theme_accent_color) ?>) !important;
+    }
+    .sidebar-brand-icon {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?>, <?= htmlspecialchars($theme_accent_color) ?>) !important;
+    }
+    .sidebar-link.active, .sidebar-link:hover {
+      border-right-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+  </style>
 </head>
 <body>
 

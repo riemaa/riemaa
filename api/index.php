@@ -3,6 +3,10 @@
  * Entrypoint / Router for Vercel Serverless Functions
  */
 
+if (!ob_get_level()) {
+    ob_start();
+}
+
 // Change working directory to project root
 chdir(dirname(__DIR__));
 

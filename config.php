@@ -5,6 +5,10 @@
  * ويدعم أيضاً التحويل إلى MySQL عند الرغبة عبر المتغيرات البيئية
  */
 
+if (!ob_get_level()) {
+    ob_start();
+}
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
