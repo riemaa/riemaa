@@ -175,15 +175,14 @@ $site_name = get_setting('site_name', 'شركة الأوائل لنقل العف
     </button>
   </form>
 
-  <div class="default-creds">
-    <strong>بيانات الدخول الافتراضية:</strong><br>
-    اسم المستخدم: <code style="color:#8B5A2B;">admin</code> | كلمة المرور: <code style="color:#8B5A2B;">admin123</code>
-  </div>
-
   <div class="text-center mt-3">
     <a href="../index.php" class="text-muted text-decoration-none small">
       <i class="fas fa-arrow-right me-1"></i> العودة للصفحة الرئيسية للموقع
     </a>
+  </div>
+
+  <div class="text-center mt-4 pt-3 border-top" style="font-size:0.85rem;color:#718096;">
+    تصميم وبرمجة <a href="https://tab3na.com" target="_blank" rel="noopener" style="color:#8B5A2B;text-decoration:none;font-weight:700;">مؤسسة تابعنا</a>
   </div>
 </div>
 

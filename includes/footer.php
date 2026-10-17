@@ -87,13 +87,12 @@ $footer_scripts    = get_setting('footer_scripts', '');
 
     <hr style="border-color:rgba(255,255,255,0.15);margin:2rem 0 1.5rem;" />
 
-    <div class="text-center" style="font-size:0.88rem;color:rgba(255,255,255,0.6);">
-      <p class="mb-0">
+    <div class="text-center" style="font-size:0.88rem;color:rgba(255,255,255,0.65);">
+      <p class="mb-1">
         جميع الحقوق محفوظة © <?= date('Y') ?> | <?= htmlspecialchars($site_name) ?>
-        <br>
-        <span style="font-size:0.82rem;color:rgba(255,255,255,0.45);">
-          خدمات نقل وتغليف وتخزين الأثاث بالرياض وكافة مناطق المملكة العربية السعودية
-        </span>
+      </p>
+      <p class="mb-0" style="font-size:0.85rem;color:rgba(255,255,255,0.75);">
+        تصميم وبرمجة <a href="https://tab3na.com" target="_blank" rel="noopener" style="color:var(--accent-bright, #D4A373);text-decoration:none;font-weight:700;">مؤسسة تابعنا</a>
       </p>
     </div>
   </div>

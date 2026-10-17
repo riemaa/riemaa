@@ -1,3 +1,6 @@
+      <footer class="text-center py-3 text-muted small mt-4 border-top">
+        تصميم وبرمجة <a href="https://tab3na.com" target="_blank" rel="noopener" class="text-decoration-none fw-bold" style="color:var(--sidebar-active, #8B5A2B);">مؤسسة تابعنا</a>
+      </footer>
     </main>
   </div>
 </div>
