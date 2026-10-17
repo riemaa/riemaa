@@ -8,7 +8,7 @@ require_once __DIR__ . '/../includes/functions.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
-        $_SESSION['flash_error'] = 'خطأ في التحقق من صحة الطلب (CSRF).';
+        set_flash_error('خطأ في التحقق من صحة الطلب (CSRF).');
         header('Location: settings.php');
         exit;
     }
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         @file_put_contents($manifest_file, json_encode($new_manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 
-    $_SESSION['flash_success'] = 'تم حفظ جميع الإعدادات بنجاح!';
+    set_flash_success('تم حفظ جميع الإعدادات بنجاح!');
     header('Location: settings.php');
     exit;
 }

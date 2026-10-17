@@ -112,27 +112,113 @@ function clean_input($data) {
 }
 
 /**
- * توليد رمز حماية CSRF
+ * توليد رمز حماية CSRF مشفر وموقع ليعمل بكفاءة على البيئات العادية والسحابية السيرفرلس (Vercel)
  */
 function csrf_token() {
-    if (empty($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    $key = defined('APP_KEY') ? APP_KEY : 'afsh_secret_key_riemaa_2026_x791a8c3';
+
+    // إذا كان الرمز موجوداً مسبقاً وصالحاً، نستخدمه
+    if (!empty($_COOKIE['csrf_token']) && verify_csrf_token($_COOKIE['csrf_token'])) {
+        $token = $_COOKIE['csrf_token'];
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            $_SESSION['csrf_token'] = $token;
+        }
+        return $token;
     }
-    return $_SESSION['csrf_token'];
+
+    if (!empty($_SESSION['csrf_token']) && verify_csrf_token($_SESSION['csrf_token'])) {
+        return $_SESSION['csrf_token'];
+    }
+
+    $timestamp = time();
+    $nonce = bin2hex(random_bytes(16));
+    $sig = hash_hmac('sha256', "csrf:{$timestamp}:{$nonce}", $key);
+    $token = "{$timestamp}.{$nonce}.{$sig}";
+
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        $_SESSION['csrf_token'] = $token;
+    }
+
+    if (!headers_sent()) {
+        $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+        setcookie('csrf_token', $token, [
+            'expires'  => time() + 86400,
+            'path'     => '/',
+            'secure'   => $isSecure,
+            'httponly' => true,
+            'samesite' => 'Lax'
+        ]);
+    }
+
+    return $token;
 }
 
 /**
  * حقل CSRF مخفي للاستخدام في النماذج
  */
 function csrf_field() {
-    return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars(csrf_token()) . '">';
+    return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') . '">';
 }
 
 /**
  * التحقق من رمز CSRF
  */
 function verify_csrf_token($token) {
-    return !empty($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], (string)$token);
+    if (empty($token) || !is_string($token)) {
+        return false;
+    }
+
+    $key = defined('APP_KEY') ? APP_KEY : 'afsh_secret_key_riemaa_2026_x791a8c3';
+
+    // 1. التحقق من التوقيع الرقمي المشفر HMAC (سيرفرلس ولا يحتاج ملف جلسة على الخادم)
+    $parts = explode('.', $token);
+    if (count($parts) === 3) {
+        [$timestamp, $nonce, $sig] = $parts;
+        $expected_sig = hash_hmac('sha256', "csrf:{$timestamp}:{$nonce}", $key);
+        if (hash_equals($expected_sig, $sig)) {
+            $ts = (int)$timestamp;
+            // صلاحية الرمز 24 ساعة (مع هامش 5 دقائق لفارق توقيت السيرفرات)
+            if ($ts <= (time() + 300) && (time() - $ts) <= 86400) {
+                return true;
+            }
+        }
+    }
+
+    // 2. التحقق من الكوكي (Double-Submit Cookie)
+    if (!empty($_COOKIE['csrf_token']) && hash_equals($_COOKIE['csrf_token'], $token)) {
+        return true;
+    }
+
+    // 3. التحقق من الجلسة التقليدية (Session)
+    if (!empty($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token)) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * تعيين رسالة نجاح تظهر في الجلسة والكوكيز لتعمل بدقة في بيئات السيرفرلس
+ */
+function set_flash_success($msg) {
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        $_SESSION['flash_success'] = $msg;
+    }
+    if (!headers_sent()) {
+        setcookie('flash_success', $msg, time() + 60, '/');
+    }
+}
+
+/**
+ * تعيين رسالة خطأ تظهر في الجلسة والكوكيز لتعمل بدقة في بيئات السيرفرلس
+ */
+function set_flash_error($msg) {
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        $_SESSION['flash_error'] = $msg;
+    }
+    if (!headers_sent()) {
+        setcookie('flash_error', $msg, time() + 60, '/');
+    }
 }
 
 /**

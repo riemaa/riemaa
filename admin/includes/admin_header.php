@@ -205,18 +205,23 @@ $theme_accent_color    = get_setting('theme_accent_color', '#38BDF8');
     </header>
 
     <main class="admin-content">
-      <?php if (!empty($_SESSION['flash_success'])): ?>
+      <?php 
+        $flash_success = $_SESSION['flash_success'] ?? ($_COOKIE['flash_success'] ?? null);
+        $flash_error   = $_SESSION['flash_error'] ?? ($_COOKIE['flash_error'] ?? null);
+        if (isset($_COOKIE['flash_success'])) setcookie('flash_success', '', time() - 3600, '/');
+        if (isset($_COOKIE['flash_error'])) setcookie('flash_error', '', time() - 3600, '/');
+        unset($_SESSION['flash_success'], $_SESSION['flash_error']);
+      ?>
+      <?php if (!empty($flash_success)): ?>
         <div class="alert alert-success alert-dismissible fade show rounded-3 shadow-sm border-0" role="alert">
-          <i class="fas fa-check-circle me-2"></i> <?= htmlspecialchars($_SESSION['flash_success']) ?>
+          <i class="fas fa-check-circle me-2"></i> <?= htmlspecialchars($flash_success) ?>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <?php unset($_SESSION['flash_success']); ?>
       <?php endif; ?>
 
-      <?php if (!empty($_SESSION['flash_error'])): ?>
+      <?php if (!empty($flash_error)): ?>
         <div class="alert alert-danger alert-dismissible fade show rounded-3 shadow-sm border-0" role="alert">
-          <i class="fas fa-exclamation-triangle me-2"></i> <?= htmlspecialchars($_SESSION['flash_error']) ?>
+          <i class="fas fa-exclamation-triangle me-2"></i> <?= htmlspecialchars($flash_error) ?>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <?php unset($_SESSION['flash_error']); ?>
       <?php endif; ?>

@@ -7,6 +7,21 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/functions.php';
 
+// التحقق من كوكي المصادقة المشفر في حال ضياع الجلسة السيرفرلس (Vercel)
+if (empty($_SESSION['admin_logged_in']) && !empty($_COOKIE['admin_auth'])) {
+    $parts = explode(':', $_COOKIE['admin_auth']);
+    if (count($parts) === 4) {
+        [$uid, $uname, $ts, $sig] = $parts;
+        $key = defined('APP_KEY') ? APP_KEY : 'afsh_secret_key_riemaa_2026_x791a8c3';
+        $expected = hash_hmac('sha256', "admin:{$uid}:{$uname}:{$ts}", $key);
+        if (hash_equals($expected, $sig) && (time() - (int)$ts) <= (86400 * 14)) {
+            $_SESSION['admin_logged_in'] = true;
+            $_SESSION['admin_id']        = (int)$uid;
+            $_SESSION['admin_username']  = $uname;
+        }
+    }
+}
+
 // إذا كان مسجل دخول مسبقاً، نوجهه للرئيسية
 if (!empty($_SESSION['admin_logged_in'])) {
     header('Location: index.php');
@@ -27,20 +42,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([':u' => $username]);
             $admin = $stmt->fetch();
 
+            $loggedInUser = null;
             if ($admin && password_verify($password, $admin['password'])) {
-                $_SESSION['admin_logged_in'] = true;
-                $_SESSION['admin_id']        = $admin['id'];
-                $_SESSION['admin_username']  = $admin['username'];
-                $_SESSION['admin_email']     = $admin['email'];
-
-                header('Location: index.php');
-                exit;
+                $loggedInUser = [
+                    'id'       => $admin['id'],
+                    'username' => $admin['username'],
+                    'email'    => $admin['email'] ?? ''
+                ];
             } elseif ($username === 'admin' && $password === 'admin123') {
-                // دخول احتياطي في حال تم استيراد مستخدم افتراضي
+                $loggedInUser = [
+                    'id'       => 1,
+                    'username' => 'admin',
+                    'email'    => 'admin@elawael.com'
+                ];
+            }
+
+            if ($loggedInUser) {
                 $_SESSION['admin_logged_in'] = true;
-                $_SESSION['admin_id']        = 1;
-                $_SESSION['admin_username']  = 'admin';
-                $_SESSION['admin_email']     = 'admin@elawael.com';
+                $_SESSION['admin_id']        = $loggedInUser['id'];
+                $_SESSION['admin_username']  = $loggedInUser['username'];
+                $_SESSION['admin_email']     = $loggedInUser['email'];
+
+                $key = defined('APP_KEY') ? APP_KEY : 'afsh_secret_key_riemaa_2026_x791a8c3';
+                $ts = time();
+                $sig = hash_hmac('sha256', "admin:{$loggedInUser['id']}:{$loggedInUser['username']}:{$ts}", $key);
+                $cookie_val = "{$loggedInUser['id']}:{$loggedInUser['username']}:{$ts}:{$sig}";
+                $isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+                setcookie('admin_auth', $cookie_val, [
+                    'expires'  => time() + (86400 * 14),
+                    'path'     => '/',
+                    'secure'   => $isSecure,
+                    'httponly' => true,
+                    'samesite' => 'Lax'
+                ]);
 
                 header('Location: index.php');
                 exit;

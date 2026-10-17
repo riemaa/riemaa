@@ -15,6 +15,10 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
+// مسح كوكي المصادقة المشفر وكوكي CSRF
+setcookie('admin_auth', '', time() - 86400, '/');
+setcookie('csrf_token', '', time() - 86400, '/');
+
 session_destroy();
 
 header('Location: login.php');
