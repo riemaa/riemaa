@@ -40,6 +40,7 @@ INSERT INTO `settings` (`setting_key`, `setting_value`) VALUES
 ('theme_primary_color', '#8B5A2B'),
 ('theme_secondary_color', '#341D13'),
 ('theme_accent_color', '#D4A373'),
+('nav_about', 'من نحن'),
 ('nav_services', 'خدماتنا'),
 ('nav_fleet', 'الأسطول والمعدات'),
 ('nav_whyus', 'لماذا نحن'),

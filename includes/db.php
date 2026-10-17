@@ -133,6 +133,7 @@ function init_sqlite_database($db) {
         'theme_secondary_color' => '#341D13',
         'theme_accent_color'    => '#D4A373',
         // مسميات نصوص القائمة العلوية
+        'nav_about'             => 'من نحن',
         'nav_services'          => 'خدماتنا',
         'nav_fleet'             => 'الأسطول والمعدات',
         'nav_whyus'             => 'لماذا نحن',

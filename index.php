@@ -180,7 +180,8 @@ try {
 <!-- ============================================================
      SECTION 1: ABOUT US & STORY (Light Clean Background)
 ============================================================ -->
-<section id="about-info" class="bg-clean-light" style="padding: 90px 0;">
+<section id="about" class="bg-clean-light" style="padding: 90px 0; position:relative;">
+  <span id="about-info" style="position:absolute;top:-80px;visibility:hidden;"></span>
   <div class="container">
     <div class="text-center animate-on-scroll">
       <span class="section-subtitle-tag"><i class="fas fa-landmark"></i> <?= htmlspecialchars($about['tag'] ?? 'نبذة عن الشركة') ?></span>
@@ -202,7 +203,7 @@ try {
         <?php endif; ?>
       </div>
       <div class="col-lg-6 text-center">
-        <img src="<?= htmlspecialchars(asset_url($about['story1_img'] ?? 'assets/images/2.jpg')) ?>" alt="<?= htmlspecialchars($about['story1_title'] ?? '') ?>" style="width:100%; height:370px; object-fit:cover; border-radius:24px; box-shadow:var(--shadow-md); border:3px solid rgba(212,163,115,0.3);">
+        <img src="<?= htmlspecialchars(asset_url($about['story1_img'] ?? 'assets/images/2.jpg')) ?>" alt="<?= htmlspecialchars($about['story1_title'] ?? '') ?>" style="width:100%; height:370px; object-fit:cover; border-radius:24px; box-shadow:var(--shadow-md); border:3px solid rgba(<?= $rgb_accent ?>, 0.35);">
       </div>
     </div>
 
@@ -220,7 +221,7 @@ try {
         <?php endif; ?>
       </div>
       <div class="col-lg-6 text-center">
-        <img src="<?= htmlspecialchars(asset_url($about['story2_img'] ?? 'assets/images/3.jpg')) ?>" alt="<?= htmlspecialchars($about['story2_title'] ?? '') ?>" style="width:100%; height:370px; object-fit:cover; border-radius:24px; box-shadow:var(--shadow-md); border:3px solid rgba(212,163,115,0.3);">
+        <img src="<?= htmlspecialchars(asset_url($about['story2_img'] ?? 'assets/images/3.jpg')) ?>" alt="<?= htmlspecialchars($about['story2_title'] ?? '') ?>" style="width:100%; height:370px; object-fit:cover; border-radius:24px; box-shadow:var(--shadow-md); border:3px solid rgba(<?= $rgb_accent ?>, 0.35);">
       </div>
     </div>
   </div>
@@ -494,8 +495,25 @@ try {
       </div>
 
       <div class="col-lg-7 animate-on-scroll animate-delay-2">
-        <?php foreach ($work_steps as $ws): ?>
-        <div class="process-step" style="--step-color:<?= htmlspecialchars($ws['color_code']) ?>;">
+        <?php 
+        $legacy_step_browns = ['#8B5A2B', '#A0522D', '#CD853F', '#5C3A28', '#341D13', '#6B421E', '#46271A'];
+        $step_theme_palette = [
+          $theme_primary_color,
+          $theme_accent_color,
+          $theme_secondary_color,
+          $theme_primary_color,
+          $theme_accent_color,
+          $theme_secondary_color
+        ];
+        $st_idx = 0;
+        foreach ($work_steps as $ws): 
+          $scolor = trim($ws['color_code'] ?? '');
+          if (empty($scolor) || ($theme_primary_color !== '#8B5A2B' && in_array(strtoupper($scolor), $legacy_step_browns))) {
+            $scolor = $step_theme_palette[$st_idx % count($step_theme_palette)];
+          }
+          $st_idx++;
+        ?>
+        <div class="process-step" style="--step-color:<?= htmlspecialchars($scolor) ?>;">
           <div class="step-number"><?= htmlspecialchars($ws['step_number']) ?></div>
           <div class="step-content">
             <h5><?= htmlspecialchars($ws['title']) ?></h5>
@@ -686,7 +704,7 @@ try {
           <h3 class="fw-bold mb-4" style="color:var(--accent-bright);"><i class="fas fa-phone-volume me-2"></i>بيانات الاتصال المباشرة</h3>
 
           <div class="contact-detail">
-            <div class="contact-detail-icon" style="background:rgba(212,163,115,0.2);color:var(--accent-bright);">
+            <div class="contact-detail-icon" style="background:rgba(<?= $rgb_accent ?>, 0.2);color:var(--accent-bright);">
               <i class="fas fa-phone-alt"></i>
             </div>
             <div>
@@ -706,7 +724,7 @@ try {
           </div>
 
           <div class="contact-detail">
-            <div class="contact-detail-icon" style="background:rgba(212,163,115,0.2);color:var(--accent-bright);">
+            <div class="contact-detail-icon" style="background:rgba(<?= $rgb_accent ?>, 0.2);color:var(--accent-bright);">
               <i class="fas fa-map-location-dot"></i>
             </div>
             <div>

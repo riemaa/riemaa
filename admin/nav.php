@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $nav_keys = [
-        'nav_services', 'nav_fleet', 'nav_whyus', 'nav_works', 'nav_packages',
+        'nav_about', 'nav_services', 'nav_fleet', 'nav_whyus', 'nav_works', 'nav_packages',
         'nav_areas', 'nav_process', 'nav_guarantees', 'nav_faq', 'nav_contact',
         'nav_call_btn', 'btn_hero_call', 'btn_hero_wa', 'btn_submit_booking'
     ];
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 require_once __DIR__ . '/includes/admin_header.php';
 
+$nav_about          = get_setting('nav_about', 'من نحن');
 $nav_services       = get_setting('nav_services', 'خدماتنا');
 $nav_fleet          = get_setting('nav_fleet', 'الأسطول والمعدات');
 $nav_whyus          = get_setting('nav_whyus', 'لماذا نحن');
@@ -62,7 +63,7 @@ $btn_submit_booking = get_setting('btn_submit_booking', 'إرسال طلب ال�
   <div class="content-card">
     <div class="content-card-header d-flex align-items-center justify-content-between">
       <h5><i class="fas fa-compass text-primary me-2"></i> روابط شريط التنقل العلوي (Desktop Navbar & Mobile Menu)</h5>
-      <span class="badge bg-light text-dark border">10 روابط رئيسية</span>
+      <span class="badge bg-light text-dark border">11 رابطاً رئيسياً</span>
     </div>
     <div class="content-card-body">
       <p class="text-muted small mb-4">
@@ -70,6 +71,10 @@ $btn_submit_booking = get_setting('btn_submit_booking', 'إرسال طلب ال�
       </p>
 
       <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label fw-bold"><i class="fas fa-info-circle text-warning me-1"></i> رابط من نحن (قصة الشركة)</label>
+          <input type="text" name="nav_about" class="form-control" value="<?= htmlspecialchars($nav_about) ?>" required />
+        </div>
         <div class="col-md-4">
           <label class="form-label fw-bold"><i class="fas fa-concierge-bell text-warning me-1"></i> رابط الخدمات</label>
           <input type="text" name="nav_services" class="form-control" value="<?= htmlspecialchars($nav_services) ?>" required />

@@ -29,6 +29,7 @@ $theme_secondary_color = get_setting('theme_secondary_color', '#341D13');
 $theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
 
 // مسميات نصوص القائمة العلوية
+$nav_about      = get_setting('nav_about', 'من نحن');
 $nav_services   = get_setting('nav_services', 'خدماتنا');
 $nav_fleet      = get_setting('nav_fleet', 'الأسطول والمعدات');
 $nav_whyus      = get_setting('nav_whyus', 'لماذا نحن');
@@ -124,9 +125,11 @@ $og_image          = asset_url('assets/images/1.jpg');
   <style id="custom-theme-variables">
     :root {
       --primary: <?= htmlspecialchars($theme_primary_color) ?> !important;
+      --primary-rgb: <?= $rgb_primary ?> !important;
       --primary-dark: <?= htmlspecialchars($theme_secondary_color) ?> !important;
       --primary-light: <?= htmlspecialchars($theme_accent_color) ?> !important;
       --secondary: <?= htmlspecialchars($theme_secondary_color) ?> !important;
+      --secondary-rgb: <?= $rgb_secondary ?> !important;
       --wood-dark: <?= htmlspecialchars($theme_secondary_color) ?> !important;
       --wood-walnut: <?= htmlspecialchars($theme_secondary_color) ?> !important;
       --wood-mocha: <?= htmlspecialchars($theme_secondary_color) ?> !important;
@@ -136,6 +139,13 @@ $og_image          = asset_url('assets/images/1.jpg');
       --accent: <?= htmlspecialchars($theme_accent_color) ?> !important;
       --accent-gold: <?= htmlspecialchars($theme_accent_color) ?> !important;
       --accent-bright: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      --accent-rgb: <?= $rgb_accent ?> !important;
+      --dark: #1e293b !important;
+      --text-muted: #64748b !important;
+      --shadow-sm: 0 6px 20px rgba(<?= $rgb_secondary ?>, 0.08) !important;
+      --shadow-md: 0 12px 35px rgba(<?= $rgb_secondary ?>, 0.14) !important;
+      --shadow-lg: 0 20px 60px rgba(<?= $rgb_secondary ?>, 0.20) !important;
+      --shadow-hover: 0 28px 70px rgba(<?= $rgb_secondary ?>, 0.28) !important;
       --gold-glow: rgba(<?= $rgb_accent ?>, 0.45) !important;
       --beige-warm: rgba(<?= $rgb_primary ?>, 0.07) !important;
       --beige-light: rgba(<?= $rgb_primary ?>, 0.03) !important;
@@ -190,7 +200,7 @@ $og_image          = asset_url('assets/images/1.jpg');
       background: rgba(<?= $rgb_primary ?>, 0.075) !important;
     }
 
-    /* 6. Buttons & Interactive Elements */
+    /* 7. Buttons & Interactive Elements */
     .btn-hero-primary, .btn-calc, .nav-call-btn, .btn-login, .float-btn-pwa, .btn-submit, .btn-pwa-install {
       background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?>, <?= htmlspecialchars($theme_accent_color) ?>) !important;
     }
@@ -207,7 +217,7 @@ $og_image          = asset_url('assets/images/1.jpg');
       color: <?= htmlspecialchars($theme_secondary_color) ?> !important;
     }
 
-    /* 7. Highlights, Icons & Badges */
+    /* 8. Highlights, Icons & Badges */
     .highlight, .section-subtitle-tag i, .brand-text span:first-child, .stars {
       color: <?= htmlspecialchars($theme_accent_color) ?> !important;
     }
@@ -237,15 +247,31 @@ $og_image          = asset_url('assets/images/1.jpg');
     .nav-link:hover, .nav-link.active {
       color: <?= htmlspecialchars($theme_primary_color) ?> !important;
     }
+    .navbar-nav .nav-link {
+      padding: 0.45rem 0.6rem !important;
+      font-size: 0.88rem !important;
+    }
     .offcanvas-header {
       background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>) !important;
     }
 
-    /* 8. Cards & Details */
+    /* 9. Cards, Borders & Structural Elements */
+    .feature-card, .service-card, .guarantee-card, .fleet-card, .gallery-item, 
+    .process-step, .faq-accordion .accordion-item, .seo-card, .form-card, 
+    .whyus-card, .review-card, .testimonial-card, .fleet-img-wrap {
+      border-color: rgba(<?= $rgb_accent ?>, 0.3) !important;
+    }
     .feature-icon-badge, .service-icon {
-      background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>) !important;
-      border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
-      color: #FFF !important;
+      background: linear-gradient(135deg, rgba(<?= $rgb_accent ?>, 0.25), rgba(<?= $rgb_primary ?>, 0.3)) !important;
+      border-color: rgba(<?= $rgb_accent ?>, 0.5) !important;
+      color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+    }
+    .fleet-badge {
+      background: rgba(<?= $rgb_primary ?>, 0.12) !important;
+      color: <?= htmlspecialchars($theme_primary_color) ?> !important;
+    }
+    .gallery-item {
+      border-color: rgba(<?= $rgb_accent ?>, 0.3) !important;
     }
     .package-card.popular {
       background: linear-gradient(180deg, rgba(<?= $rgb_accent ?>, 0.2) 0%, rgba(<?= $rgb_primary ?>, 0.22) 100%) !important;
@@ -274,7 +300,40 @@ $og_image          = asset_url('assets/images/1.jpg');
       color: <?= htmlspecialchars($theme_secondary_color) ?> !important;
       border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
     }
-    .guarantee-card:hover, .service-card:hover, .feature-card:hover {
+    .guarantee-card:hover, .service-card:hover, .feature-card:hover, .fleet-card:hover, .process-step:hover {
+      border-color: <?= htmlspecialchars($theme_primary_color) ?> !important;
+    }
+    .faq-accordion .accordion-button:not(.collapsed) {
+      background: rgba(<?= $rgb_primary ?>, 0.08) !important;
+      color: <?= htmlspecialchars($theme_primary_color) ?> !important;
+    }
+    .faq-accordion .accordion-body {
+      background: rgba(<?= $rgb_primary ?>, 0.02) !important;
+    }
+    .section-title::after {
+      background: linear-gradient(90deg, <?= htmlspecialchars($theme_accent_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>) !important;
+    }
+    .section-title::before {
+      background: <?= htmlspecialchars($theme_primary_color) ?> !important;
+    }
+    .step-number {
+      background: <?= htmlspecialchars($theme_primary_color) ?> !important;
+      box-shadow: 0 8px 24px rgba(<?= $rgb_primary ?>, 0.35) !important;
+    }
+    .process-step::before {
+      background: <?= htmlspecialchars($theme_primary_color) ?> !important;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: <?= htmlspecialchars($theme_primary_color) ?> !important;
+      box-shadow: 0 0 0 4px rgba(<?= $rgb_primary ?>, 0.18) !important;
+    }
+    #scrollTop {
+      background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?>, <?= htmlspecialchars($theme_primary_color) ?>) !important;
+      border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
+      box-shadow: 0 8px 25px rgba(<?= $rgb_primary ?>, 0.45) !important;
+    }
+    .lightbox-nav {
+      background: rgba(<?= $rgb_primary ?>, 0.85) !important;
       border-color: <?= htmlspecialchars($theme_accent_color) ?> !important;
     }
   </style>
@@ -311,6 +370,7 @@ $og_image          = asset_url('assets/images/1.jpg');
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="#about"><?= htmlspecialchars($nav_about) ?></a></li>
         <li class="nav-item"><a class="nav-link" href="#services"><?= htmlspecialchars($nav_services) ?></a></li>
         <li class="nav-item"><a class="nav-link" href="#fleet"><?= htmlspecialchars($nav_fleet) ?></a></li>
         <li class="nav-item"><a class="nav-link" href="#whyus"><?= htmlspecialchars($nav_whyus) ?></a></li>
@@ -339,6 +399,7 @@ $og_image          = asset_url('assets/images/1.jpg');
   </div>
   <div class="offcanvas-body">
     <ul class="navbar-nav gap-2">
+      <li class="nav-item"><a class="nav-link fw-bold" href="#about"      data-bs-dismiss="offcanvas"><i class="fas fa-info-circle me-2 text-warning"></i><?= htmlspecialchars($nav_about) ?></a></li>
       <li class="nav-item"><a class="nav-link fw-bold" href="#services"   data-bs-dismiss="offcanvas"><i class="fas fa-concierge-bell me-2 text-warning"></i><?= htmlspecialchars($nav_services) ?></a></li>
       <li class="nav-item"><a class="nav-link fw-bold" href="#fleet"      data-bs-dismiss="offcanvas"><i class="fas fa-truck me-2 text-warning"></i><?= htmlspecialchars($nav_fleet) ?></a></li>
       <li class="nav-item"><a class="nav-link fw-bold" href="#whyus"      data-bs-dismiss="offcanvas"><i class="fas fa-crown me-2 text-warning"></i><?= htmlspecialchars($nav_whyus) ?></a></li>

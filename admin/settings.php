@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'meta_title', 'meta_description', 'meta_keywords', 'meta_author',
         'meta_robots', 'canonical_url', 'header_scripts', 'footer_scripts',
         'theme_primary_color', 'theme_secondary_color', 'theme_accent_color',
-        'nav_services', 'nav_fleet', 'nav_whyus', 'nav_works', 'nav_packages',
+        'nav_about', 'nav_services', 'nav_fleet', 'nav_whyus', 'nav_works', 'nav_packages',
         'nav_areas', 'nav_process', 'nav_guarantees', 'nav_faq', 'nav_contact', 'nav_call_btn'
     ];
 
@@ -74,6 +74,7 @@ $theme_primary_color   = get_setting('theme_primary_color', '#8B5A2B');
 $theme_secondary_color = get_setting('theme_secondary_color', '#341D13');
 $theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
 
+$nav_about      = get_setting('nav_about', 'من نحن');
 $nav_services   = get_setting('nav_services', 'خدماتنا');
 $nav_fleet      = get_setting('nav_fleet', 'الأسطول والمعدات');
 $nav_whyus      = get_setting('nav_whyus', 'لماذا نحن');
@@ -235,6 +236,10 @@ $nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
       </p>
 
       <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">رابط من نحن (قصة الشركة)</label>
+          <input type="text" name="nav_about" class="form-control" value="<?= htmlspecialchars($nav_about) ?>" required />
+        </div>
         <div class="col-md-4">
           <label class="form-label">رابط الخدمات</label>
           <input type="text" name="nav_services" class="form-control" value="<?= htmlspecialchars($nav_services) ?>" required />
