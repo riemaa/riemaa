@@ -47,7 +47,7 @@ try {
         }
 
     } else {
-        // اتصال MySQL
+        // اتصال MySQL السحابي
         $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -55,7 +55,21 @@ try {
             PDO::ATTR_EMULATE_PREPARES   => false,
             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES " . DB_CHARSET . " COLLATE " . DB_CHARSET . "_unicode_ci"
         ];
+        if (defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT')) {
+            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+        }
+        if (defined('PDO::MYSQL_ATTR_MULTI_STATEMENTS')) {
+            $options[PDO::MYSQL_ATTR_MULTI_STATEMENTS] = true;
+        }
         $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+
+        // التحقق من وجود الجداول في MySQL والتغذية التلقائية إن كانت فارغة
+        try {
+            $check = $pdo->query("SHOW TABLES LIKE 'settings'")->fetch();
+            if (!$check) {
+                init_mysql_database($pdo);
+            }
+        } catch (Exception $ignored) {}
     }
 
 } catch (PDOException $e) {
@@ -425,3 +439,15 @@ function init_sqlite_database($db) {
     $stmt = $db->prepare("INSERT INTO gallery (image, caption, category, sort_order) VALUES (?, ?, ?, ?)");
     foreach ($gallery as $g) $stmt->execute($g);
 }
+
+/**
+ * دالة التأسيس والتغذية التلقائية لقاعدة بيانات MySQL في حال كانت فارغة
+ */
+function init_mysql_database($db) {
+    $sql_file = __DIR__ . '/../database.sql';
+    if (file_exists($sql_file)) {
+        $sql = file_get_contents($sql_file);
+        $db->exec($sql);
+    }
+}
+
