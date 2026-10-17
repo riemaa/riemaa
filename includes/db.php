@@ -49,18 +49,26 @@ try {
     } else {
         // اتصال MySQL السحابي
         $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+        
+        $opt_init = defined('Pdo\Mysql::ATTR_INIT_COMMAND') ? Pdo\Mysql::ATTR_INIT_COMMAND : (defined('PDO::MYSQL_ATTR_INIT_COMMAND') ? @constant('PDO::MYSQL_ATTR_INIT_COMMAND') : 1002);
+        $opt_ssl_ca = defined('Pdo\Mysql::ATTR_SSL_CA') ? Pdo\Mysql::ATTR_SSL_CA : (defined('PDO::MYSQL_ATTR_SSL_CA') ? @constant('PDO::MYSQL_ATTR_SSL_CA') : 1000);
+        $opt_ssl_verify = defined('Pdo\Mysql::ATTR_SSL_VERIFY_SERVER_CERT') ? Pdo\Mysql::ATTR_SSL_VERIFY_SERVER_CERT : (defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT') ? @constant('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT') : 1014);
+        $opt_multi = defined('Pdo\Mysql::ATTR_MULTI_STATEMENTS') ? Pdo\Mysql::ATTR_MULTI_STATEMENTS : (defined('PDO::MYSQL_ATTR_MULTI_STATEMENTS') ? @constant('PDO::MYSQL_ATTR_MULTI_STATEMENTS') : 1013);
+
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES   => false,
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES " . DB_CHARSET . " COLLATE " . DB_CHARSET . "_unicode_ci"
+            $opt_init                    => "SET NAMES " . DB_CHARSET . " COLLATE " . DB_CHARSET . "_unicode_ci",
+            $opt_ssl_verify              => false,
+            $opt_multi                   => true,
         ];
-        if (defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT')) {
-            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+
+        $ca_file = __DIR__ . '/../data/cacert.pem';
+        if (file_exists($ca_file)) {
+            $options[$opt_ssl_ca] = $ca_file;
         }
-        if (defined('PDO::MYSQL_ATTR_MULTI_STATEMENTS')) {
-            $options[PDO::MYSQL_ATTR_MULTI_STATEMENTS] = true;
-        }
+
         $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
 
         // التحقق من وجود الجداول في MySQL والتغذية التلقائية إن كانت فارغة
@@ -447,7 +455,16 @@ function init_mysql_database($db) {
     $sql_file = __DIR__ . '/../database.sql';
     if (file_exists($sql_file)) {
         $sql = file_get_contents($sql_file);
-        $db->exec($sql);
+        try {
+            $db->exec($sql);
+        } catch (Exception $e) {
+            $statements = array_filter(array_map('trim', explode(";\n", $sql)));
+            foreach ($statements as $st) {
+                if (!empty($st)) {
+                    try { $db->exec($st); } catch (Exception $ignore) {}
+                }
+            }
+        }
     }
 }
 
