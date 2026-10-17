@@ -109,12 +109,14 @@ $og_image          = asset_url('assets/images/1.jpg');
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <!-- PWA Manifest & App Icons -->
-  <link rel="manifest" href="/manifest.json" />
+  <?php $manifest_v = substr(md5($site_name . $site_short_name . $theme_primary_color), 0, 8); ?>
+  <link rel="manifest" href="/manifest.json?v=<?= $manifest_v ?>" />
   <meta name="theme-color" content="<?= htmlspecialchars($theme_primary_color) ?>" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="<?= htmlspecialchars($site_short_name) ?>" />
+  <meta name="application-name" content="<?= htmlspecialchars($site_short_name) ?>" />
   <link rel="apple-touch-icon" href="/assets/images/1.jpg" />
 
   <!-- Dynamic Theme Colors -->

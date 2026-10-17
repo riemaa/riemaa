@@ -280,6 +280,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js')
         .then(reg => {
+          if (reg) reg.update();
           console.log('PWA Service Worker registered:', reg.scope);
         })
         .catch(err => {

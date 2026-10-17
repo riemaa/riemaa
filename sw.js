@@ -1,12 +1,11 @@
 /**
  * Service Worker for Riemaa Cleaning PWA
  */
-const CACHE_NAME = 'riemaa-pwa-v2';
+const CACHE_NAME = 'cleaning-pwa-v4';
 const ASSETS_TO_CACHE = [
   '/',
   '/assets/css/style.css',
-  '/assets/js/main.js',
-  '/manifest.json'
+  '/assets/js/main.js'
 ];
 
 self.addEventListener('install', (event) => {
@@ -34,6 +33,12 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   // Network first, fallback to cache
   if (event.request.method !== 'GET') return;
+
+  const url = event.request.url;
+  // Always fetch manifest, admin and dynamic scripts fresh from network
+  if (url.includes('manifest') || url.includes('/admin/')) {
+    return;
+  }
 
   event.respondWith(
     fetch(event.request)

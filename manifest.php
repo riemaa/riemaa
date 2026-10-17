@@ -4,7 +4,9 @@
  * يضمن تحديث اسم التطبيق وألوانه وبياناته تلقائياً وفقاً لإعدادات لوحة التحكم
  */
 header('Content-Type: application/manifest+json; charset=utf-8');
-header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
 
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/db.php';
