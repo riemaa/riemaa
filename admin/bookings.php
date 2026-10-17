@@ -57,8 +57,8 @@ $bookings = $stmt->fetchAll();
 
 <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
   <div>
-    <h3 class="fw-bold mb-1" style="color:var(--text-dark);">طلبات الحجز والتواصل</h3>
-    <p class="text-muted small mb-0">متابعة العملاء المحتملين وتحديث حالات التواصل ومسارات النقل</p>
+    <h3 class="fw-bold mb-1" style="color:var(--text-dark);">طلبات الحجز</h3>
+    <p class="text-muted small mb-0">متابعة طلبات حجز خدمات النظافة والتعقيم والتواصل مع العملاء</p>
   </div>
   <div class="d-flex gap-2">
     <a href="bookings.php" class="btn btn-sm btn-outline-secondary rounded-pill px-3 <?= empty($filter_status) ? 'active' : '' ?>">الكل (<?= count($bookings) ?>)</a>
@@ -100,7 +100,7 @@ $bookings = $stmt->fetchAll();
             <th>رقم الجوال</th>
             <th>نوع الخدمة</th>
             <th>التاريخ المفضل</th>
-            <th>المسار (من / إلى)</th>
+            <th>المدينة / الحي والعقار</th>
             <th>التفاصيل والملاحظات</th>
             <th>تاريخ الطلب</th>
             <th>الحالة</th>
@@ -133,13 +133,14 @@ $bookings = $stmt->fetchAll();
                   <i class="fas fa-phone-alt text-primary me-1"></i> <?= htmlspecialchars($b['phone']) ?>
                 </a>
               </td>
-              <td><span class="badge bg-light text-primary border"><?= htmlspecialchars($b['service_type'] ?: 'نقل عام') ?></span></td>
+              <td><span class="badge bg-light text-primary border"><?= htmlspecialchars($b['service_type'] ?: 'تنظيف شامل') ?></span></td>
               <td><small class="text-muted"><?= htmlspecialchars($b['moving_date'] ?: 'غير محدد') ?></small></td>
               <td>
                 <small class="d-block text-dark">
-                  <?= htmlspecialchars($b['from_area'] ?: '—') ?>
-                  <i class="fas fa-arrow-left text-muted mx-1"></i>
-                  <?= htmlspecialchars($b['to_area'] ?: '—') ?>
+                  <i class="fas fa-city text-primary me-1"></i><?= htmlspecialchars($b['from_area'] ?: '—') ?>
+                  <?php if (!empty($b['to_area'])): ?>
+                    <br><i class="fas fa-home text-muted me-1"></i><?= htmlspecialchars($b['to_area']) ?>
+                  <?php endif; ?>
                 </small>
               </td>
               <td>
@@ -163,7 +164,7 @@ $bookings = $stmt->fetchAll();
               </td>
               <td>
                 <div class="d-flex gap-1">
-                  <a href="<?= htmlspecialchars(format_whatsapp_link($b['phone'], 'مرحباً ' . $b['client_name'] . '، نتواصل معك بخصوص طلبك لنقل العفش من ' . $site_short_name)) ?>" class="btn btn-sm btn-success rounded-pill" target="_blank" title="محادثة واتساب">
+                  <a href="<?= htmlspecialchars(format_whatsapp_link($b['phone'], 'مرحباً ' . $b['client_name'] . '، نتواصل معك بخصوص طلبك لخدمات النظافة والتعقيم من ' . $site_short_name)) ?>" class="btn btn-sm btn-success rounded-pill" target="_blank" title="محادثة واتساب">
                     <i class="fab fa-whatsapp"></i>
                   </a>
                   <a href="tel:<?= htmlspecialchars($b['phone']) ?>" class="btn btn-sm btn-primary rounded-pill" title="اتصال مباشر">

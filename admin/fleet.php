@@ -1,6 +1,6 @@
 <?php
 /**
- * إدارة شاحنات الأسطول والمعدات (إضافة، تعديل، حذف)
+ * إدارة أجهزة ومعدات النظافة والتعقيم (إضافة، تعديل، حذف)
  */
 
 require_once __DIR__ . '/includes/admin_header.php';
@@ -46,16 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($title)) {
-        $_SESSION['flash_error'] = 'يرجى إدخال عنوان المعدة أو الشاحنة.';
+        $_SESSION['flash_error'] = 'يرجى إدخال عنوان المعدة أو الجهاز.';
     } else {
         if ($fleet_id > 0) {
             $stmt = $pdo->prepare("UPDATE fleet SET title = :t, badge = :b, image = :img, description = :d, sort_order = :s WHERE id = :id");
             $stmt->execute([':t' => $title, ':b' => $badge, ':img' => $image_path, ':d' => $description, ':s' => $sort_order, ':id' => $fleet_id]);
-            $_SESSION['flash_success'] = 'تم تعديل بيانات الشاحنة/المعدة بنجاح!';
+            $_SESSION['flash_success'] = 'تم تعديل بيانات الجهاز/المعدة بنجاح!';
         } else {
             $stmt = $pdo->prepare("INSERT INTO fleet (title, badge, image, description, sort_order) VALUES (:t, :b, :img, :d, :s)");
             $stmt->execute([':t' => $title, ':b' => $badge, ':img' => $image_path, ':d' => $description, ':s' => $sort_order]);
-            $_SESSION['flash_success'] = 'تمت إضافة الشاحنة/المعدة بنجاح!';
+            $_SESSION['flash_success'] = 'تمت إضافة الجهاز/المعدة بنجاح!';
         }
         header('Location: fleet.php');
         exit;
@@ -67,12 +67,12 @@ $fleet = $pdo->query("SELECT * FROM fleet ORDER BY sort_order ASC, id ASC")->fet
 
 <div class="d-flex align-items-center justify-content-between mb-4">
   <div>
-    <h3 class="fw-bold mb-1" style="color:var(--text-dark);">إدارة أسطول الشاحنات والمعدات</h3>
-    <p class="text-muted small mb-0">التحكم في شاحنات الديانة المغلقة، الأوناش الهيدروليكية، ومواد التغليف</p>
+    <h3 class="fw-bold mb-1" style="color:var(--text-dark);">إدارة أجهزة ومعدات النظافة والتعقيم</h3>
+    <p class="text-muted small mb-0">التحكم في أجهزة البخار الحار، ماكينات جلي الرخام، ومعدات التعقيم الحديثة</p>
   </div>
   <?php if ($edit_fleet): ?>
     <a href="fleet.php" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
-      <i class="fas fa-plus me-1"></i> إضافة معدة جديدة
+      <i class="fas fa-plus me-1"></i> إضافة جهاز أو معدة جديدة
     </a>
   <?php endif; ?>
 </div>
@@ -84,7 +84,7 @@ $fleet = $pdo->query("SELECT * FROM fleet ORDER BY sort_order ASC, id ASC")->fet
       <div class="content-card-header">
         <h5>
           <i class="fas <?= $edit_fleet ? 'fa-edit text-warning' : 'fa-plus-circle text-primary' ?>"></i>
-          <?= $edit_fleet ? 'تعديل الشاحنة / المعدة' : 'إضافة معدة / شاحنة جديدة' ?>
+          <?= $edit_fleet ? 'تعديل الجهاز / المعدة' : 'إضافة جهاز / معدة جديدة' ?>
         </h5>
       </div>
       <div class="content-card-body">
@@ -94,12 +94,12 @@ $fleet = $pdo->query("SELECT * FROM fleet ORDER BY sort_order ASC, id ASC")->fet
 
           <div class="mb-3">
             <label class="form-label">العنوان الرئيسي</label>
-            <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($edit_fleet['title'] ?? '') ?>" required placeholder="مثال: ديانات وشاحنات مغلقة ومبطنة" />
+            <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($edit_fleet['title'] ?? '') ?>" required placeholder="مثال: ماكينات غسيل السجاد والكنب بالبخار الحار" />
           </div>
 
           <div class="mb-3">
             <label class="form-label">الشارة التعريفية (Badge)</label>
-            <input type="text" name="badge" class="form-control" value="<?= htmlspecialchars($edit_fleet['badge'] ?? '') ?>" placeholder="ديانات مقفلة ومكيفة" />
+            <input type="text" name="badge" class="form-control" value="<?= htmlspecialchars($edit_fleet['badge'] ?? '') ?>" placeholder="مثال: ضغط بخار فائق 180°C" />
           </div>
 
           <div class="mb-3">

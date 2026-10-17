@@ -44,26 +44,26 @@ try {
 
     // تجهيز رسالة الواتساب المنسقة بالتفاصيل
     $whatsapp_num = get_setting('whatsapp_number', '966554091835');
-    $site_name    = get_setting('site_name', 'شركة الأوائل لنقل العفش');
+    $site_name    = get_setting('site_name', 'شركة ريمة للنظافة العامة');
 
     $wa_text = "👋 مرحباً *{$site_name}*،\n";
-    $wa_text .= "أود تأكيد طلب حجز جديد عبر الموقع:\n\n";
+    $wa_text .= "أود تأكيد طلب حجز خدمة نظافة عبر الموقع:\n\n";
     $wa_text .= "👤 *الاسم:* " . $client_name . "\n";
     $wa_text .= "📱 *الجوال:* " . $phone . "\n";
     if (!empty($service_type)) {
-        $wa_text .= "🛠️ *الخدمة المطلوبة:* " . $service_type . "\n";
+        $wa_text .= "✨ *الخدمة المطلوبة:* " . $service_type . "\n";
     }
     if (!empty($from_area)) {
-        $wa_text .= "📍 *مكان النقل (من):* " . $from_area . "\n";
+        $wa_text .= "📍 *المدينة / الحي:* " . $from_area . "\n";
     }
     if (!empty($to_area)) {
-        $wa_text .= "🎯 *الوجهة (إلى):* " . $to_area . "\n";
+        $wa_text .= "🏢 *نوع العقار / العنوان:* " . $to_area . "\n";
     }
     if (!empty($moving_date)) {
-        $wa_text .= "📅 *تاريخ النقل:* " . $moving_date . "\n";
+        $wa_text .= "📅 *تاريخ وموعد الخدمة:* " . $moving_date . "\n";
     }
     if (!empty($details)) {
-        $wa_text .= "📝 *ملاحظات:* " . $details . "\n";
+        $wa_text .= "📝 *ملاحظات وتفاصيل:* " . $details . "\n";
     }
     $wa_text .= "\nيرجى التواصل معي للتأكيد وتقديم أفضل عرض سعر. وشكراً!";
 
@@ -77,7 +77,7 @@ try {
 } catch (Exception $e) {
     error_log("Booking submission error: " . $e->getMessage());
     $whatsapp_num = get_setting('whatsapp_number', '966554091835');
-    $wa_text = "مرحباً، أود الاستفسار وحجز خدمة نقل عفش - الاسم: {$client_name} - الجوال: {$phone}";
+    $wa_text = "مرحباً، أود الاستفسار وحجز خدمة نظافة - الاسم: {$client_name} - الجوال: {$phone}";
     $wa_url = format_whatsapp_link($whatsapp_num, $wa_text);
 
     echo json_encode([

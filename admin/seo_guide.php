@@ -1,6 +1,6 @@
 <?php
 /**
- * إدارة مقالات وبطاقات دليل السيو (دليل النقل الذكي)
+ * إدارة مقالات وبطاقات دليل السيو (دليل النظافة والتعقيم)
  */
 
 require_once __DIR__ . '/includes/admin_header.php';
@@ -59,8 +59,8 @@ $articles = $pdo->query("SELECT * FROM seo_articles ORDER BY sort_order ASC, id 
 
 <div class="d-flex align-items-center justify-content-between mb-4">
   <div>
-    <h3 class="fw-bold mb-1" style="color:var(--text-dark);">إدارة دليل النقل الذكي والسيو</h3>
-    <p class="text-muted small mb-0">مقالات وفقرات غنية بالكلمات المفتاحية لرفع ترتيب الموقع في جوجل وتسهيل الأرشفة</p>
+    <h3 class="fw-bold mb-1" style="color:var(--text-dark);">إدارة دليل النظافة والتعقيم والسيو</h3>
+    <p class="text-muted small mb-0">مقالات وفقرات غنية بالكلمات المفتاحية لرفع ترتيب موقع النظافة في جوجل وتسهيل الأرشفة</p>
   </div>
   <?php if ($edit_article): ?>
     <a href="seo_guide.php" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
@@ -90,12 +90,12 @@ $articles = $pdo->query("SELECT * FROM seo_articles ORDER BY sort_order ASC, id 
 
           <div class="mb-3">
             <label class="form-label">أيقونة FontAwesome</label>
-            <input type="text" name="icon" class="form-control" value="<?= htmlspecialchars($edit_article['icon'] ?? 'fas fa-shield-alt') ?>" required placeholder="fas fa-boxes-packing" />
+            <input type="text" name="icon" class="form-control" value="<?= htmlspecialchars($edit_article['icon'] ?? 'fas fa-shield-alt') ?>" required placeholder="fas fa-broom" />
           </div>
 
           <div class="mb-3">
             <label class="form-label">المحتوى والنص الإرشادي</label>
-            <textarea name="description" class="form-control" rows="4" required placeholder="اكتب فقرة تحتوي على كلمات مفتاحية عن نقل العفش..."><?= htmlspecialchars($edit_article['description'] ?? '') ?></textarea>
+            <textarea name="description" class="form-control" rows="4" required placeholder="اكتب فقرة تحتوي على كلمات مفتاحية عن خدمات النظافة والتعقيم..."><?= htmlspecialchars($edit_article['description'] ?? '') ?></textarea>
           </div>
 
           <div class="mb-4">

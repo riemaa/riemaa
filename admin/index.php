@@ -121,7 +121,7 @@ try {
             <th>اسم العميل</th>
             <th>رقم الجوال</th>
             <th>الخدمة المطلوبة</th>
-            <th>مسار النقل</th>
+            <th>المدينة / العنوان</th>
             <th>تاريخ الطلب</th>
             <th>الحالة</th>
             <th>الإجراء</th>
@@ -150,11 +150,12 @@ try {
                   <i class="fas fa-phone-alt text-primary me-1"></i> <?= htmlspecialchars($b['phone']) ?>
                 </a>
               </td>
-              <td><span class="badge bg-light text-secondary border"><?= htmlspecialchars($b['service_type'] ?: 'نقل عام') ?></span></td>
+              <td><span class="badge bg-light text-secondary border"><?= htmlspecialchars($b['service_type'] ?: 'تنظيف شامل') ?></span></td>
               <td class="small">
                 <?= htmlspecialchars($b['from_area'] ?: '—') ?>
-                <i class="fas fa-arrow-left text-muted mx-1"></i>
-                <?= htmlspecialchars($b['to_area'] ?: '—') ?>
+                <?php if (!empty($b['to_area'])): ?>
+                  (<?= htmlspecialchars($b['to_area']) ?>)
+                <?php endif; ?>
               </td>
               <td class="small text-muted"><?= date('Y/m/d H:i', strtotime($b['created_at'])) ?></td>
               <td><span class="badge <?= $st['class'] ?>"><?= $st['text'] ?></span></td>
@@ -162,7 +163,7 @@ try {
                 <a href="bookings.php?edit_id=<?= $b['id'] ?>" class="btn btn-sm btn-light border rounded-pill px-2" title="تفاصيل">
                   <i class="fas fa-eye text-primary"></i>
                 </a>
-                <a href="<?= htmlspecialchars(format_whatsapp_link($b['phone'], 'مرحباً ' . $b['client_name'] . '، تواصل معك بخصوص طلبك لنقل العفش من ' . $site_short_name)) ?>" class="btn btn-sm btn-success rounded-pill px-2" target="_blank" title="واتساب">
+                <a href="<?= htmlspecialchars(format_whatsapp_link($b['phone'], 'مرحباً ' . $b['client_name'] . '، نتواصل معك بخصوص طلبك لخدمات النظافة والتعقيم من ' . $site_short_name)) ?>" class="btn btn-sm btn-success rounded-pill px-2" target="_blank" title="واتساب">
                   <i class="fab fa-whatsapp"></i>
                 </a>
               </td>

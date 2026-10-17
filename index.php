@@ -1,6 +1,6 @@
 <?php
 /**
- * صفحة الهبوط الرئيسية الديناميكية بالكامل لشركة الأوائل لنقل العفش
+ * صفحة الهبوط الرئيسية الديناميكية بالكامل لشركة ريمة للنظافة العامة
  */
 
 require_once __DIR__ . '/includes/header.php';
@@ -9,33 +9,33 @@ $rgb_primary = hex2rgb_css($theme_primary_color);
 
 // جلب بيانات الأقسام من قاعدة البيانات
 $hero = get_section('hero', [
-    'badge'          => 'الشركة الأولى المعتمدة لنقل وتغليف الأثاث بالدمام والشرقية',
-    'title'          => 'نقل عفشك بـ<span class="highlight">أمان ملكي تام</span><br>وأسعار مدروسة <span class="highlight">بلا مفاجآت</span>',
-    'desc'           => 'شركة الأوائل – ريادة تمتد لأكثر من 10 سنوات في نقل وتغليف وتخزين الأثاث داخل وخارج الدمام والمنطقة الشرقية (الدمام، القطيف، الخبر، الظهران، الجبيل). نقدم خدمات فك وتركيب هندسية متطورة، وأحدث أوناش الرفع الهيدروليكية للأدوار المرتفعة، بأيدي عمالة نظامية مدربة مع ديانات مقفلة ومكيفة تضمن سلامة أثاثك 100% بوثيقة ضمان رسمية.',
+    'badge'          => 'الشركة الرائدة الأولى في خدمات التنظيف والتعقيم الشامل بالمنطقة الشرقية',
+    'title'          => 'نظافة احترافية بـ<span class="highlight">أعلى معايير الجودة</span><br>وبأحدث تقنيات <span class="highlight">التعقيم والتطهير</span>',
+    'desc'           => 'شركة ريمة للنظافة العامة – خبرة عريقة تتجاوز 10 سنوات في تقديم أرقى حلول التنظيف والتعقيم للمنازل والفلل والقصور والشركات في الدمام، القطيف، الخبر، الجبيل، الظهران، وبقيق. نوفر أحدث أجهزة البخار وضخ المياه وتقنيات غسيل السجاد والكنب وتنظيف الخزانات والأرضيات والمكيفات بأيدي كوادر فنية مدربة وبأفضل مواد التنظيف المعتمدة عالمياً.',
     'btn_call'       => 'اتصل واحجز فوراً',
     'btn_wa'         => 'استفسار واتساب سريع',
     'stat_clients'   => '5000',
     'stat_years'     => '12',
     'stat_guarantee' => '100',
     'stat_hours'     => '24/7',
-    'card1_title'    => '100% حماية وتعويض',
-    'card1_sub'      => 'ضمان شامل رسمي',
-    'card2_title'    => 'تصل للدور الـ 25',
-    'card2_sub'      => 'أوناش هيدروليكية حديثة',
+    'card1_title'    => '100% نظافة وتعقيم',
+    'card1_sub'      => 'ضمان شامل ومواد آمنة',
+    'card2_title'    => 'تقنيات ألمانية متطورة',
+    'card2_sub'      => 'أحدث أجهزة البخار والتعقيم',
     'image'          => 'assets/images/1.jpg'
 ]);
 
 $about = get_section('about', [
     'tag'          => 'نبذة عن الشركة',
-    'title'        => 'من نحن - قصة الريادة في نقل الأثاث',
-    'subtitle'     => 'نضع بين يديك خبرة متوارثة واحترافية مطلقة تجعل انتقالك لمنزلك الجديد تجربة مريحة وسلسة دون أي عناء',
-    'story1_title' => 'رؤيتنا: الأمان التام والالتزام بأعلى المعايير العالمية',
-    'story1_p1'    => 'تأسست شركة الأوائل لنقل العفش بالدمام لتكون النموذج الأرقى في قطاع الخدمات اللوجستية ونقل الأثاث المنزلي والمكتبي بالمنطقة الشرقية والمملكة العربية السعودية...',
-    'story1_p2'    => 'نحن نوفر كادراً وظيفياً متخصصاً خضع لأعلى دورات التدريب الفني...',
+    'title'        => 'من نحن - قصة الريادة في عالم النظافة والتعقيم',
+    'subtitle'     => 'نضع بين يديك خبرة متوارثة واحترافية مطلقة تجعل منزلك ومكان عملك بيئة صحية ونقية تفيض بالانتعاش واللمعان',
+    'story1_title' => 'رؤيتنا: النقاء التام والالتزام بأعلى المعايير الصحية العالمية',
+    'story1_p1'    => 'تأسست شركة ريمة للنظافة العامة بالدمام لتكون المعيار الأرقى في قطاع خدمات النظافة والتعقيم ومكافحة الملوثات للمنشآت السكنية والتجارية بالمنطقة الشرقية والمملكة العربية السعودية...',
+    'story1_p2'    => 'نحن نوفر كادراً وظيفياً متخصصاً خضع لأعلى دورات التدريب الفني على استخدام أحدث تقنيات التنظيف العميق بالبخار ومواد التطهير الآمنة والصديقة للبيئة والمسجلة رسمياً...',
     'story1_img'   => 'assets/images/2.jpg',
-    'story2_title' => 'فريق نجارين وفنيين محترفين لكل نوع أثاث',
-    'story2_p1'    => 'لا نعتمد في الأوائل على العمالة العشوائية، بل نمتلك طواقم متخصصة من النجارين المهرة...',
-    'story2_p2'    => 'يتم ترقيم كافة القطع والمفاصل وتغليف المسامير والملحقات في أكياس مخصصة...',
+    'story2_title' => 'فريق فني متخصص وأحدث معدات النظافة والتعقيم',
+    'story2_p1'    => 'لا نعتمد في ريمة على العمالة العشوائية، بل نمتلك طواقم عمل مدربة تدريباً صارماً على التعامل مع أدق التفاصيل من مفروشات وسجاد وخزانات مياه وأجهزة تكييف...',
+    'story2_p2'    => 'نستخدم أحدث ماكينات جلي وتلميع الرخام، وأجهزة غسيل السجاد بالبخار الحار والتجفيف السريع، مع فحص دوري للجودة بعد كل عملية لضمان رضاكم التام بنسبة 100%...',
     'story2_img'   => 'assets/images/3.jpg'
 ]);
 
@@ -139,7 +139,7 @@ try {
           </div>
           <div class="stat-item">
             <span class="stat-number" data-count="<?= htmlspecialchars($hero['stat_guarantee'] ?? '100') ?>">0</span>
-            <span class="stat-label">% ضمان ضد الخدش</span>
+            <span class="stat-label">% ضمان الرضا والتعقيم</span>
           </div>
           <div class="stat-item">
             <span class="stat-number"><?= htmlspecialchars($hero['stat_hours'] ?? '24/7') ?></span>
@@ -153,15 +153,15 @@ try {
           <div class="hero-float-card card1">
             <div class="float-card-icon"><i class="fas fa-shield-alt"></i></div>
             <div class="float-card-text">
-              <span><?= htmlspecialchars($hero['card1_sub'] ?? 'ضمان شامل رسمي') ?></span>
-              <strong><?= htmlspecialchars($hero['card1_title'] ?? '100% حماية وتعويض') ?></strong>
+              <span><?= htmlspecialchars($hero['card1_sub'] ?? 'ضمان معتمد 100%') ?></span>
+              <strong><?= htmlspecialchars($hero['card1_title'] ?? 'نظافة وتعقيم فائق') ?></strong>
             </div>
           </div>
           <div class="hero-float-card card2">
-            <div class="float-card-icon"><i class="fas fa-dolly-flatbed"></i></div>
+            <div class="float-card-icon"><i class="fas fa-spray-can-sparkles"></i></div>
             <div class="float-card-text">
-              <span><?= htmlspecialchars($hero['card2_sub'] ?? 'أوناش هيدروليكية حديثة') ?></span>
-              <strong><?= htmlspecialchars($hero['card2_title'] ?? 'تصل للدور الـ 25') ?></strong>
+              <span><?= htmlspecialchars($hero['card2_sub'] ?? 'أحدث أجهزة البخار') ?></span>
+              <strong><?= htmlspecialchars($hero['card2_title'] ?? 'إزالة أصعب البقع') ?></strong>
             </div>
           </div>
         </div>
@@ -185,7 +185,7 @@ try {
   <div class="container">
     <div class="text-center animate-on-scroll">
       <span class="section-subtitle-tag"><i class="fas fa-landmark"></i> <?= htmlspecialchars($about['tag'] ?? 'نبذة عن الشركة') ?></span>
-      <h2 class="section-title"><?= htmlspecialchars($about['title'] ?? 'من نحن - قصة الريادة في نقل الأثاث') ?></h2>
+      <h2 class="section-title"><?= htmlspecialchars($about['title'] ?? 'من نحن - قصة الريادة في عالم النظافة والتعقيم') ?></h2>
       <p class="section-subtitle"><?= htmlspecialchars($about['subtitle'] ?? '') ?></p>
     </div>
 
@@ -240,9 +240,9 @@ try {
 <section id="services" class="bg-warm-beige" style="padding: 90px 0;">
   <div class="container text-center">
     <div class="animate-on-scroll">
-      <span class="section-subtitle-tag"><i class="fas fa-concierge-bell"></i> خدماتنا الشاملة</span>
-      <h2 class="section-title mb-2">حلول متكاملة لنقل العفش بكل احترافية</h2>
-      <p class="section-subtitle">من المعاينة الأولية حتى وضع آخر قطعة في مكانها المختار في منزلك الجديد</p>
+      <span class="section-subtitle-tag"><i class="fas fa-sparkles"></i> خدماتنا المتخصصة</span>
+      <h2 class="section-title mb-2">حلول متكاملة لخدمات النظافة والتعقيم بكل احترافية</h2>
+      <p class="section-subtitle">من الفحص والمعاينة الأولية حتى تسليم المكان معقماً ولامعاً يفوح بالنظافة والانتعاش</p>
     </div>
 
     <div class="row g-4 mt-2">
@@ -316,9 +316,9 @@ try {
 <section id="fleet" class="bg-clean-light" style="padding: 90px 0;">
   <div class="container">
     <div class="text-center animate-on-scroll">
-      <span class="section-subtitle-tag"><i class="fas fa-truck-pickup"></i> أسطولنا ومعداتنا</span>
-      <h2 class="section-title mb-2">معدات تقنية وأسطول شاحنات مجهز بأحدث التجهيزات</h2>
-      <p class="section-subtitle">لا نترك شيئاً للصدفة؛ نعتمد على أحدث الآليات الهندسية لنقل ممتلكاتك بأمان تام</p>
+      <span class="section-subtitle-tag"><i class="fas fa-spray-can-sparkles"></i> معداتنا وأجهزتنا</span>
+      <h2 class="section-title mb-2">أحدث أجهزة ومعدات التنظيف والتعقيم المتطورة</h2>
+      <p class="section-subtitle">لا نترك شيئاً للصدفة؛ نعتمد على أحدث التقنيات الألمانية والإيطالية لضمان أعلى درجات النقاء والتعقيم</p>
     </div>
 
     <div class="row g-4 mt-2">
@@ -330,7 +330,7 @@ try {
           <div class="fleet-img-wrap">
             <img src="<?= htmlspecialchars(asset_url($fl['image'])) ?>" alt="<?= htmlspecialchars($fl['title']) ?>" loading="lazy" />
           </div>
-          <span class="fleet-badge"><i class="fas fa-truck me-1"></i> <?= htmlspecialchars($fl['badge']) ?></span>
+          <span class="fleet-badge"><i class="fas fa-shield-virus me-1"></i> <?= htmlspecialchars($fl['badge']) ?></span>
           <h4 class="fw-bold mb-2" style="color:var(--wood-walnut);"><?= htmlspecialchars($fl['title']) ?></h4>
           <p style="color:var(--text-muted);font-size:0.92rem;line-height:1.75;">
             <?= htmlspecialchars($fl['description']) ?>
@@ -357,7 +357,7 @@ try {
     <div class="text-center animate-on-scroll">
       <span class="section-subtitle-tag"><i class="fas fa-camera-retro"></i> أعمالنا الحية</span>
       <h2 class="section-title mb-2">معرض أعمالنا الميدانية بالدمام والشرقية</h2>
-      <p class="section-subtitle">شاهد صوراً حية لعمليات النقل والفك والتغليف ورفع الأثاث التي نفذها فريقنا باحترافية</p>
+      <p class="section-subtitle">شاهد صوراً حية لعمليات التنظيف الشامل، غسيل السجاد والكنب والمجالس، وتطهير الخزانات والمكيفات باحترافية</p>
     </div>
 
     <!-- Gallery Grid Loaded Dynamically -->
@@ -388,9 +388,9 @@ try {
 <section id="packages" class="bg-dark-wood" style="padding: 90px 0;">
   <div class="container position-relative" style="z-index:1;">
     <div class="text-center animate-on-scroll">
-      <span class="section-subtitle-tag tag-light"><i class="fas fa-tags"></i> باقات وعروض النقل</span>
-      <h2 class="section-title title-light mb-2">باقات تنافسية وعروض حصرية تلائم احتياجك</h2>
-      <p class="section-subtitle sub-light">اختر الباقة المثالية لمنزلك أو مكتبك واستمتع بخصم إضافي <?= htmlspecialchars(get_setting('discount_percentage', '20%')) ?> عند الحجز اليوم</p>
+      <span class="section-subtitle-tag tag-light"><i class="fas fa-tags"></i> باقات وعروض النظافة</span>
+      <h2 class="section-title title-light mb-2">باقات تنافسية وعروض حصرية تلائم احتياجاتك</h2>
+      <p class="section-subtitle sub-light">اختر الباقة المثالية لمنزلك أو منشأتك واستمتع بخصم إضافي <?= htmlspecialchars(get_setting('discount_percentage', '20%')) ?> عند الحجز اليوم</p>
     </div>
 
     <div class="row g-4 mt-2 align-items-stretch">
@@ -441,7 +441,7 @@ try {
   <div class="container text-center">
     <div class="animate-on-scroll">
       <span class="section-subtitle-tag tag-light"><i class="fas fa-map-marked-alt"></i> شبكة التغطية</span>
-      <h2 class="section-title title-light mb-2">تغطية شاملة لجميع أحياء الدمام والقطيف والخبر والظهران والجبيل</h2>
+      <h2 class="section-title title-light mb-2">تغطية شاملة لجميع أحياء الدمام والقطيف والخبر والجبيل والظهران وبقيق</h2>
       <p class="section-subtitle sub-light">نمتلك نقاط انتشار سريعة تصل إلى موقعك خلال دقائق معدودة في أي وقت</p>
     </div>
 
@@ -481,9 +481,9 @@ try {
     <div class="row align-items-center g-5">
       <div class="col-lg-5 animate-on-scroll">
         <span class="section-subtitle-tag"><i class="fas fa-cogs"></i> منهجية العمل الذكية</span>
-        <h2 class="section-title text-start mb-3" style="display:block;">كيف ننقل عفشك<br>في <?= count($work_steps) ?> خطوات محكمة</h2>
+        <h2 class="section-title text-start mb-3" style="display:block;">كيف ننظف ونعقم المكان<br>في <?= count($work_steps) ?> خطوات محكمة</h2>
         <p style="color:var(--text-muted);line-height:1.85;font-size:1.02rem;">
-          نظام تشغيلي متكامل يضمن سلامة كل قطعة من لحظة اتصالك الهاتفي وحتى تسليم منزلك الجديد مرتباً ونظيفاً بالكامل.
+          نظام تشغيلي متكامل يضمن أعلى مستويات النظافة والتعقيم الشامل من لحظة اتصالك الهاتفي وحتى تسليم منزلك نقياً وصحياً بالكامل.
         </p>
         <div class="p-3 my-3" style="background:var(--beige-warm);border-radius:16px;border-right:4px solid var(--primary);">
           <strong class="d-block mb-1 text-dark"><i class="fas fa-check-double text-warning me-1"></i> دقة مواعيد بنسبة 100%</strong>
@@ -541,7 +541,7 @@ try {
     <div class="animate-on-scroll">
       <span class="section-subtitle-tag"><i class="fas fa-shield-alt"></i> ميثاق <?= htmlspecialchars($site_short_name) ?></span>
       <h2 class="section-title mb-2"><?= count($guarantees) ?> ضمانات ذهبية تمنحك راحة البال التامة</h2>
-      <p class="section-subtitle">نحن لا ننقل الأثاث فحسب، بل ننقل راحة البال وثقتكم الغالية بوثيقة قانونية ملزمة</p>
+      <p class="section-subtitle">نحن لا نقدم مجرد تنظيف عادي، بل نمنحك بيئة صحية نقية وراحة بال تامة بوثيقة ضمان رسمية</p>
     </div>
 
     <div class="row g-4 mt-2">
@@ -575,7 +575,7 @@ try {
     <div class="animate-on-scroll">
       <span class="section-subtitle-tag tag-light"><i class="fas fa-quote-right"></i> تجارب حقيقية</span>
       <h2 class="section-title title-light mb-2">ماذا يقول عملاؤنا الكرام عنا؟</h2>
-      <p class="section-subtitle sub-light">آراء وتجارب حية من عملاء وثقوا بنا في نقل منازلهم وقصورهم ومكاتبهم</p>
+      <p class="section-subtitle sub-light">آراء وتجارب حية من عملاء وثقوا بنا في تنظيف وتعقيم منازلهم وفللهم ومكاتبهم</p>
     </div>
 
     <div class="row g-4 mt-2">
@@ -616,7 +616,7 @@ try {
   <div class="container">
     <div class="text-center animate-on-scroll">
       <span class="section-subtitle-tag"><i class="fas fa-question-circle"></i> إجابات شاملة</span>
-      <h2 class="section-title mb-2">الأسئلة الأكثر شيوعاً قبل حجز النقل</h2>
+      <h2 class="section-title mb-2">الأسئلة الأكثر شيوعاً حول خدمات التنظيف والتعقيم</h2>
       <p class="section-subtitle">جمعنا لك أهم التساؤلات التي يطرحها عملاؤنا مع إجابات واضحة وشفافة تماماً</p>
     </div>
 
@@ -659,9 +659,9 @@ try {
 <section id="seo1" class="bg-dark-wood" style="padding: 90px 0;">
   <div class="container text-center position-relative" style="z-index:1;">
     <div class="animate-on-scroll">
-      <span class="section-subtitle-tag tag-light"><i class="fas fa-info-circle"></i> دليل النقل الذكي</span>
-      <h2 class="section-title title-light mb-2">دليل نقل العفش والأثاث الاحترافي بالدمام والمنطقة الشرقية</h2>
-      <p class="section-subtitle sub-light">نصائح وإرشادات هندسية لضمان عملية انتقال ناجحة وخالية من التوتر</p>
+      <span class="section-subtitle-tag tag-light"><i class="fas fa-info-circle"></i> دليل النظافة الذكي</span>
+      <h2 class="section-title title-light mb-2">دليل النظافة والتعقيم الشامل بالدمام والمنطقة الشرقية</h2>
+      <p class="section-subtitle sub-light">نصائح وإرشادات علمية لضمان بيئة صحية نقية وخالية من الجراثيم والأتربة</p>
     </div>
 
     <div class="row g-4 mt-2">
@@ -694,7 +694,7 @@ try {
     <div class="text-center animate-on-scroll">
       <span class="section-subtitle-tag"><i class="fas fa-headset"></i> تواصل معنا الآن</span>
       <h2 class="section-title mb-2">نحن في خدمتك على مدار 24 ساعة</h2>
-      <p class="section-subtitle">اتصل بنا أو أرسل تفاصيل منزلك لنصل إليك فوراً ونقدم لك أفضل عرض سعر مجاني</p>
+      <p class="section-subtitle">اتصل بنا أو أرسل تفاصيل طلبك لنصل إليك فوراً ونقدم لك أفضل عرض سعر مجاني</p>
     </div>
 
     <div class="row g-4 mt-2">
@@ -729,7 +729,7 @@ try {
             </div>
             <div>
               <p>المقر والتغطية</p>
-              <a href="#"><?= htmlspecialchars(get_setting('address', 'الدمام - نغطي الدمام والخبر والقطيف والظهران والجبيل وكافة مدن المملكة')) ?></a>
+              <a href="#"><?= htmlspecialchars(get_setting('address', 'حي البادية، الدمام، المملكة العربية السعودية - نغطي الدمام والقطيف والخبر والجبيل والظهران وبقيق')) ?></a>
             </div>
           </div>
 
@@ -771,34 +771,34 @@ try {
                 <input type="tel" name="phone" class="form-control" placeholder="05xxxxxxxx" required />
               </div>
               <div class="col-md-6">
-                <label class="form-label"><i class="fas fa-concierge-bell me-1 text-warning"></i> نوع الخدمة</label>
+                <label class="form-label"><i class="fas fa-sparkles me-1 text-warning"></i> نوع الخدمة</label>
                 <select name="service_type" class="form-select" required>
                   <option value="" disabled selected>اختر الخدمة المطلوبة</option>
-                  <option>نقل عفش كامل مع فك وتركيب وتغليف</option>
-                  <option>باقة الفلل VIP الملكية (مع ونش رفع)</option>
-                  <option>باقة الشقق الاقتصادية</option>
-                  <option>نقل شركات ومكاتب تجارية</option>
-                  <option>فك وتركيب أثاث فقط</option>
-                  <option>تغليف فاخر فقط</option>
-                  <option>تخزين أثاث بالمستودعات</option>
-                  <option>نقل عفش خارج الدمام والشرقية</option>
+                  <option>تنظيف منازل</option>
+                  <option>تنظيف سجاد</option>
+                  <option>تنظيف مجالس</option>
+                  <option>تنظيف كنب</option>
+                  <option>تنظيف ارضيات</option>
+                  <option>تنظيف خزانات المياه</option>
+                  <option>تنظيف مكيفات</option>
+                  <option>باقة التنظيف الشاملة VIP</option>
                 </select>
               </div>
               <div class="col-md-6">
-                <label class="form-label"><i class="fas fa-calendar-alt me-1 text-warning"></i> تاريخ النقل المفضل</label>
+                <label class="form-label"><i class="fas fa-calendar-alt me-1 text-warning"></i> موعد وتاريخ الخدمة المفضل</label>
                 <input type="date" name="moving_date" class="form-control" />
               </div>
               <div class="col-md-6">
-                <label class="form-label"><i class="fas fa-map-pin me-1 text-warning"></i> من حي / منطقة</label>
-                <input type="text" name="from_area" class="form-control" placeholder="حي الانطلاق (مثال: الملقا)" />
+                <label class="form-label"><i class="fas fa-city me-1 text-warning"></i> المدينة والحي</label>
+                <input type="text" name="from_area" class="form-control" placeholder="مثال: الدمام - حي الشاطئ" required />
               </div>
               <div class="col-md-6">
-                <label class="form-label"><i class="fas fa-map-marker-alt me-1 text-warning"></i> إلى حي / منطقة</label>
-                <input type="text" name="to_area" class="form-control" placeholder="حي الوصول (مثال: الياسمين)" />
+                <label class="form-label"><i class="fas fa-home me-1 text-warning"></i> نوع العقار / العنوان</label>
+                <input type="text" name="to_area" class="form-control" placeholder="مثال: فيلا دورين / شقة / مكتب" />
               </div>
               <div class="col-12">
-                <label class="form-label"><i class="fas fa-comment-dots me-1 text-warning"></i> تفاصيل إضافية عن العفش</label>
-                <textarea name="details" class="form-control" rows="3" placeholder="أدخل أي ملاحظات (عدد الغرف، الأدوار، وجود مكيفات أو مطبخ أو ونش...)"></textarea>
+                <label class="form-label"><i class="fas fa-comment-dots me-1 text-warning"></i> تفاصيل إضافية عن المكان أو الخدمة</label>
+                <textarea name="details" class="form-control" rows="3" placeholder="أدخل أي ملاحظات (المساحة التقريبية، عدد الغرف، نوع البقع أو طلبات خاصة...)"></textarea>
               </div>
               <div class="col-12">
                 <button type="submit" class="btn-submit">
@@ -811,12 +811,66 @@ try {
           <div id="formSuccess" style="display:none;" class="mt-3 p-4 text-center">
             <i class="fas fa-check-circle fa-3x mb-2 d-block text-success"></i>
             <h4 class="fw-bold text-success mb-1">تم إرسال طلبك بنجاح!</h4>
-            <p class="text-muted mb-0">سيتواصل معك مندوبنا خلال دقائق معدودة لتقديم أفضل عرض سعر وتأكيد موعدك.</p>
+            <p class="text-muted mb-0">سيتواصل معك مندوبنا خلال دقائق معدودة لتأكيد الموعد وتقديم أفضل خدمة تنظيف.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<?php 
+$show_map = get_setting('show_map', '1');
+$map_address = get_setting('map_address', 'حي البادية، الدمام، المملكة العربية السعودية');
+$map_embed_code = get_setting('map_embed_code', '');
+if ($show_map === '1' && (!empty($map_address) || !empty($map_embed_code))):
+?>
+<!-- Wave Divider to Map -->
+<div class="wave-bg-clean wave-fill-beige" style="line-height:0;">
+  <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
+    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="rgba(<?= $rgb_primary ?>, 0.075)"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     SECTION 14: LOCATION MAP (Directly Above Footer)
+============================================================ -->
+<section id="location-map" class="bg-clean-light" style="padding: 70px 0 0 0; position:relative;">
+  <div class="container text-center mb-4">
+    <div class="animate-on-scroll">
+      <span class="section-subtitle-tag"><i class="fas fa-map-pin"></i> موقعنا الجغرافي</span>
+      <h2 class="section-title mb-2">تفضل بزيارتنا أو حدد موقعك لنصلك فوراً</h2>
+      <p class="section-subtitle"><i class="fas fa-map-marker-alt text-danger me-1"></i> <?= htmlspecialchars($map_address) ?></p>
+    </div>
+  </div>
+
+  <div class="map-wrapper" style="position:relative; width:100%; height:420px; overflow:hidden; box-shadow:0 -4px 20px rgba(0,0,0,0.06);">
+    <?php if (!empty($map_embed_code)): ?>
+      <?= $map_embed_code ?>
+    <?php else: ?>
+      <iframe 
+        title="Google Map Location"
+        src="https://maps.google.com/maps?q=<?= urlencode($map_address) ?>&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    <?php endif; ?>
+    <div class="map-overlay-badge" style="position:absolute; bottom:20px; right:20px; background:rgba(255,255,255,0.95); backdrop-filter:blur(8px); padding:12px 20px; border-radius:14px; box-shadow:0 4px 15px rgba(0,0,0,0.15); display:inline-flex; align-items:center; gap:10px; z-index:2;">
+      <i class="fas fa-location-dot" style="font-size:1.4rem; color:var(--primary);"></i>
+      <div style="text-align:right;">
+        <strong style="display:block; color:var(--dark); font-size:0.95rem;"><?= htmlspecialchars($site_name) ?></strong>
+        <small style="color:var(--text-muted); font-size:0.82rem;"><?= htmlspecialchars($map_address) ?></small>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=<?= urlencode($map_address) ?>" target="_blank" class="btn btn-sm btn-outline-primary ms-2" style="border-radius:20px; font-size:0.8rem; font-weight:700;">
+        <i class="fas fa-directions me-1"></i> الاتجاهات
+      </a>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

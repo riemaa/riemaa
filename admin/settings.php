@@ -21,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'meta_robots', 'canonical_url', 'header_scripts', 'footer_scripts',
         'theme_primary_color', 'theme_secondary_color', 'theme_accent_color',
         'nav_about', 'nav_services', 'nav_fleet', 'nav_whyus', 'nav_works', 'nav_packages',
-        'nav_areas', 'nav_process', 'nav_guarantees', 'nav_faq', 'nav_contact', 'nav_call_btn'
+        'nav_areas', 'nav_process', 'nav_guarantees', 'nav_faq', 'nav_contact', 'nav_call_btn',
+        'map_address', 'show_map', 'map_embed_code'
     ];
 
     foreach ($keys as $k) {
@@ -70,9 +71,13 @@ $canonical_url       = get_setting('canonical_url');
 $header_scripts      = get_setting('header_scripts');
 $footer_scripts      = get_setting('footer_scripts');
 
-$theme_primary_color   = get_setting('theme_primary_color', '#8B5A2B');
-$theme_secondary_color = get_setting('theme_secondary_color', '#341D13');
-$theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
+$theme_primary_color   = get_setting('theme_primary_color', '#0284C7');
+$theme_secondary_color = get_setting('theme_secondary_color', '#0F172A');
+$theme_accent_color    = get_setting('theme_accent_color', '#38BDF8');
+
+$map_address           = get_setting('map_address', 'حي البادية، الدمام، المملكة العربية السعودية');
+$show_map              = get_setting('show_map', '1');
+$map_embed_code        = get_setting('map_embed_code', '');
 
 $nav_about      = get_setting('nav_about', 'من نحن');
 $nav_services   = get_setting('nav_services', 'خدماتنا');
@@ -183,20 +188,20 @@ $nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
 
       <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
         <span class="small fw-bold text-dark me-2"><i class="fas fa-swatchbook me-1"></i> باقات ألوان جاهزة ومقترحة:</span>
-        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#8B5A2B', '#341D13', '#D4A373')">
-          <span style="display:inline-block;width:12px;height:12px;background:#8B5A2B;border-radius:50%;margin-left:4px;"></span> خشب كلاسيكي (الأصل)
-        </button>
-        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#1E40AF', '#0F172A', '#60A5FA')">
-          <span style="display:inline-block;width:12px;height:12px;background:#1E40AF;border-radius:50%;margin-left:4px;"></span> أزرق كحلي ملكي
+        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#0284C7', '#0F172A', '#38BDF8')">
+          <span style="display:inline-block;width:12px;height:12px;background:#0284C7;border-radius:50%;margin-left:4px;"></span> أزرق سماوي عصري (نظافة وتعقيم - الحالي)
         </button>
         <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#047857', '#064E3B', '#34D399')">
           <span style="display:inline-block;width:12px;height:12px;background:#047857;border-radius:50%;margin-left:4px;"></span> أخضر زمردي فخم
         </button>
+        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#1E40AF', '#0F172A', '#60A5FA')">
+          <span style="display:inline-block;width:12px;height:12px;background:#1E40AF;border-radius:50%;margin-left:4px;"></span> أزرق كحلي ملكي
+        </button>
         <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#B45309', '#451A03', '#FBBF24')">
           <span style="display:inline-block;width:12px;height:12px;background:#B45309;border-radius:50%;margin-left:4px;"></span> برونزي ذهبي أنيق
         </button>
-        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#374151', '#111827', '#9CA3AF')">
-          <span style="display:inline-block;width:12px;height:12px;background:#374151;border-radius:50%;margin-left:4px;"></span> رمادي داكن فاحم
+        <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#8B5A2B', '#341D13', '#D4A373')">
+          <span style="display:inline-block;width:12px;height:12px;background:#8B5A2B;border-radius:50%;margin-left:4px;"></span> خشب كلاسيكي
         </button>
       </div>
 
@@ -323,6 +328,55 @@ $nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
           <label class="form-label">العنوان والتغطية الجغرافية</label>
           <input type="text" name="address" class="form-control" value="<?= htmlspecialchars($address) ?>" />
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- خريطة الموقع الجغرافي والدبوس (Google Maps) -->
+  <div class="content-card">
+    <div class="content-card-header">
+      <h5><i class="fas fa-map-location-dot text-danger"></i> خريطة الموقع الجغرافي ودبوس العنوان (Google Maps)</h5>
+    </div>
+    <div class="content-card-body">
+      <p class="text-muted small mb-4">
+        تحكم في ظهور خريطة الموقع التفاعلية أعلى الفوتر مباشرة في واجهة الموقع. يمكنك كتابة أي عنوان ليتم تثبيت دبوس الخريطة عليه تلقائياً:
+      </p>
+
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label fw-bold">إظهار الخريطة في واجهة الموقع</label>
+          <select name="show_map" class="form-select">
+            <option value="1" <?= $show_map === '1' ? 'selected' : '' ?>>مفعلة (إظهار الخريطة فوق الفوتر)</option>
+            <option value="0" <?= $show_map === '0' ? 'selected' : '' ?>>معطلة (إخفاء الخريطة)</option>
+          </select>
+        </div>
+
+        <div class="col-md-8">
+          <label class="form-label fw-bold">عنوان وموقع الدبوس على الخريطة</label>
+          <input type="text" name="map_address" id="mapAddressInput" class="form-control" value="<?= htmlspecialchars($map_address) ?>" placeholder="مثال: حي البادية، الدمام، المملكة العربية السعودية" />
+          <small class="text-muted">يقوم النظام بتحديد موقع الدبوس تلقائياً عبر خرائط جوجل استناداً إلى هذا العنوان دون الحاجة لأي مفاتيح API</small>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">أو كود تضمين مخصص (Embed Code iframe - اختياري)</label>
+          <textarea name="map_embed_code" class="form-control" rows="2" style="direction:ltr;font-family:monospace;" placeholder="<iframe src='https://www.google.com/maps/embed?...'></iframe>"><?= htmlspecialchars($map_embed_code) ?></textarea>
+          <small class="text-muted">اتركه فارغاً لاستخدام دبوس العنوان التلقائي الذكي</small>
+        </div>
+
+        <?php if (!empty($map_address)): ?>
+        <div class="col-12 mt-3">
+          <label class="form-label fw-bold text-success"><i class="fas fa-eye me-1"></i> معاينة مباشرة لموقع الدبوس على الخريطة:</label>
+          <div style="width:100%; height:260px; border-radius:12px; overflow:hidden; border:2px solid #e2e8f0;">
+            <iframe 
+              src="https://maps.google.com/maps?q=<?= urlencode($map_address) ?>&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>

@@ -60,14 +60,14 @@ $guarantees = $pdo->query("SELECT * FROM guarantees ORDER BY sort_order ASC")->f
 <div class="d-flex align-items-center justify-content-between mb-4">
   <div>
     <h3 class="fw-bold mb-1" style="color:var(--text-dark);">إدارة خطوات العمل والضمانات الذهبية</h3>
-    <p class="text-muted small mb-0">التحكم في مراحل نقل العفش وميثاق الضمانات الأربعة</p>
+    <p class="text-muted small mb-0">التحكم في مراحل وخطوات التنظيف الشامل وميثاق الضمانات الذهبية</p>
   </div>
 </div>
 
-<!-- 1. خطوات العمل الخمس -->
+<!-- 1. خطوات العمل -->
 <div class="content-card mb-4">
   <div class="content-card-header">
-    <h5><i class="fas fa-tasks text-primary"></i> مراحل وخطوات نقل العفش</h5>
+    <h5><i class="fas fa-tasks text-primary"></i> مراحل وخطوات التنظيف والتعقيم</h5>
   </div>
   <div class="content-card-body">
     <form method="POST" action="process_guarantees.php">

@@ -1,5 +1,5 @@
 -- ============================================================
--- قاعدة بيانات SQLite الداخلية لمشروع شركة الأوائل لنقل العفش
+-- قاعدة بيانات SQLite الداخلية لمشروع شركة ريمة للنظافة العامة
 -- هذا الملف يتم تضمينه تلقائياً داخل مجلد المشروع للرفع المباشر على GitHub
 -- ============================================================
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS gallery (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   image TEXT NOT NULL,
   caption TEXT NOT NULL,
-  category TEXT DEFAULT 'نقل وشاحنات',
+  category TEXT DEFAULT 'تنظيف منازل',
   sort_order INTEGER DEFAULT 0
 );
 

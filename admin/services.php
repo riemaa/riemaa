@@ -86,16 +86,16 @@ $services = $pdo->query("SELECT * FROM services ORDER BY sort_order ASC, id ASC"
 
           <div class="mb-3">
             <label class="form-label">عنوان الخدمة</label>
-            <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($edit_service['title'] ?? '') ?>" required placeholder="مثال: نقل العفش داخل وخارج الدمام والشرقية" />
+            <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($edit_service['title'] ?? '') ?>" required placeholder="مثال: تنظيف منازل وفلل بالدمام والشرقية" />
           </div>
 
           <div class="mb-3">
             <label class="form-label">أيقونة FontAwesome</label>
             <div class="input-group">
-              <span class="input-group-text"><i class="<?= htmlspecialchars($edit_service['icon'] ?? 'fas fa-truck-moving') ?>"></i></span>
-              <input type="text" name="icon" class="form-control" value="<?= htmlspecialchars($edit_service['icon'] ?? 'fas fa-truck-moving') ?>" required placeholder="fas fa-tools" />
+              <span class="input-group-text"><i class="<?= htmlspecialchars($edit_service['icon'] ?? 'fas fa-spray-can-sparkles') ?>"></i></span>
+              <input type="text" name="icon" class="form-control" value="<?= htmlspecialchars($edit_service['icon'] ?? 'fas fa-spray-can-sparkles') ?>" required placeholder="fas fa-spray-can-sparkles" />
             </div>
-            <small class="text-muted">مثال: <code>fas fa-truck-moving</code>, <code>fas fa-tools</code>, <code>fas fa-box-open</code></small>
+            <small class="text-muted">مثال: <code>fas fa-spray-can-sparkles</code>, <code>fas fa-soap</code>, <code>fas fa-broom</code>, <code>fas fa-water</code></small>
           </div>
 
           <div class="mb-3">

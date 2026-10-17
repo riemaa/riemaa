@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $caption    = clean_input($_POST['caption'] ?? '');
-    $category   = clean_input($_POST['category'] ?? 'نقل وشاحنات');
+    $category   = clean_input($_POST['category'] ?? 'تنظيف منازل');
     if (empty($category)) {
         $category = 'عام';
     }
@@ -77,14 +77,14 @@ try {
     $existing_categories = $pdo->query("SELECT DISTINCT category FROM gallery WHERE category IS NOT NULL AND category != '' ORDER BY category ASC")->fetchAll(PDO::FETCH_COLUMN);
 } catch (Exception $e) {}
 
-$default_suggestions = ['نقل وشاحنات', 'تغليف وحماية', 'فك وتركيب', 'مستودعات وتخزين', 'أوناش رفع هيدروليكية'];
+$default_suggestions = ['تنظيف منازل', 'تنظيف سجاد', 'تنظيف مجالس', 'تنظيف كنب', 'تنظيف ارضيات', 'تنظيف خزانات المياه', 'تنظيف مكيفات'];
 $suggested_categories = array_values(array_unique(array_filter(array_merge($existing_categories, $default_suggestions))));
 ?>
 
 <div class="d-flex align-items-center justify-content-between mb-4">
   <div>
     <h3 class="fw-bold mb-1" style="color:var(--text-dark);">إدارة معرض الأعمال (<?= count($gallery_items) ?> صورة)</h3>
-    <p class="text-muted small mb-0">رفع وإدارة صور النقل والفك والتغليف والأوناش والمستودعات</p>
+    <p class="text-muted small mb-0">رفع وإدارة صور عمليات التنظيف الشامل وغسيل السجاد والمجالس والكنب والخزانات والمكيفات</p>
   </div>
   <?php if ($edit_item): ?>
     <a href="gallery.php" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
@@ -110,12 +110,12 @@ $suggested_categories = array_values(array_unique(array_filter(array_merge($exis
 
           <div class="mb-3">
             <label class="form-label">وصف الصورة (يظهر عند النقر واللايت بوكس)</label>
-            <input type="text" name="caption" class="form-control" value="<?= htmlspecialchars($edit_item['caption'] ?? '') ?>" required placeholder="مثال: نقل عفش احترافي بالدمام والشرقية" />
+            <input type="text" name="caption" class="form-control" value="<?= htmlspecialchars($edit_item['caption'] ?? '') ?>" required placeholder="مثال: تنظيف منازل وفلل بالدمام" />
           </div>
 
           <div class="mb-3">
             <label class="form-label fw-bold">تصنيف الصورة <small class="text-muted fw-normal">(اكتب تصنيفاً بحرية أو اختر من القائمة)</small></label>
-            <input type="text" name="category" list="categoriesList" class="form-control" value="<?= htmlspecialchars($edit_item['category'] ?? '') ?>" required placeholder="اكتب تصنيف الصورة (مثال: نقل وشاحنات، تغليف، فك وتركيب...)" autocomplete="off" />
+            <input type="text" name="category" list="categoriesList" class="form-control" value="<?= htmlspecialchars($edit_item['category'] ?? '') ?>" required placeholder="اكتب تصنيف الصورة (مثال: تنظيف منازل، تنظيف سجاد، تنظيف كنب...)" autocomplete="off" />
             <datalist id="categoriesList">
               <?php foreach ($suggested_categories as $cat): ?>
                 <option value="<?= htmlspecialchars($cat) ?>"></option>

@@ -85,7 +85,7 @@ $faqs = $pdo->query("SELECT * FROM faqs ORDER BY sort_order ASC, id ASC")->fetch
 
           <div class="mb-3">
             <label class="form-label">نص السؤال</label>
-            <input type="text" name="question" class="form-control" value="<?= htmlspecialchars($edit_faq['question'] ?? '') ?>" required placeholder="مثال: كيف يتم تحديد تكلفة نقل العفش؟" />
+            <input type="text" name="question" class="form-control" value="<?= htmlspecialchars($edit_faq['question'] ?? '') ?>" required placeholder="مثال: كيف يتم تحديد تكلفة تنظيف المنازل والفلل؟" />
           </div>
 
           <div class="mb-3">

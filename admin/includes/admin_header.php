@@ -19,11 +19,11 @@ try {
     $new_bookings_count = 0;
 }
 
-$site_name = get_setting('site_name', 'شركة الأوائل لنقل العفش');
-$site_short_name = get_setting('site_short_name', 'الأوائل');
-$theme_primary_color   = get_setting('theme_primary_color', '#8B5A2B');
-$theme_secondary_color = get_setting('theme_secondary_color', '#341D13');
-$theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
+$site_name = get_setting('site_name', 'شركة ريمة للنظافة العامة');
+$site_short_name = get_setting('site_short_name', 'ريمة للنظافة');
+$theme_primary_color   = get_setting('theme_primary_color', '#0284C7');
+$theme_secondary_color = get_setting('theme_secondary_color', '#0F172A');
+$theme_accent_color    = get_setting('theme_accent_color', '#38BDF8');
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -69,7 +69,7 @@ $theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
   <!-- Sidebar -->
   <aside class="admin-sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-brand-icon"><i class="fas fa-truck-moving"></i></div>
+      <div class="sidebar-brand-icon"><i class="fas fa-sparkles"></i></div>
       <div class="sidebar-brand-title">
         <?= htmlspecialchars($site_short_name) ?>
         <small>لوحة الإدارة الشاملة</small>
@@ -121,7 +121,7 @@ $theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
       </li>
       <li>
         <a href="fleet.php" class="sidebar-link <?= $current_page == 'fleet.php' ? 'active' : '' ?>">
-          <i class="fas fa-truck"></i> أسطول النقل والمعدات
+          <i class="fas fa-tools"></i> أجهزة ومعدات النظافة
         </a>
       </li>
       <li>
@@ -156,7 +156,7 @@ $theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
       </li>
       <li>
         <a href="seo_guide.php" class="sidebar-link <?= $current_page == 'seo_guide.php' ? 'active' : '' ?>">
-          <i class="fas fa-file-alt"></i> دليل النقل الذكي والسيو
+          <i class="fas fa-file-alt"></i> دليل النظافة والتعقيم
         </a>
       </li>
       <li>

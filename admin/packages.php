@@ -119,7 +119,7 @@ $packages = $pdo->query("SELECT * FROM packages ORDER BY sort_order ASC, id ASC"
 
           <div class="mb-3">
             <label class="form-label">مميزات الباقة (كل ميزة في سطر منفصل)</label>
-            <textarea name="features" class="form-control" rows="5" required placeholder="ديانة نقل حديثة ومقفلة&#10;طاقم نجارين&#10;تغليف نايلون"><?= htmlspecialchars($edit_pkg['features'] ?? '') ?></textarea>
+            <textarea name="features" class="form-control" rows="5" required placeholder="تنظيف عميق وتعقيم شامل&#10;أجهزة بخار حار ألمانية&#10;مواد تطهير آمنة معتمدة"><?= htmlspecialchars($edit_pkg['features'] ?? '') ?></textarea>
           </div>
 
           <div class="row g-2 mb-3">

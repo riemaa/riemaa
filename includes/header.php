@@ -7,31 +7,31 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
 
-$site_name         = get_setting('site_name', 'شركة الأوائل لنقل العفش بالدمام');
-$site_short_name   = get_setting('site_short_name', 'الأوائل');
-$site_tagline      = get_setting('site_tagline', 'لنقل وتغليف وتخزين العفش والأثاث');
+$site_name         = get_setting('site_name', 'شركة ريمة للنظافة العامة');
+$site_short_name   = get_setting('site_short_name', 'ريمة للنظافة');
+$site_tagline      = get_setting('site_tagline', 'خدمات تنظيف وتعقيم المنازل والفلل والمجالس بالدمام والشرقية');
 $site_logo         = get_setting('site_logo', '');
-$site_icon         = get_setting('site_icon', 'fas fa-truck-moving');
+$site_icon         = get_setting('site_icon', 'fas fa-spray-can-sparkles');
 $phone_primary     = get_setting('phone_primary', '0554091835');
 $phone_secondary   = get_setting('phone_secondary', '0595084006');
 $whatsapp_number   = get_setting('whatsapp_number', '966554091835');
-$meta_title        = get_setting('meta_title', 'شركة الأوائل لنقل العفش بالدمام | فك وتركيب وتغليف وأوناش رفع 0554091835');
-$meta_description  = get_setting('meta_description', 'شركة الأوائل لنقل العفش بالدمام - أفضل شركة نقل اثاث بالدمام والقطيف والخبر والظهران والجبيل مع الفك والتركيب والتغليف وأوناش الرفع الهيدروليكية والتخزين الآمن. اتصل الآن 0554091835 أو 0595084006');
-$meta_keywords     = get_setting('meta_keywords', 'نقل عفش الدمام, شركة نقل اثاث بالدمام, نقل عفش الخبر, نقل عفش القطيف, نقل عفش الظهران, نقل عفش الجبيل, دينا نقل عفش الدمام, ونش رفع اثاث الدمام, فك وتركيب غرف نوم, تغليف عفش بالدمام, شركة نقل عفش بالمنطقة الشرقية, الأوائل نقل عفش');
-$meta_author       = get_setting('meta_author', 'شركة الأوائل لنقل وتغليف الأثاث');
+$meta_title        = get_setting('meta_title', 'شركة ريمة للنظافة العامة بالدمام | تنظيف منازل وسجاد ومجالس وخزانات');
+$meta_description  = get_setting('meta_description', 'شركة ريمة للنظافة العامة بالدمام والمنطقة الشرقية - أفضل خدمات تنظيف منازل وفلل، غسيل سجاد ومجالس وكنب بالبخار، جلي أرضيات، تنظيف خزانات مياه، وغسيل مكيفات مع الضمان. اتصل الآن 0554091835');
+$meta_keywords     = get_setting('meta_keywords', 'شركة تنظيف بالدمام, تنظيف منازل بالدمام, تنظيف سجاد بالدمام, غسيل مجالس بالخبر, تنظيف كنب بالقطيف, جلي ارضيات بالجبيل, تنظيف خزانات بالظهران, تنظيف مكيفات ببقيق, شركة ريمة للنظافة العامة, تنظيف فلل بالدمام, شركة نظافة بالشرقية');
+$meta_author       = get_setting('meta_author', 'شركة ريمة للنظافة العامة');
 $meta_robots       = get_setting('meta_robots', 'index, follow');
 $canonical_url     = get_setting('canonical_url', SITE_URL);
 $header_scripts    = get_setting('header_scripts', '');
 
 // ألوان الهوية والمشروع
-$theme_primary_color   = get_setting('theme_primary_color', '#8B5A2B');
-$theme_secondary_color = get_setting('theme_secondary_color', '#341D13');
-$theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
+$theme_primary_color   = get_setting('theme_primary_color', '#0284C7');
+$theme_secondary_color = get_setting('theme_secondary_color', '#0F172A');
+$theme_accent_color    = get_setting('theme_accent_color', '#38BDF8');
 
 // مسميات نصوص القائمة العلوية
 $nav_about      = get_setting('nav_about', 'من نحن');
 $nav_services   = get_setting('nav_services', 'خدماتنا');
-$nav_fleet      = get_setting('nav_fleet', 'الأسطول والمعدات');
+$nav_fleet      = get_setting('nav_fleet', 'المعدات والأجهزة');
 $nav_whyus      = get_setting('nav_whyus', 'لماذا نحن');
 $nav_works      = get_setting('nav_works', 'معرض الأعمال');
 $nav_packages   = get_setting('nav_packages', 'باقات الأسعار');
@@ -77,20 +77,21 @@ $og_image          = asset_url('assets/images/1.jpg');
   <!-- Canonical -->
   <link rel="canonical" href="<?= htmlspecialchars($canonical_url) ?>" />
 
-  <!-- Schema.org JSON-LD (MovingCompany / LocalBusiness) -->
+  <!-- Schema.org JSON-LD (HouseCleaningService / LocalBusiness) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "MovingCompany",
+    "@type": "HouseCleaningService",
     "name": "<?= addslashes($site_name) ?>",
     "telephone": ["<?= addslashes($phone_primary) ?>", "<?= addslashes($phone_secondary) ?>"],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "الدمام",
+      "addressRegion": "المنطقة الشرقية",
       "addressCountry": "SA"
     },
     "description": "<?= addslashes($meta_description) ?>",
-    "areaServed": "الدمام والمنطقة الشرقية",
+    "areaServed": ["الدمام", "القطيف", "الخبر", "الجبيل", "الظهران", "بقيق"],
     "priceRange": "$$"
   }
   </script>
@@ -402,7 +403,7 @@ $og_image          = asset_url('assets/images/1.jpg');
     <ul class="navbar-nav gap-2">
       <li class="nav-item"><a class="nav-link fw-bold" href="#about"      data-bs-dismiss="offcanvas"><i class="fas fa-info-circle me-2 text-warning"></i><?= htmlspecialchars($nav_about) ?></a></li>
       <li class="nav-item"><a class="nav-link fw-bold" href="#services"   data-bs-dismiss="offcanvas"><i class="fas fa-concierge-bell me-2 text-warning"></i><?= htmlspecialchars($nav_services) ?></a></li>
-      <li class="nav-item"><a class="nav-link fw-bold" href="#fleet"      data-bs-dismiss="offcanvas"><i class="fas fa-truck me-2 text-warning"></i><?= htmlspecialchars($nav_fleet) ?></a></li>
+      <li class="nav-item"><a class="nav-link fw-bold" href="#fleet"      data-bs-dismiss="offcanvas"><i class="fas fa-tools me-2 text-warning"></i><?= htmlspecialchars($nav_fleet) ?></a></li>
       <li class="nav-item"><a class="nav-link fw-bold" href="#whyus"      data-bs-dismiss="offcanvas"><i class="fas fa-crown me-2 text-warning"></i><?= htmlspecialchars($nav_whyus) ?></a></li>
       <li class="nav-item"><a class="nav-link fw-bold" href="#works"      data-bs-dismiss="offcanvas"><i class="fas fa-camera-retro me-2 text-warning"></i><?= htmlspecialchars($nav_works) ?></a></li>
       <li class="nav-item"><a class="nav-link fw-bold" href="#packages"   data-bs-dismiss="offcanvas"><i class="fas fa-tags me-2 text-warning"></i><?= htmlspecialchars($nav_packages) ?></a></li>
