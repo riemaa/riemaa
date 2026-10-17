@@ -148,7 +148,7 @@ $footer_scripts    = get_setting('footer_scripts', '');
           <i class="<?= htmlspecialchars($site_icon) ?>"></i>
         </div>
         <h4 class="fw-bold mb-2" style="color:var(--text-dark);">تثبيت تطبيق <?= htmlspecialchars($site_short_name) ?></h4>
-        <p class="text-muted small mb-4">احصل على وصول فوري ومباشر لخدمات النقل والخصومات الخاصة من شاشة هاتفك الرئيسية دون تحميل من المتاجر</p>
+        <p class="text-muted small mb-4">احصل على وصول فوري ومباشر لخدمات النظافة والتعقيم والخصومات الخاصة من شاشة هاتفك الرئيسية دون تحميل من المتاجر</p>
 
         <div class="text-start bg-light p-3 rounded-4 mb-3" style="border:1px solid rgba(0,0,0,0.06);">
           <h6 class="fw-bold mb-2 text-dark"><i class="fab fa-apple text-dark me-1"></i> لمستخدمي آيفون وآيباد (Safari):</h6>

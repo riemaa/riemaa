@@ -1,7 +1,7 @@
-﻿/**
- * Service Worker for El-Awael PWA
+/**
+ * Service Worker for Riemaa Cleaning PWA
  */
-const CACHE_NAME = 'elawael-pwa-v1';
+const CACHE_NAME = 'riemaa-pwa-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/assets/css/style.css',
