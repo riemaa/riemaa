@@ -77,7 +77,7 @@ try {
     $existing_categories = $pdo->query("SELECT DISTINCT category FROM gallery WHERE category IS NOT NULL AND category != '' ORDER BY category ASC")->fetchAll(PDO::FETCH_COLUMN);
 } catch (Exception $e) {}
 
-$default_suggestions = ['تنظيف منازل', 'تنظيف سجاد', 'تنظيف مجالس', 'تنظيف كنب', 'تنظيف ارضيات', 'تنظيف خزانات المياه', 'تنظيف مكيفات'];
+$default_suggestions = ['تنظيف منازل', 'تنظيف سجاد', 'تنظيف مجالس', 'تنظيف كنب', 'تنظيف ارضيات', 'تنظيف خزانات المياه', 'تنظيف مكيفات', 'تنظيف مدارس', 'تنظيف شركات'];
 $suggested_categories = array_values(array_unique(array_filter(array_merge($existing_categories, $default_suggestions))));
 ?>
 

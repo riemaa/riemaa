@@ -774,13 +774,21 @@ try {
                 <label class="form-label"><i class="fas fa-sparkles me-1 text-warning"></i> نوع الخدمة</label>
                 <select name="service_type" class="form-select" required>
                   <option value="" disabled selected>اختر الخدمة المطلوبة</option>
-                  <option>تنظيف منازل</option>
-                  <option>تنظيف سجاد</option>
-                  <option>تنظيف مجالس</option>
-                  <option>تنظيف كنب</option>
-                  <option>تنظيف ارضيات</option>
-                  <option>تنظيف خزانات المياه</option>
-                  <option>تنظيف مكيفات</option>
+                  <?php if (!empty($services)): ?>
+                    <?php foreach ($services as $srv): ?>
+                      <option><?= htmlspecialchars($srv['title']) ?></option>
+                    <?php endforeach; ?>
+                  <?php else: ?>
+                    <option>تنظيف منازل</option>
+                    <option>تنظيف سجاد</option>
+                    <option>تنظيف مجالس</option>
+                    <option>تنظيف كنب</option>
+                    <option>تنظيف ارضيات</option>
+                    <option>تنظيف خزانات المياه</option>
+                    <option>تنظيف مكيفات</option>
+                    <option>تنظيف مدارس</option>
+                    <option>تنظيف شركات</option>
+                  <?php endif; ?>
                   <option>باقة التنظيف الشاملة VIP</option>
                 </select>
               </div>
