@@ -1,4 +1,4 @@
-﻿# Operating System Files
+# Operating System Files
 Thumbs.db
 ehthumbs.db
 Desktop.ini
@@ -20,3 +20,5 @@ error_log
 !data/schema_sqlite.sql
 !database.sql
 *.zip
+install.txt
+MothalathClean/

@@ -1,26 +1,28 @@
 {
-  "name": "شركة ريمة للنظافة العامة بالدمام والشرقية",
-  "short_name": "ريمة للنظافة",
-  "description": "تطبيق حجز خدمات تنظيف المنازل، الفلل، غسيل السجاد والمجالس والكنب بالبخار، جلي الأرضيات، تنظيف الخزانات والمكيفات بالدمام والشرقية",
-  "start_url": "/",
-  "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#F0F9FF",
-  "theme_color": "#0284C7",
-  "dir": "rtl",
-  "lang": "ar",
-  "icons": [
-    {
-      "src": "/assets/images/1.jpg",
-      "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/assets/images/1.jpg",
-      "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
-    }
-  ]
+    "name": "شركة ريمة للنظافة العامة",
+    "short_name": "ريمة للنظافة",
+    "description": "خدمات تنظيف وتعقيم المنازل والفلل والمجالس بالدمام والشرقية",
+    "id": "/?pwa=riemaa",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#F0F9FF",
+    "theme_color": "#0284C7",
+    "dir": "rtl",
+    "lang": "ar",
+    "icons": [
+        {
+            "src": "/assets/images/1.jpg",
+            "sizes": "192x192",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/assets/images/1.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg",
+            "purpose": "any maskable"
+        }
+    ]
 }

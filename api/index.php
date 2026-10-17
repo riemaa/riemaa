@@ -48,8 +48,9 @@ if (strpos($uri, '/assets/') === 0) {
 if (strpos($uri, '/admin/assets/') === 0) {
     serve_static_if_exists(__DIR__ . '/..' . $uri);
 }
-if ($uri === '/manifest.json') {
-    serve_static_if_exists(__DIR__ . '/../manifest.json');
+if ($uri === '/manifest.json' || $uri === '/manifest.webmanifest') {
+    require __DIR__ . '/../manifest.php';
+    exit;
 }
 if ($uri === '/sw.js') {
     serve_static_if_exists(__DIR__ . '/../sw.js');

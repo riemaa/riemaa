@@ -43,6 +43,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         update_setting('site_logo', trim($_POST['site_logo_url']));
     }
 
+    // تحديث ملف manifest.json الفيزيائي ليتوافق دائماً مع اسم وهوية الموقع الجديدة
+    $manifest_file = __DIR__ . '/../manifest.json';
+    if (file_exists($manifest_file) && is_writable($manifest_file)) {
+        $cur_name  = $_POST['site_name'] ?? get_setting('site_name');
+        $cur_short = $_POST['site_short_name'] ?? get_setting('site_short_name');
+        $cur_desc  = $_POST['site_tagline'] ?? get_setting('site_tagline');
+        $cur_color = $_POST['theme_primary_color'] ?? get_setting('theme_primary_color', '#0284C7');
+        $new_manifest = [
+            'name'             => $cur_name,
+            'short_name'       => $cur_short,
+            'description'      => $cur_desc,
+            'id'               => '/?pwa=' . substr(md5($cur_name), 0, 8),
+            'start_url'        => '/',
+            'scope'            => '/',
+            'display'          => 'standalone',
+            'orientation'      => 'portrait',
+            'background_color' => '#F0F9FF',
+            'theme_color'      => $cur_color,
+            'dir'              => 'rtl',
+            'lang'             => 'ar',
+            'icons'            => [
+                [
+                    'src'     => '/assets/images/1.jpg',
+                    'sizes'   => '192x192',
+                    'type'    => 'image/jpeg',
+                    'purpose' => 'any maskable'
+                ],
+                [
+                    'src'     => '/assets/images/1.jpg',
+                    'sizes'   => '512x512',
+                    'type'    => 'image/jpeg',
+                    'purpose' => 'any maskable'
+                ]
+            ]
+        ];
+        @file_put_contents($manifest_file, json_encode($new_manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    }
+
     $_SESSION['flash_success'] = 'تم حفظ جميع الإعدادات بنجاح!';
     header('Location: settings.php');
     exit;
