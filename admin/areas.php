@@ -61,7 +61,7 @@ $existing_categories = $pdo->query("SELECT DISTINCT category FROM service_areas 
 
           <div class="mb-3">
             <label class="form-label fw-bold">القسم الجغرافي أو التصنيف (اكتب بحرية)</label>
-            <input type="text" name="category" list="categoriesList" class="form-control" required placeholder="مثال: أحياء شمال الرياض، مدن الغربية..." />
+            <input type="text" name="category" list="categoriesList" class="form-control" required placeholder="مثال: الدمام وكافة أحيائها، القطيف وكافة أحيائها..." />
             <datalist id="categoriesList">
               <?php foreach ($existing_categories as $ec): ?>
                 <option value="<?= htmlspecialchars($ec) ?>"></option>

@@ -86,7 +86,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY sort_order ASC, id ASC"
 
           <div class="mb-3">
             <label class="form-label">عنوان الخدمة</label>
-            <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($edit_service['title'] ?? '') ?>" required placeholder="مثال: نقل العفش داخل وخارج الرياض" />
+            <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($edit_service['title'] ?? '') ?>" required placeholder="مثال: نقل العفش داخل وخارج الدمام والشرقية" />
           </div>
 
           <div class="mb-3">

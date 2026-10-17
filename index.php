@@ -9,9 +9,9 @@ $rgb_primary = hex2rgb_css($theme_primary_color);
 
 // جلب بيانات الأقسام من قاعدة البيانات
 $hero = get_section('hero', [
-    'badge'          => 'الشركة الأولى المعتمدة لنقل وتغليف الأثاث بالرياض',
+    'badge'          => 'الشركة الأولى المعتمدة لنقل وتغليف الأثاث بالدمام والشرقية',
     'title'          => 'نقل عفشك بـ<span class="highlight">أمان ملكي تام</span><br>وأسعار مدروسة <span class="highlight">بلا مفاجآت</span>',
-    'desc'           => 'شركة الأوائل – ريادة تمتد لأكثر من 10 سنوات في نقل وتغليف وتخزين الأثاث داخل وخارج مدينة الرياض. نقدم خدمات فك وتركيب هندسية متطورة، وأحدث أوناش الرفع الهيدروليكية للأدوار المرتفعة، بأيدي عمالة نظامية مدربة مع ديانات مقفلة ومكيفة تضمن سلامة أثاثك 100% بوثيقة ضمان رسمية.',
+    'desc'           => 'شركة الأوائل – ريادة تمتد لأكثر من 10 سنوات في نقل وتغليف وتخزين الأثاث داخل وخارج الدمام والمنطقة الشرقية (الدمام، القطيف، الخبر، الظهران، الجبيل). نقدم خدمات فك وتركيب هندسية متطورة، وأحدث أوناش الرفع الهيدروليكية للأدوار المرتفعة، بأيدي عمالة نظامية مدربة مع ديانات مقفلة ومكيفة تضمن سلامة أثاثك 100% بوثيقة ضمان رسمية.',
     'btn_call'       => 'اتصل واحجز فوراً',
     'btn_wa'         => 'استفسار واتساب سريع',
     'stat_clients'   => '5000',
@@ -30,7 +30,7 @@ $about = get_section('about', [
     'title'        => 'من نحن - قصة الريادة في نقل الأثاث',
     'subtitle'     => 'نضع بين يديك خبرة متوارثة واحترافية مطلقة تجعل انتقالك لمنزلك الجديد تجربة مريحة وسلسة دون أي عناء',
     'story1_title' => 'رؤيتنا: الأمان التام والالتزام بأعلى المعايير العالمية',
-    'story1_p1'    => 'تأسست شركة الأوائل لنقل العفش بالرياض لتكون النموذج الأرقى في قطاع الخدمات اللوجستية ونقل الأثاث المنزلي والمكتبي بالمملكة العربية السعودية...',
+    'story1_p1'    => 'تأسست شركة الأوائل لنقل العفش بالدمام لتكون النموذج الأرقى في قطاع الخدمات اللوجستية ونقل الأثاث المنزلي والمكتبي بالمنطقة الشرقية والمملكة العربية السعودية...',
     'story1_p2'    => 'نحن نوفر كادراً وظيفياً متخصصاً خضع لأعلى دورات التدريب الفني...',
     'story1_img'   => 'assets/images/2.jpg',
     'story2_title' => 'فريق نجارين وفنيين محترفين لكل نوع أثاث',
@@ -105,7 +105,7 @@ try {
 <!-- ============================================================
      HERO SECTION (Colored - Dark Luxury Walnut Wood)
 ============================================================ -->
-<section id="hero">
+<section id="hero" style="overflow: hidden !important; position: relative;">
   <div class="hero-particles" id="particles"></div>
   <div class="container position-relative" style="z-index:1;">
     <div class="row align-items-center g-5">
@@ -283,7 +283,7 @@ try {
   <div class="container text-center position-relative" style="z-index:1;">
     <div class="animate-on-scroll">
       <span class="section-subtitle-tag tag-light"><i class="fas fa-crown"></i> ركائز تميزنا</span>
-      <h2 class="section-title title-light mb-2">لماذا يثق بنا آلاف العملاء في الرياض؟</h2>
+      <h2 class="section-title title-light mb-2">لماذا يثق بنا آلاف العملاء في الدمام والمنطقة الشرقية؟</h2>
       <p class="section-subtitle sub-light">معايير صارمة وضمانات حقيقية تجعلنا الخيار الأول المفضل لكل أسرة ومؤسسة</p>
     </div>
 
@@ -356,7 +356,7 @@ try {
   <div class="container">
     <div class="text-center animate-on-scroll">
       <span class="section-subtitle-tag"><i class="fas fa-camera-retro"></i> أعمالنا الحية</span>
-      <h2 class="section-title mb-2">معرض أعمالنا الميدانية بالرياض</h2>
+      <h2 class="section-title mb-2">معرض أعمالنا الميدانية بالدمام والشرقية</h2>
       <p class="section-subtitle">شاهد صوراً حية لعمليات النقل والفك والتغليف ورفع الأثاث التي نفذها فريقنا باحترافية</p>
     </div>
 
@@ -441,7 +441,7 @@ try {
   <div class="container text-center">
     <div class="animate-on-scroll">
       <span class="section-subtitle-tag tag-light"><i class="fas fa-map-marked-alt"></i> شبكة التغطية</span>
-      <h2 class="section-title title-light mb-2">تغطية شاملة لجميع أحياء الرياض وخارجها</h2>
+      <h2 class="section-title title-light mb-2">تغطية شاملة لجميع أحياء الدمام والقطيف والخبر والظهران والجبيل</h2>
       <p class="section-subtitle sub-light">نمتلك نقاط انتشار سريعة تصل إلى موقعك خلال دقائق معدودة في أي وقت</p>
     </div>
 
@@ -460,7 +460,7 @@ try {
           </div>
         <?php endforeach; ?>
       <?php else: ?>
-        <p class="text-white-50">نغطي كافة أحياء الرياض ومدن المملكة، تواصل معنا للاستفسار والحجز الفوري.</p>
+        <p class="text-white-50">نغطي كافة أحياء الدمام والقطيف والخبر والظهران والجبيل ومدن المملكة، تواصل معنا للاستفسار والحجز الفوري.</p>
       <?php endif; ?>
     </div>
   </div>
@@ -660,7 +660,7 @@ try {
   <div class="container text-center position-relative" style="z-index:1;">
     <div class="animate-on-scroll">
       <span class="section-subtitle-tag tag-light"><i class="fas fa-info-circle"></i> دليل النقل الذكي</span>
-      <h2 class="section-title title-light mb-2">دليل نقل العفش والأثاث الاحترافي بالرياض</h2>
+      <h2 class="section-title title-light mb-2">دليل نقل العفش والأثاث الاحترافي بالدمام والمنطقة الشرقية</h2>
       <p class="section-subtitle sub-light">نصائح وإرشادات هندسية لضمان عملية انتقال ناجحة وخالية من التوتر</p>
     </div>
 
@@ -729,7 +729,7 @@ try {
             </div>
             <div>
               <p>المقر والتغطية</p>
-              <a href="#"><?= htmlspecialchars(get_setting('address', 'الرياض - نغطي كافة الأحياء والمحافظات')) ?></a>
+              <a href="#"><?= htmlspecialchars(get_setting('address', 'الدمام - نغطي الدمام والخبر والقطيف والظهران والجبيل وكافة مدن المملكة')) ?></a>
             </div>
           </div>
 
@@ -781,7 +781,7 @@ try {
                   <option>فك وتركيب أثاث فقط</option>
                   <option>تغليف فاخر فقط</option>
                   <option>تخزين أثاث بالمستودعات</option>
-                  <option>نقل عفش خارج الرياض</option>
+                  <option>نقل عفش خارج الدمام والشرقية</option>
                 </select>
               </div>
               <div class="col-md-6">

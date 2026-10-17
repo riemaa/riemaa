@@ -7,7 +7,7 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
 
-$site_name         = get_setting('site_name', 'شركة الأوائل لنقل العفش بالرياض');
+$site_name         = get_setting('site_name', 'شركة الأوائل لنقل العفش بالدمام');
 $site_short_name   = get_setting('site_short_name', 'الأوائل');
 $site_tagline      = get_setting('site_tagline', 'لنقل وتغليف وتخزين العفش والأثاث');
 $site_logo         = get_setting('site_logo', '');
@@ -15,9 +15,9 @@ $site_icon         = get_setting('site_icon', 'fas fa-truck-moving');
 $phone_primary     = get_setting('phone_primary', '0554091835');
 $phone_secondary   = get_setting('phone_secondary', '0595084006');
 $whatsapp_number   = get_setting('whatsapp_number', '966554091835');
-$meta_title        = get_setting('meta_title', 'شركة الأوائل لنقل العفش بالرياض | فك وتركيب وتغليف وأوناش رفع 0554091835');
-$meta_description  = get_setting('meta_description', 'شركة الأوائل لنقل العفش بالرياض - أفضل شركة نقل اثاث داخل وخارج الرياض مع الفك والتركيب والتغليف وأوناش الرفع الهيدروليكية والتخزين الآمن. اتصل الآن 0554091835 أو 0595084006');
-$meta_keywords     = get_setting('meta_keywords', 'نقل عفش الرياض, شركة نقل اثاث الرياض, دينا نقل عفش الرياض, ونش رفع اثاث الرياض, فك وتركيب غرف نوم, تغليف عفش الرياض, تخزين اثاث الرياض, افضل شركة نقل عفش بالرياض, اسعار نقل العفش بالرياض, الأوائل نقل عفش');
+$meta_title        = get_setting('meta_title', 'شركة الأوائل لنقل العفش بالدمام | فك وتركيب وتغليف وأوناش رفع 0554091835');
+$meta_description  = get_setting('meta_description', 'شركة الأوائل لنقل العفش بالدمام - أفضل شركة نقل اثاث بالدمام والقطيف والخبر والظهران والجبيل مع الفك والتركيب والتغليف وأوناش الرفع الهيدروليكية والتخزين الآمن. اتصل الآن 0554091835 أو 0595084006');
+$meta_keywords     = get_setting('meta_keywords', 'نقل عفش الدمام, شركة نقل اثاث بالدمام, نقل عفش الخبر, نقل عفش القطيف, نقل عفش الظهران, نقل عفش الجبيل, دينا نقل عفش الدمام, ونش رفع اثاث الدمام, فك وتركيب غرف نوم, تغليف عفش بالدمام, شركة نقل عفش بالمنطقة الشرقية, الأوائل نقل عفش');
 $meta_author       = get_setting('meta_author', 'شركة الأوائل لنقل وتغليف الأثاث');
 $meta_robots       = get_setting('meta_robots', 'index, follow');
 $canonical_url     = get_setting('canonical_url', SITE_URL);
@@ -57,8 +57,8 @@ $og_image          = asset_url('assets/images/1.jpg');
   <meta name="author" content="<?= htmlspecialchars($meta_author) ?>" />
   <meta name="robots" content="<?= htmlspecialchars($meta_robots) ?>" />
   <meta name="language" content="Arabic" />
-  <meta name="geo.region" content="SA-01" />
-  <meta name="geo.placename" content="الرياض" />
+  <meta name="geo.region" content="SA-04" />
+  <meta name="geo.placename" content="الدمام" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="<?= htmlspecialchars($meta_title) ?>" />
@@ -86,11 +86,11 @@ $og_image          = asset_url('assets/images/1.jpg');
     "telephone": ["<?= addslashes($phone_primary) ?>", "<?= addslashes($phone_secondary) ?>"],
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "الرياض",
+      "addressLocality": "الدمام",
       "addressCountry": "SA"
     },
     "description": "<?= addslashes($meta_description) ?>",
-    "areaServed": "الرياض",
+    "areaServed": "الدمام والمنطقة الشرقية",
     "priceRange": "$$"
   }
   </script>
@@ -155,6 +155,7 @@ $og_image          = asset_url('assets/images/1.jpg');
     /* 1. Hero Background */
     #hero {
       background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?> 0%, rgba(<?= $rgb_secondary ?>, 0.95) 40%, rgba(<?= $rgb_primary ?>, 0.85) 75%, <?= htmlspecialchars($theme_secondary_color) ?> 100%) !important;
+      overflow: hidden !important;
     }
 
     /* 2. Dark Sections Background (#whyus, #packages, #testimonials, #seo1) */

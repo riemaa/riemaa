@@ -98,7 +98,7 @@ $gallery_items = $pdo->query("SELECT * FROM gallery ORDER BY sort_order ASC, id 
 
           <div class="mb-3">
             <label class="form-label">وصف الصورة (يظهر عند النقر واللايت بوكس)</label>
-            <input type="text" name="caption" class="form-control" value="<?= htmlspecialchars($edit_item['caption'] ?? '') ?>" required placeholder="مثال: نقل عفش احترافي بالرياض" />
+            <input type="text" name="caption" class="form-control" value="<?= htmlspecialchars($edit_item['caption'] ?? '') ?>" required placeholder="مثال: نقل عفش احترافي بالدمام والشرقية" />
           </div>
 
           <div class="mb-3">

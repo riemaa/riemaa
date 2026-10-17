@@ -7,7 +7,7 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
 
-$site_name         = get_setting('site_name', 'شركة الأوائل لنقل العفش بالرياض');
+$site_name         = get_setting('site_name', 'شركة الأوائل لنقل العفش بالدمام');
 $site_short_name   = get_setting('site_short_name', 'الأوائل');
 $site_tagline      = get_setting('site_tagline', 'لنقل وتغليف وتخزين العفش والأثاث');
 $site_logo         = get_setting('site_logo', '');
@@ -39,7 +39,7 @@ $footer_scripts    = get_setting('footer_scripts', '');
             </h4>
           </div>
           <p style="color:rgba(255,255,255,0.7);line-height:1.8;font-size:0.92rem;">
-            الخيار الأول والموثوق لنقل وتغليف وتخزين العفش بالرياض وضواحيها. خبرة تفوق 10 سنوات في تقديم خدمات الفك والتركيب والتغليف وأوناش الرفع والتخزين الآمن بضمان معتمد 100%.
+            الخيار الأول والموثوق لنقل وتغليف وتخزين العفش بالدمام والمنطقة الشرقية (الدمام، القطيف، الخبر، الظهران، الجبيل). خبرة تفوق 10 سنوات في تقديم خدمات الفك والتركيب والتغليف وأوناش الرفع والتخزين الآمن بضمان معتمد 100%.
           </p>
         </div>
       </div>
@@ -47,7 +47,7 @@ $footer_scripts    = get_setting('footer_scripts', '');
       <div class="col-lg-3 col-md-6">
         <h6 style="color:var(--accent-bright);font-weight:900;margin-bottom:1.2rem;font-size:1.1rem;">خدماتنا المتخصصة</h6>
         <ul style="list-style:none;padding:0;">
-          <li style="margin-bottom:0.6rem;"><a href="#services" style="color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.92rem;"><i class="fas fa-chevron-left me-1 text-warning" style="font-size:0.7rem;"></i> نقل عفش داخل وخارج الرياض</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="#services" style="color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.92rem;"><i class="fas fa-chevron-left me-1 text-warning" style="font-size:0.7rem;"></i> نقل عفش داخل وخارج الدمام والشرقية</a></li>
           <li style="margin-bottom:0.6rem;"><a href="#services" style="color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.92rem;"><i class="fas fa-chevron-left me-1 text-warning" style="font-size:0.7rem;"></i> فك وتركيب غرف ومطابخ</a></li>
           <li style="margin-bottom:0.6rem;"><a href="#services" style="color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.92rem;"><i class="fas fa-chevron-left me-1 text-warning" style="font-size:0.7rem;"></i> تغليف بابلز وفوم وكرتون</a></li>
           <li style="margin-bottom:0.6rem;"><a href="#fleet"    style="color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.92rem;"><i class="fas fa-chevron-left me-1 text-warning" style="font-size:0.7rem;"></i> ونش رفع هيدروليكي للأبراج</a></li>

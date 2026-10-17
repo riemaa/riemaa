@@ -92,7 +92,7 @@ $testimonials = $pdo->query("SELECT * FROM testimonials ORDER BY sort_order ASC,
 
           <div class="mb-3">
             <label class="form-label">المدينة أو الحي</label>
-            <input type="text" name="location" class="form-control" value="<?= htmlspecialchars($edit_t['location'] ?? 'الرياض - حي الملقا') ?>" required />
+            <input type="text" name="location" class="form-control" value="<?= htmlspecialchars($edit_t['location'] ?? 'الدمام - حي الشاطئ') ?>" required />
           </div>
 
           <div class="row g-2 mb-3">

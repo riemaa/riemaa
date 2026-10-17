@@ -1,5 +1,5 @@
 /* ============================================================
-   تنسيقات صفحة هبوط شركة الأوائل لنقل العفش بالرياض
+   تنسيقات صفحة هبوط شركة الأوائل لنقل العفش بالدمام والشرقية
    Luxury Walnut Wood & Warm Sand Modern Arabic RTL Theme
 ============================================================ */
 
@@ -346,6 +346,7 @@ section {
   align-items: center;
   padding: 130px 0 90px;
   color: #FFF;
+  overflow: hidden !important;
 }
 
 .hero-particles {
@@ -1405,7 +1406,9 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  #hero { overflow: hidden !important; }
   .hero-img-main { height: 300px; }
+  .hero-float-card.card1 { right: 10px; bottom: -15px; }
   .hero-float-card.card2 { display: none; }
   .package-card.popular { transform: none; }
   .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
