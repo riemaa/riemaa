@@ -1,8 +1,8 @@
 {
-    "name": "شركة المثلث كلين",
+    "name": "شركة المثلث كلين للنظافة العامة",
     "short_name": "المثلث كلين",
     "description": "خدمات تنظيف وتعقيم المنازل والفلل والمجالس بالدمام والشرقية",
-    "id": "/?pwa=riemaa",
+    "id": "/?pwa=mothalathclean",
     "start_url": "/",
     "scope": "/",
     "display": "standalone",

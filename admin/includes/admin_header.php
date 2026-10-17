@@ -19,8 +19,8 @@ try {
     $new_bookings_count = 0;
 }
 
-$site_name = get_setting('site_name', 'شركة ريمة للنظافة العامة');
-$site_short_name = get_setting('site_short_name', 'ريمة للنظافة');
+$site_name = get_setting('site_name', 'شركة المثلث كلين للنظافة العامة');
+$site_short_name = get_setting('site_short_name', 'المثلث كلين');
 $theme_primary_color   = get_setting('theme_primary_color', '#0284C7');
 $theme_secondary_color = get_setting('theme_secondary_color', '#0F172A');
 $theme_accent_color    = get_setting('theme_accent_color', '#38BDF8');

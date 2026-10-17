@@ -43,8 +43,8 @@ try {
     ]);
 
     // تجهيز رسالة الواتساب المنسقة بالتفاصيل
-    $whatsapp_num = get_setting('whatsapp_number', '966554091835');
-    $site_name    = get_setting('site_name', 'شركة ريمة للنظافة العامة');
+    $whatsapp_num = get_setting('whatsapp_number', '966573247739');
+    $site_name    = get_setting('site_name', 'شركة المثلث كلين للنظافة العامة');
 
     $wa_text = "👋 مرحباً *{$site_name}*،\n";
     $wa_text .= "أود تأكيد طلب حجز خدمة نظافة عبر الموقع:\n\n";

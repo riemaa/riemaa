@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$site_name = get_setting('site_name', 'شركة ريمة للنظافة العامة');
+$site_name = get_setting('site_name', 'شركة المثلث كلين للنظافة العامة');
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">

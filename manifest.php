@@ -12,8 +12,8 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
-$site_name           = get_setting('site_name', 'شركة النظافة العامة');
-$site_short_name     = get_setting('site_short_name', 'خدمات النظافة');
+$site_name           = get_setting('site_name', 'شركة المثلث كلين للنظافة العامة');
+$site_short_name     = get_setting('site_short_name', 'المثلث كلين');
 $site_tagline        = get_setting('site_tagline', 'خدمات تنظيف وتعقيم المنازل والفلل والمجالس بالدمام والشرقية');
 $theme_primary_color = get_setting('theme_primary_color', '#0284C7');
 

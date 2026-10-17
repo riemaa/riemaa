@@ -7,14 +7,14 @@ require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
 
-$site_name         = get_setting('site_name', 'شركة ريمة للنظافة العامة بالدمام');
-$site_short_name   = get_setting('site_short_name', 'ريمة للنظافة');
+$site_name         = get_setting('site_name', 'شركة المثلث كلين للنظافة العامة بالدمام');
+$site_short_name   = get_setting('site_short_name', 'المثلث كلين');
 $site_tagline      = get_setting('site_tagline', 'لخدمات التنظيف والتعقيم الشامل للمنازل والفلل والمفروشات');
 $site_logo         = get_setting('site_logo', '');
 $site_icon         = get_setting('site_icon', 'fas fa-spray-can-sparkles');
-$phone_primary     = get_setting('phone_primary', '0554091835');
-$phone_secondary   = get_setting('phone_secondary', '0595084006');
-$whatsapp_number   = get_setting('whatsapp_number', '966554091835');
+$phone_primary     = get_setting('phone_primary', '0573247739');
+$phone_secondary   = get_setting('phone_secondary', '0573247739');
+$whatsapp_number   = get_setting('whatsapp_number', '966573247739');
 $footer_scripts    = get_setting('footer_scripts', '');
 ?>
 

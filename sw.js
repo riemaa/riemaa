@@ -1,7 +1,7 @@
 /**
- * Service Worker for Riemaa Cleaning PWA
+ * Service Worker for MothalathClean PWA
  */
-const CACHE_NAME = 'cleaning-pwa-v4';
+const CACHE_NAME = 'mothalath-pwa-v8';
 const ASSETS_TO_CACHE = [
   '/',
   '/assets/css/style.css',
