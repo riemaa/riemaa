@@ -79,12 +79,12 @@ $theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
     <ul class="sidebar-menu">
       <li>
         <a href="index.php" class="sidebar-link <?= $current_page == 'index.php' ? 'active' : '' ?>">
-          <i class="fas fa-home"></i> الرئيسية والإحصائيات
+          <i class="fas fa-home"></i> الرئيسية
         </a>
       </li>
       <li>
         <a href="bookings.php" class="sidebar-link <?= $current_page == 'bookings.php' ? 'active' : '' ?>">
-          <i class="fas fa-calendar-check"></i> طلبات الحجز والتواصل
+          <i class="fas fa-calendar-check"></i> طلبات الحجز
           <?php if ($new_bookings_count > 0): ?>
             <span class="sidebar-badge"><?= $new_bookings_count ?></span>
           <?php endif; ?>
@@ -94,12 +94,12 @@ $theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
       <li class="sidebar-menu-header">إعدادات الموقع والسيو</li>
       <li>
         <a href="settings.php" class="sidebar-link <?= $current_page == 'settings.php' ? 'active' : '' ?>">
-          <i class="fas fa-palette"></i> الإعدادات العامة والألوان
+          <i class="fas fa-palette"></i> الإعدادات العامة
         </a>
       </li>
       <li>
         <a href="nav.php" class="sidebar-link <?= $current_page == 'nav.php' ? 'active' : '' ?>">
-          <i class="fas fa-bars-staggered"></i> قائمة الهيدر ونصوص الأزرار
+          <i class="fas fa-bars-staggered"></i> قائمة الهيدر
         </a>
       </li>
       <li>

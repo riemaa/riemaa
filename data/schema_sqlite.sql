@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS gallery (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   image TEXT NOT NULL,
   caption TEXT NOT NULL,
-  category TEXT DEFAULT 'moving',
+  category TEXT DEFAULT 'نقل وشاحنات',
   sort_order INTEGER DEFAULT 0
 );
 

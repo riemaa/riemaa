@@ -32,7 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $caption    = clean_input($_POST['caption'] ?? '');
-    $category   = clean_input($_POST['category'] ?? 'moving');
+    $category   = clean_input($_POST['category'] ?? 'نقل وشاحنات');
+    if (empty($category)) {
+        $category = 'عام';
+    }
     $sort_order = (int)($_POST['sort_order'] ?? 0);
     $item_id    = (int)($_POST['item_id'] ?? 0);
     $image_path = $edit_item['image'] ?? '';
@@ -67,6 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $gallery_items = $pdo->query("SELECT * FROM gallery ORDER BY sort_order ASC, id ASC")->fetchAll();
+
+// جلب التصنيفات المسجلة حالياً لتقديمها كمقترحات مع إمكانية كتابة أي تصنيف جديد بحرية
+$existing_categories = [];
+try {
+    $existing_categories = $pdo->query("SELECT DISTINCT category FROM gallery WHERE category IS NOT NULL AND category != '' ORDER BY category ASC")->fetchAll(PDO::FETCH_COLUMN);
+} catch (Exception $e) {}
+
+$default_suggestions = ['نقل وشاحنات', 'تغليف وحماية', 'فك وتركيب', 'مستودعات وتخزين', 'أوناش رفع هيدروليكية'];
+$suggested_categories = array_values(array_unique(array_filter(array_merge($existing_categories, $default_suggestions))));
 ?>
 
 <div class="d-flex align-items-center justify-content-between mb-4">
@@ -102,14 +114,14 @@ $gallery_items = $pdo->query("SELECT * FROM gallery ORDER BY sort_order ASC, id 
           </div>
 
           <div class="mb-3">
-            <label class="form-label">تصنيف الصورة</label>
-            <select name="category" class="form-select">
-              <option value="moving"   <?= ($edit_item['category'] ?? '') === 'moving' ? 'selected' : '' ?>>نقل وشاحنات (Moving)</option>
-              <option value="packing"  <?= ($edit_item['category'] ?? '') === 'packing' ? 'selected' : '' ?>>تغليف وحماية (Packing)</option>
-              <option value="assembly" <?= ($edit_item['category'] ?? '') === 'assembly' ? 'selected' : '' ?>>فك وتركيب (Assembly)</option>
-              <option value="storage"  <?= ($edit_item['category'] ?? '') === 'storage' ? 'selected' : '' ?>>مستودعات وتخزين (Storage)</option>
-              <option value="crane"    <?= ($edit_item['category'] ?? '') === 'crane' ? 'selected' : '' ?>>أوناش رفع هيدروليكية (Crane)</option>
-            </select>
+            <label class="form-label fw-bold">تصنيف الصورة <small class="text-muted fw-normal">(اكتب تصنيفاً بحرية أو اختر من القائمة)</small></label>
+            <input type="text" name="category" list="categoriesList" class="form-control" value="<?= htmlspecialchars($edit_item['category'] ?? '') ?>" required placeholder="اكتب تصنيف الصورة (مثال: نقل وشاحنات، تغليف، فك وتركيب...)" autocomplete="off" />
+            <datalist id="categoriesList">
+              <?php foreach ($suggested_categories as $cat): ?>
+                <option value="<?= htmlspecialchars($cat) ?>"></option>
+              <?php endforeach; ?>
+            </datalist>
+            <div class="form-text text-muted small"><i class="fas fa-info-circle me-1"></i> يمكنك كتابة أي تصنيف جديد بحرية تامة وتعديله في أي وقت، أو الاختيار من القائمة.</div>
           </div>
 
           <div class="mb-3">
@@ -167,7 +179,7 @@ $gallery_items = $pdo->query("SELECT * FROM gallery ORDER BY sort_order ASC, id 
                   <strong class="d-block text-dark small"><?= htmlspecialchars($item['caption']) ?></strong>
                   <code class="text-muted small"><?= htmlspecialchars($item['image']) ?></code>
                 </td>
-                <td><span class="badge bg-light text-secondary border"><?= htmlspecialchars($item['category']) ?></span></td>
+                <td><span class="badge bg-light text-primary border fw-bold"><?= htmlspecialchars($item['category'] ?: 'عام') ?></span></td>
                 <td><span class="badge bg-light text-dark border"><?= $item['sort_order'] ?></span></td>
                 <td>
                   <a href="gallery.php?edit_id=<?= $item['id'] ?>" class="btn btn-sm btn-light border" title="تعديل">
