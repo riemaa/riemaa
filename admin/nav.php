@@ -34,7 +34,7 @@ require_once __DIR__ . '/includes/admin_header.php';
 
 $nav_about          = get_setting('nav_about', 'من نحن');
 $nav_services       = get_setting('nav_services', 'خدماتنا');
-$nav_fleet          = get_setting('nav_fleet', 'الأسطول والمعدات');
+$nav_fleet          = get_setting('nav_fleet', 'معدات النظافة');
 $nav_whyus          = get_setting('nav_whyus', 'لماذا نحن');
 $nav_works          = get_setting('nav_works', 'معرض الأعمال');
 $nav_packages       = get_setting('nav_packages', 'باقات الأسعار');
@@ -80,7 +80,7 @@ $btn_submit_booking = get_setting('btn_submit_booking', 'إرسال طلب ال�
           <input type="text" name="nav_services" class="form-control" value="<?= htmlspecialchars($nav_services) ?>" required />
         </div>
         <div class="col-md-4">
-          <label class="form-label fw-bold"><i class="fas fa-truck text-warning me-1"></i> رابط الأسطول والمعدات</label>
+          <label class="form-label fw-bold"><i class="fas fa-tools text-warning me-1"></i> رابط معدات وأجهزة النظافة</label>
           <input type="text" name="nav_fleet" class="form-control" value="<?= htmlspecialchars($nav_fleet) ?>" required />
         </div>
         <div class="col-md-4">

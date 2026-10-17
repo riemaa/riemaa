@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $title       = clean_input($_POST['title'] ?? '');
-    $icon        = clean_input($_POST['icon'] ?? 'fas fa-truck-moving');
+    $icon        = clean_input($_POST['icon'] ?? 'fas fa-spray-can-sparkles');
     $description = clean_input($_POST['description'] ?? '');
     $features    = trim($_POST['features'] ?? '');
     $sort_order  = (int)($_POST['sort_order'] ?? 0);
@@ -105,7 +105,7 @@ $services = $pdo->query("SELECT * FROM services ORDER BY sort_order ASC, id ASC"
 
           <div class="mb-3">
             <label class="form-label">الميزات الفرعية (كل ميزة في سطر منفصل)</label>
-            <textarea name="features" class="form-control" rows="4" placeholder="ديانات مجهزة بأحدث بطانات الفوم&#10;سائقون محترفون&#10;وصول في الموعد"><?= htmlspecialchars($edit_service['features'] ?? '') ?></textarea>
+            <textarea name="features" class="form-control" rows="4" placeholder="أحدث أجهزة ومعدات التنظيف والتعقيم&#10;فريق عمل مدرب ومحترف&#10;التزام تام بالمواعيد وضمان شامل"><?= htmlspecialchars($edit_service['features'] ?? '') ?></textarea>
           </div>
 
           <div class="mb-4">

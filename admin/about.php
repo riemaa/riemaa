@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- القصة الثانية (فريق العمل) -->
   <div class="content-card">
     <div class="content-card-header">
-      <h5><i class="fas fa-users-cog text-warning"></i> الفقرة الثانية (فريق النجارين والفنيين)</h5>
+      <h5><i class="fas fa-users-cog text-warning"></i> الفقرة الثانية (فريق العمل ومعدات النظافة)</h5>
     </div>
     <div class="content-card-body">
       <div class="row g-3">

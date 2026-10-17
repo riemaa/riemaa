@@ -85,7 +85,7 @@ $why_us = $pdo->query("SELECT * FROM why_us ORDER BY sort_order ASC, id ASC")->f
 
           <div class="mb-3">
             <label class="form-label">عنوان الميزة</label>
-            <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($edit_why['title'] ?? '') ?>" required placeholder="مثال: ضمان سلامة الأثاث 100%" />
+            <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($edit_why['title'] ?? '') ?>" required placeholder="مثال: ضمان جودة النظافة والتعقيم 100%" />
           </div>
 
           <div class="mb-3">

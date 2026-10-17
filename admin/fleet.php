@@ -144,7 +144,7 @@ $fleet = $pdo->query("SELECT * FROM fleet ORDER BY sort_order ASC, id ASC")->fet
   <div class="col-lg-7">
     <div class="content-card">
       <div class="content-card-header">
-        <h5><i class="fas fa-truck text-primary"></i> الشاحنات والمعدات المسجلة (<?= count($fleet) ?>)</h5>
+        <h5><i class="fas fa-tools text-primary"></i> الأجهزة والمعدات المسجلة (<?= count($fleet) ?>)</h5>
       </div>
       <div class="content-card-body p-0">
         <div class="table-responsive">

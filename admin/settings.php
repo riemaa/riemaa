@@ -54,7 +54,7 @@ $site_name           = get_setting('site_name');
 $site_short_name     = get_setting('site_short_name');
 $site_tagline        = get_setting('site_tagline');
 $site_logo           = get_setting('site_logo');
-$site_icon           = get_setting('site_icon', 'fas fa-truck-moving');
+$site_icon           = get_setting('site_icon', 'fas fa-spray-can-sparkles');
 $phone_primary       = get_setting('phone_primary');
 $phone_secondary     = get_setting('phone_secondary');
 $whatsapp_number     = get_setting('whatsapp_number');
@@ -81,7 +81,7 @@ $map_embed_code        = get_setting('map_embed_code', '');
 
 $nav_about      = get_setting('nav_about', 'من نحن');
 $nav_services   = get_setting('nav_services', 'خدماتنا');
-$nav_fleet      = get_setting('nav_fleet', 'الأسطول والمعدات');
+$nav_fleet      = get_setting('nav_fleet', 'معدات النظافة');
 $nav_whyus      = get_setting('nav_whyus', 'لماذا نحن');
 $nav_works      = get_setting('nav_works', 'معرض الأعمال');
 $nav_packages   = get_setting('nav_packages', 'باقات الأسعار');
@@ -120,7 +120,7 @@ $nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
         </div>
         <div class="col-md-3">
           <label class="form-label">أيقونة الشعار الافتراضية (FontAwesome)</label>
-          <input type="text" name="site_icon" class="form-control" value="<?= htmlspecialchars($site_icon) ?>" placeholder="fas fa-truck-moving" />
+          <input type="text" name="site_icon" class="form-control" value="<?= htmlspecialchars($site_icon) ?>" placeholder="fas fa-spray-can-sparkles" />
         </div>
         <div class="col-md-12">
           <label class="form-label">الوصف المختصر (سلوجان الموقع)</label>
@@ -250,7 +250,7 @@ $nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
           <input type="text" name="nav_services" class="form-control" value="<?= htmlspecialchars($nav_services) ?>" required />
         </div>
         <div class="col-md-4">
-          <label class="form-label">رابط الأسطول والمعدات</label>
+          <label class="form-label">رابط معدات وأجهزة النظافة</label>
           <input type="text" name="nav_fleet" class="form-control" value="<?= htmlspecialchars($nav_fleet) ?>" required />
         </div>
         <div class="col-md-4">
