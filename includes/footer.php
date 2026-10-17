@@ -120,8 +120,9 @@ $footer_scripts    = get_setting('footer_scripts', '');
      FLOATING BUTTONS & PWA INSTALL
 ============================================================ -->
 <div class="floating-buttons">
-  <button type="button" id="pwaInstallBtn" class="float-btn float-btn-pwa" title="تثبيت التطبيق على جهازك" style="display:none;">
+  <button type="button" id="pwaInstallBtn" class="float-btn float-btn-pwa" title="تثبيت التطبيق على جهازك">
     <i class="fas fa-download"></i>
+    <span class="float-btn-badge">تطبيق</span>
   </button>
   <a href="<?= htmlspecialchars(format_whatsapp_link($whatsapp_number)) ?>" class="float-btn float-btn-whatsapp" target="_blank" title="محادثة واتساب">
     <i class="fab fa-whatsapp"></i>
@@ -129,6 +130,48 @@ $footer_scripts    = get_setting('footer_scripts', '');
   <a href="tel:<?= htmlspecialchars(format_phone_tel($phone_primary)) ?>" class="float-btn float-btn-call" title="اتصال مباشر">
     <i class="fas fa-phone-alt"></i>
   </a>
+</div>
+
+<!-- PWA Installation Guide Modal -->
+<div class="modal fade" id="pwaGuideModal" tabindex="-1" aria-labelledby="pwaGuideModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:24px;border:none;box-shadow:0 25px 60px rgba(0,0,0,0.3);overflow:hidden;">
+      <div class="modal-header text-white" style="background:linear-gradient(135deg, var(--wood-walnut), var(--primary));padding:1.4rem;">
+        <h5 class="modal-title fw-bold" id="pwaGuideModalLabel">
+          <i class="fas fa-mobile-screen-button me-2 text-warning"></i> تثبيت تطبيق <?= htmlspecialchars($site_short_name) ?>
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4 text-center">
+        <div style="width:70px;height:70px;background:linear-gradient(135deg, var(--primary), var(--accent-bright));border-radius:20px;display:inline-flex;align-items:center;justify-content:center;color:white;font-size:2rem;margin-bottom:1rem;box-shadow:0 8px 25px rgba(0,0,0,0.15);">
+          <i class="<?= htmlspecialchars($site_icon) ?>"></i>
+        </div>
+        <h4 class="fw-bold mb-2" style="color:var(--text-dark);">تثبيت تطبيق <?= htmlspecialchars($site_short_name) ?></h4>
+        <p class="text-muted small mb-4">احصل على وصول فوري ومباشر لخدمات النقل والخصومات الخاصة من شاشة هاتفك الرئيسية دون تحميل من المتاجر</p>
+
+        <div class="text-start bg-light p-3 rounded-4 mb-3" style="border:1px solid rgba(0,0,0,0.06);">
+          <h6 class="fw-bold mb-2 text-dark"><i class="fab fa-apple text-dark me-1"></i> لمستخدمي آيفون وآيباد (Safari):</h6>
+          <ol class="small text-muted mb-0 ps-3" style="line-height:1.8;">
+            <li>اضغط على أيقونة <strong>المشاركة (Share <i class="fas fa-arrow-up-from-bracket"></i>)</strong> في شريط المتصفح السفلي.</li>
+            <li>مرّر للأسفل واختر <strong>"إضافة إلى الشاشة الرئيسية" (Add to Home Screen <i class="fas fa-plus-square text-primary"></i>)</strong>.</li>
+            <li>اضغط على <strong>"إضافة" (Add)</strong> في الزاوية العلوية لتثبيت التطبيق.</li>
+          </ol>
+        </div>
+
+        <div class="text-start bg-light p-3 rounded-4 mb-3" style="border:1px solid rgba(0,0,0,0.06);">
+          <h6 class="fw-bold mb-2 text-dark"><i class="fab fa-android text-success me-1"></i> لمستخدمي أندرويد والكمبيوتر (Chrome / Edge):</h6>
+          <ol class="small text-muted mb-0 ps-3" style="line-height:1.8;">
+            <li>اضغط على زر <strong>"تثبيت التطبيق الآن"</strong> أدناه لتثبيته فوراً.</li>
+            <li>أو اضغط على زر الخيارات <i class="fas fa-ellipsis-v"></i> بأعلى المتصفح ثم اختر <strong>"تثبيت التطبيق"</strong>.</li>
+          </ol>
+        </div>
+
+        <button type="button" id="pwaModalInstallBtn" class="btn btn-hero-primary w-100 py-3 fw-bold" style="border-radius:50px;">
+          <i class="fas fa-download me-2"></i> تثبيت التطبيق الآن على جهازي
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- PWA Install Prompt Banner -->

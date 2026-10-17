@@ -5,6 +5,8 @@
 
 require_once __DIR__ . '/includes/header.php';
 
+$rgb_primary = hex2rgb_css($theme_primary_color);
+
 // جلب بيانات الأقسام من قاعدة البيانات
 $hero = get_section('hero', [
     'badge'          => 'الشركة الأولى المعتمدة لنقل وتغليف الأثاث بالرياض',
@@ -120,10 +122,10 @@ try {
         </p>
         <div class="hero-btns">
           <a href="tel:<?= htmlspecialchars(format_phone_tel($phone_primary)) ?>" class="btn-hero-primary">
-            <i class="fas fa-phone-alt"></i> <?= htmlspecialchars($hero['btn_call'] ?? 'اتصل واحجز فوراً') ?>
+            <i class="fas fa-phone-alt"></i> <?= htmlspecialchars(get_setting('btn_hero_call', $hero['btn_call'] ?? 'اتصل واحجز فوراً')) ?>
           </a>
           <a href="<?= htmlspecialchars(format_whatsapp_link($whatsapp_number)) ?>" class="btn-hero-secondary" target="_blank">
-            <i class="fab fa-whatsapp"></i> <?= htmlspecialchars($hero['btn_wa'] ?? 'استفسار واتساب سريع') ?>
+            <i class="fab fa-whatsapp"></i> <?= htmlspecialchars(get_setting('btn_hero_wa', $hero['btn_wa'] ?? 'استفسار واتساب سريع')) ?>
           </a>
         </div>
         <div class="hero-stats">
@@ -225,7 +227,7 @@ try {
 </section>
 
 <!-- Wave Divider to Beige -->
-<div style="background:var(--beige-warm); line-height:0;">
+<div class="wave-bg-beige" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
     <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#FFFFFF"/>
   </svg>
@@ -267,9 +269,9 @@ try {
 </section>
 
 <!-- Wave Divider to Dark -->
-<div class="wave-bg-dark" style="line-height:0;">
+<div class="wave-bg-dark wave-fill-beige" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
-    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#F6F0E8"/>
+    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="rgba(<?= $rgb_primary ?>, 0.075)"/>
   </svg>
 </div>
 
@@ -340,7 +342,7 @@ try {
 </section>
 
 <!-- Wave Divider to Beige -->
-<div style="background:var(--beige-warm); line-height:0;">
+<div class="wave-bg-beige" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
     <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#FFFFFF"/>
   </svg>
@@ -373,9 +375,9 @@ try {
 </section>
 
 <!-- Wave Divider to Dark -->
-<div class="wave-bg-dark" style="line-height:0;">
+<div class="wave-bg-dark wave-fill-beige" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
-    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#F6F0E8"/>
+    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="rgba(<?= $rgb_primary ?>, 0.075)"/>
   </svg>
 </div>
 
@@ -507,7 +509,7 @@ try {
 </section>
 
 <!-- Wave Divider to Beige -->
-<div style="background:var(--beige-warm); line-height:0;">
+<div class="wave-bg-beige" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
     <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#FFFFFF"/>
   </svg>
@@ -541,9 +543,9 @@ try {
 </section>
 
 <!-- Wave Divider to Dark -->
-<div class="wave-bg-dark" style="line-height:0;">
+<div class="wave-bg-dark wave-fill-beige" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
-    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="#F6F0E8"/>
+    <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="rgba(<?= $rgb_primary ?>, 0.075)"/>
   </svg>
 </div>
 
@@ -660,7 +662,7 @@ try {
 </section>
 
 <!-- Wave Divider to Beige -->
-<div class="wave-fill-dark" style="background:var(--beige-warm); line-height:0;">
+<div class="wave-bg-beige wave-fill-dark" style="line-height:0;">
   <svg viewBox="0 0 1440 45" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;">
     <path d="M0,0 C480,45 960,0 1440,35 L1440,0 L0,0 Z" fill="<?= htmlspecialchars($theme_secondary_color) ?>"/>
   </svg>
@@ -782,7 +784,7 @@ try {
               </div>
               <div class="col-12">
                 <button type="submit" class="btn-submit">
-                  <i class="fas fa-paper-plane me-2"></i> إرسال طلب الحجز والحصول على الخصم
+                  <i class="fas fa-paper-plane me-2"></i> <?= htmlspecialchars(get_setting('btn_submit_booking', 'إرسال طلب الحجز والحصول على الخصم')) ?>
                 </button>
               </div>
             </div>

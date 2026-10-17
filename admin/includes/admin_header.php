@@ -94,7 +94,12 @@ $theme_accent_color    = get_setting('theme_accent_color', '#D4A373');
       <li class="sidebar-menu-header">إعدادات الموقع والسيو</li>
       <li>
         <a href="settings.php" class="sidebar-link <?= $current_page == 'settings.php' ? 'active' : '' ?>">
-          <i class="fas fa-sliders-h"></i> الإعدادات العامة والشعار
+          <i class="fas fa-palette"></i> الإعدادات العامة والألوان
+        </a>
+      </li>
+      <li>
+        <a href="nav.php" class="sidebar-link <?= $current_page == 'nav.php' ? 'active' : '' ?>">
+          <i class="fas fa-bars-staggered"></i> قائمة الهيدر ونصوص الأزرار
         </a>
       </li>
       <li>

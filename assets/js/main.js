@@ -293,37 +293,48 @@ document.addEventListener('DOMContentLoaded', function () {
   const pwaBanner = document.getElementById('pwaBanner');
   const pwaBannerInstall = document.getElementById('pwaBannerInstall');
   const pwaBannerDismiss = document.getElementById('pwaBannerDismiss');
+  const pwaGuideModalEl = document.getElementById('pwaGuideModal');
+  const pwaModalInstallBtn = document.getElementById('pwaModalInstallBtn');
+
+  // Floating install button is always visible
+  if (pwaInstallBtn) {
+    pwaInstallBtn.style.display = 'flex';
+  }
+
+  // Show banner after 2s if on mobile and not dismissed
+  if (pwaBanner && !sessionStorage.getItem('pwa_dismissed') && window.innerWidth <= 768) {
+    setTimeout(() => {
+      pwaBanner.style.display = 'flex';
+    }, 2000);
+  }
 
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
 
-    // Show floating install button
-    if (pwaInstallBtn) {
-      pwaInstallBtn.style.display = 'flex';
-    }
-
-    // Show banner if not dismissed in this session
     if (pwaBanner && !sessionStorage.getItem('pwa_dismissed')) {
-      setTimeout(() => {
-        pwaBanner.style.display = 'flex';
-      }, 1500);
+      pwaBanner.style.display = 'flex';
     }
   });
 
   function triggerPwaInstall() {
-    if (!deferredPrompt) {
-      alert('لتثبيت التطبيق على جهازك: افتح خيارات المتصفح (زر المشاركة في آيفون أو الثلاث نقاط في أندرويد) واضغط على "إضافة إلى الشاشة الرئيسية".');
-      return;
-    }
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        if (pwaBanner) pwaBanner.style.display = 'none';
-        if (pwaInstallBtn) pwaInstallBtn.style.display = 'none';
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          if (pwaBanner) pwaBanner.style.display = 'none';
+        }
+        deferredPrompt = null;
+      });
+    } else {
+      // Show instructions modal if native prompt is unavailable (e.g. Safari / iOS)
+      if (pwaGuideModalEl && typeof bootstrap !== 'undefined') {
+        const modal = new bootstrap.Modal(pwaGuideModalEl);
+        modal.show();
+      } else {
+        alert('لتثبيت التطبيق على جهازك: افتح خيارات المتصفح (زر المشاركة في آيفون أو الثلاث نقاط في أندرويد) واضغط على "إضافة إلى الشاشة الرئيسية".');
       }
-      deferredPrompt = null;
-    });
+    }
   }
 
   if (pwaInstallBtn) {
@@ -332,6 +343,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (pwaBannerInstall) {
     pwaBannerInstall.addEventListener('click', triggerPwaInstall);
+  }
+
+  if (pwaModalInstallBtn) {
+    pwaModalInstallBtn.addEventListener('click', triggerPwaInstall);
   }
 
   if (pwaBannerDismiss) {
@@ -343,7 +358,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   window.addEventListener('appinstalled', () => {
     if (pwaBanner) pwaBanner.style.display = 'none';
-    if (pwaInstallBtn) pwaInstallBtn.style.display = 'none';
     deferredPrompt = null;
   });
 

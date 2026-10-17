@@ -180,7 +180,7 @@ $nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
 
       <hr class="my-4" style="opacity:0.1;">
 
-      <div class="d-flex flex-wrap align-items-center gap-2">
+      <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
         <span class="small fw-bold text-dark me-2"><i class="fas fa-swatchbook me-1"></i> باقات ألوان جاهزة ومقترحة:</span>
         <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#8B5A2B', '#341D13', '#D4A373')">
           <span style="display:inline-block;width:12px;height:12px;background:#8B5A2B;border-radius:50%;margin-left:4px;"></span> خشب كلاسيكي (الأصل)
@@ -197,6 +197,29 @@ $nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
         <button type="button" class="btn btn-sm btn-light border" onclick="applyPreset('#374151', '#111827', '#9CA3AF')">
           <span style="display:inline-block;width:12px;height:12px;background:#374151;border-radius:50%;margin-left:4px;"></span> رمادي داكن فاحم
         </button>
+      </div>
+
+      <!-- معاينة حية ومباشرة للألوان والتطبيق على الخلفيات -->
+      <div class="p-3 rounded-3 border" style="background:#f8fafc;">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <span class="small fw-bold text-dark"><i class="fas fa-eye me-1 text-primary"></i> معاينة حية للألوان وتأثيرها على الأزرار والخلفيات الفاتحة:</span>
+          <span class="badge bg-success-subtle text-success border border-success-subtle">مباشر</span>
+        </div>
+        <div class="row g-2 align-items-center">
+          <div class="col-md-4">
+            <div id="previewCardHero" class="p-3 rounded text-center text-white" style="background:<?= htmlspecialchars($theme_secondary_color) ?>; transition:all 0.3s ease;">
+              <small class="d-block text-white-50 mb-1">الخلفية الداكنة / الهيدر</small>
+              <button type="button" id="previewBtnPrimary" class="btn btn-sm fw-bold px-3 py-1 text-white border-0" style="background:<?= htmlspecialchars($theme_primary_color) ?>;">زر أساسي</button>
+              <span id="previewBadgeAccent" class="badge ms-1" style="background:<?= htmlspecialchars($theme_accent_color) ?>; color:#000;">شارة</span>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div id="previewCardBeige" class="p-3 rounded border text-start" style="background:linear-gradient(180deg, rgba(139,90,43,0.035) 0%, rgba(139,90,43,0.075) 100%); transition:all 0.3s ease;">
+              <small class="fw-bold text-dark d-block mb-1"><i class="fas fa-layer-group text-primary me-1"></i> خلفيات الأقسام الفاتحة المتناغمة تلقائياً (.bg-warm-beige)</small>
+              <p class="small text-muted mb-0">يتم دمج درجة اللون الأساسي بنسبة خفيفة جداً لإنشاء خلفيات ناعمة وفواصل متموجة تنعكس في كامل صفحات الموقع تلقائياً دون أي تضارب بالألوان.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -356,6 +379,32 @@ $nav_call_btn   = get_setting('nav_call_btn', 'اتصل الآن');
 </form>
 
 <script>
+function hexToRgb(hex) {
+  let c = hex.replace('#', '');
+  if (c.length === 3) c = c.split('').map(x => x + x).join('');
+  const num = parseInt(c, 16);
+  return [(num >> 16) & 255, (num >> 8) & 255, num & 255].join(',');
+}
+
+function updateLivePreview() {
+  const pVal = document.getElementById('primaryColorInput')?.value || '#8B5A2B';
+  const sVal = document.getElementById('secondaryColorInput')?.value || '#341D13';
+  const aVal = document.getElementById('accentColorInput')?.value || '#D4A373';
+
+  const cardHero = document.getElementById('previewCardHero');
+  const btnPri = document.getElementById('previewBtnPrimary');
+  const badgeAcc = document.getElementById('previewBadgeAccent');
+  const cardBeige = document.getElementById('previewCardBeige');
+
+  if (cardHero) cardHero.style.background = sVal;
+  if (btnPri) btnPri.style.background = pVal;
+  if (badgeAcc) badgeAcc.style.background = aVal;
+  if (cardBeige) {
+    const rgb = hexToRgb(pVal);
+    cardBeige.style.background = `linear-gradient(180deg, rgba(${rgb}, 0.035) 0%, rgba(${rgb}, 0.075) 100%)`;
+  }
+}
+
 function applyPreset(primary, secondary, accent) {
   const pIn = document.getElementById('primaryColorInput');
   const pTx = document.getElementById('primaryColorText');
@@ -369,7 +418,27 @@ function applyPreset(primary, secondary, accent) {
   if (sTx) sTx.value = secondary;
   if (aIn) aIn.value = accent;
   if (aTx) aTx.value = accent;
+  updateLivePreview();
 }
+
+['primaryColorInput', 'secondaryColorInput', 'accentColorInput'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', updateLivePreview);
+});
+['primaryColorText', 'secondaryColorText', 'accentColorText'].forEach((id, idx) => {
+  const el = document.getElementById(id);
+  const targetId = ['primaryColorInput', 'secondaryColorInput', 'accentColorInput'][idx];
+  if (el) {
+    el.addEventListener('input', function() {
+      const target = document.getElementById(targetId);
+      if (target && /^#[0-9A-Fa-f]{6}$/.test(this.value)) {
+        target.value = this.value;
+        updateLivePreview();
+      }
+    });
+  }
+});
+document.addEventListener('DOMContentLoaded', updateLivePreview);
 </script>
 
 <?php require_once __DIR__ . '/includes/admin_footer.php'; ?>

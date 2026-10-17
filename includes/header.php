@@ -137,6 +137,9 @@ $og_image          = asset_url('assets/images/1.jpg');
       --accent-gold: <?= htmlspecialchars($theme_accent_color) ?> !important;
       --accent-bright: <?= htmlspecialchars($theme_accent_color) ?> !important;
       --gold-glow: rgba(<?= $rgb_accent ?>, 0.45) !important;
+      --beige-warm: rgba(<?= $rgb_primary ?>, 0.07) !important;
+      --beige-light: rgba(<?= $rgb_primary ?>, 0.03) !important;
+      --beige-sand: rgba(<?= $rgb_primary ?>, 0.12) !important;
     }
 
     /* 1. Hero Background */
@@ -154,24 +157,37 @@ $og_image          = asset_url('assets/images/1.jpg');
       background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?> 0%, <?= htmlspecialchars($theme_secondary_color) ?> 100%) !important;
     }
 
-    /* 4. Footer Background */
+    /* 4. Warm / Light Sections Background (#services, #works, #guarantees, #contact) */
+    .bg-warm-beige {
+      background: linear-gradient(180deg, rgba(<?= $rgb_primary ?>, 0.035) 0%, rgba(<?= $rgb_primary ?>, 0.075) 100%) !important;
+      border-top: 1px solid rgba(<?= $rgb_primary ?>, 0.15) !important;
+      border-bottom: 1px solid rgba(<?= $rgb_primary ?>, 0.15) !important;
+    }
+
+    /* 5. Footer Background */
     footer {
       background: linear-gradient(135deg, <?= htmlspecialchars($theme_secondary_color) ?> 0%, #080A0E 100%) !important;
       border-top: 3px solid <?= htmlspecialchars($theme_primary_color) ?> !important;
     }
 
-    /* 5. Wave Dividers */
+    /* 6. Wave Dividers */
     .wave-fill-dark svg path {
       fill: <?= htmlspecialchars($theme_secondary_color) ?> !important;
     }
     .wave-fill-primary svg path {
       fill: <?= htmlspecialchars($theme_primary_color) ?> !important;
     }
+    .wave-fill-beige svg path {
+      fill: rgba(<?= $rgb_primary ?>, 0.075) !important;
+    }
     .wave-bg-dark {
       background: <?= htmlspecialchars($theme_secondary_color) ?> !important;
     }
     .wave-bg-terracotta {
       background: linear-gradient(135deg, <?= htmlspecialchars($theme_primary_color) ?> 0%, <?= htmlspecialchars($theme_secondary_color) ?> 100%) !important;
+    }
+    .wave-bg-beige {
+      background: rgba(<?= $rgb_primary ?>, 0.075) !important;
     }
 
     /* 6. Buttons & Interactive Elements */

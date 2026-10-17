@@ -1259,6 +1259,28 @@ footer {
   position: relative;
 }
 
+.float-btn-pwa {
+  background: linear-gradient(135deg, var(--primary), var(--accent-bright));
+  animation: floatBtnPulse 2.4s ease-in-out infinite 1.2s;
+  cursor: pointer;
+  border: 3px solid #FFFFFF;
+}
+
+.float-btn-badge {
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  background: #E11D48;
+  color: #FFFFFF;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 20px;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  white-space: nowrap;
+}
+
 .float-btn-whatsapp {
   background: #25D366;
   animation: floatBtnPulse 2.4s ease-in-out infinite;
